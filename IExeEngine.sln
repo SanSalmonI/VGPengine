@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IExeEngine", "Engine\IExeEngine\IExeEngine.vcxproj", "{DACA0F24-E27D-4787-AB9E-C75A1E5D2129}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DACA0F24-E27D-4787-AB9E-C75A1E5D2129}.Debug|x64.ActiveCfg = Debug|x64
+		{DACA0F24-E27D-4787-AB9E-C75A1E5D2129}.Debug|x64.Build.0 = Debug|x64
+		{DACA0F24-E27D-4787-AB9E-C75A1E5D2129}.Debug|x86.ActiveCfg = Debug|Win32
+		{DACA0F24-E27D-4787-AB9E-C75A1E5D2129}.Debug|x86.Build.0 = Debug|Win32
+		{DACA0F24-E27D-4787-AB9E-C75A1E5D2129}.Release|x64.ActiveCfg = Release|x64
+		{DACA0F24-E27D-4787-AB9E-C75A1E5D2129}.Release|x64.Build.0 = Release|x64
+		{DACA0F24-E27D-4787-AB9E-C75A1E5D2129}.Release|x86.ActiveCfg = Release|Win32
+		{DACA0F24-E27D-4787-AB9E-C75A1E5D2129}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DACA0F24-E27D-4787-AB9E-C75A1E5D2129} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C84562D2-23AD-4C29-92D2-1A4C470BECEF}
+	EndGlobalSection
+EndGlobal
