@@ -35,7 +35,7 @@ void Window::Initialize(HINSTANCE instance, const std::wstring& appName, uint32_
 	wcex.hIcon = LoadIcon(nullptr, IDI_APPLICATION);
 	wcex.hCursor = LoadCursor(nullptr, IDC_CROSS);
 	wcex.hIconSm = LoadIcon(nullptr, IDI_APPLICATION);
-	wcex.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+	wcex.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
 	wcex.lpszMenuName = nullptr;
 	wcex.lpszClassName = mAppName.c_str();
 
@@ -99,5 +99,5 @@ HWND Window::GetWindowHandle() const
 
 bool Window::IsActive() const
 {
-	return IsActive;
+	return mIsActive;
 }

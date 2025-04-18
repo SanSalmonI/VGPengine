@@ -2,8 +2,11 @@
 
 int WINAPI WinMain(HINSTANCE instance, HINSTANCE, LPSTR, int)
 {
-    IExeEngine::App myApp;
-    myApp.Run();
+    IExeEngine::AppConfig config;
+    config.appName = L"Hello Window";
+
+    IExeEngine::App myApp = IExeEngine::MainApp();
+    myApp.Run(config);
 
     return 0;
 }
