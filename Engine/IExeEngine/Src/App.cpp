@@ -4,6 +4,7 @@
 
 using namespace IExeEngine;
 using namespace IExeEngine::Core;
+using namespace IExeEngine::Graphics;
 
 void App::Run(const AppConfig& config)
 {
@@ -16,7 +17,9 @@ void App::Run(const AppConfig& config)
 		config.appName,
 		config.winWidth,
 		config.winHeight
-		);
+	);
+	auto handle = myWindow.GetWindowHandle();
+	GraphicsSystem::StaticInitialize(handle, false);
 
 	// Last Step Before Running
 	ASSERT(mCurrentState != nullptr, "App: Need an app state to run");
@@ -27,35 +30,40 @@ void App::Run(const AppConfig& config)
 	while (mRunning)
 	{
 		myWindow.ProcessMessage();
-		
+
 		if (!myWindow.IsActive())
 		{
 			Quit();
 			continue;
 		}
-	}
 
-	if (mNextState != nullptr)
-	{
-		mCurrentState->Terminate();
-		mCurrentState = std::exchange(mNextState, nullptr);
-		mCurrentState->Initialize();
-	}
+		if (mNextState != nullptr)
+		{
+			mCurrentState->Terminate();
+			mCurrentState = std::exchange(mNextState, nullptr);
+			mCurrentState->Initialize();
+		}
 
-	float deltaTime = TimeUtil::GetDeltaTime();
-#if defined(_DEBUG)
-	if (deltaTime < 0.5f)
-#endif
-	{
-		mCurrentState->Update(deltaTime);
-	}
+		float deltaTime = TimeUtil::GetDeltaTime();
+	#if defined(_DEBUG)
+		if (deltaTime < 0.5f)
+	#endif
+		{
+			mCurrentState->Update(deltaTime);
+		}
 
+		GraphicsSystem* gs = GraphicsSystem::Get();
+		gs->BeginRender();
+		mCurrentState->Render();
+		gs->EndRender();
+	}
 
 	// Terminate Everything
 	LOG("App Quit");
-	
 	mCurrentState->Terminate();
 	
+	GraphicsSystem::StaticTerminate();
+
 	myWindow.Terminate();
 }
 
