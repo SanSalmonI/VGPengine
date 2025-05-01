@@ -6,7 +6,7 @@ struct VS_INPUT
     float3 position : POSITION;
 };
 
-// Output that gets Interpolated in the rasterizer
+// Output that gets Interpolated in the Rasterizer
 struct VS_OUTPUT
 {
     float4 position : SV_Position;

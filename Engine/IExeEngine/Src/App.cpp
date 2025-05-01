@@ -46,7 +46,7 @@ void App::Run(const AppConfig& config)
 
 		float deltaTime = TimeUtil::GetDeltaTime();
 	#if defined(_DEBUG)
-		if (deltaTime < 0.5f)
+		if (deltaTime < 0.5f) // Primarily for handling Breakpoints
 	#endif
 		{
 			mCurrentState->Update(deltaTime);
@@ -54,7 +54,7 @@ void App::Run(const AppConfig& config)
 
 		GraphicsSystem* gs = GraphicsSystem::Get();
 		gs->BeginRender();
-		mCurrentState->Render();
+			mCurrentState->Render();
 		gs->EndRender();
 	}
 

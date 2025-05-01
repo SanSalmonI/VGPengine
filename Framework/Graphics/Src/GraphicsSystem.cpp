@@ -176,6 +176,17 @@ void GraphicsSystem::Resize(uint32_t width, uint32_t height)
 	dsvDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
 	dsvDesc.Texture2D.MipSlice = 0;
 	hr = mD3DDevice->CreateDepthStencilView(mDepthStencilBuffer, &dsvDesc, &mDepthStencilView);
+	ASSERT(SUCCEEDED(hr), "GraphicsSystem: Failed to create depth stencil view!");
+
+	ResetRenderTarget();
+
+	mViewport.Width = static_cast<float>(GetBackBufferWidth());
+	mViewport.Height = static_cast<float>(GetBackBufferHeight());
+	mViewport.MinDepth = 0.0f;
+	mViewport.MaxDepth = 1.0f;
+	mViewport.TopLeftX = 0;
+	mViewport.TopLeftY = 0;
+	ResetViewport();
 }
 
 void GraphicsSystem::ResetRenderTarget()
