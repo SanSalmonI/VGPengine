@@ -10,7 +10,7 @@
 
 #include <Math/Inc/DWMath.h>
 
-namespace IExeEngine {
+namespace IExeEngine::Graphics {
 
 	using Color = IExeEngine::Math::Vector4;
 

@@ -5,6 +5,7 @@
 using namespace IExeEngine;
 using namespace IExeEngine::Core;
 using namespace IExeEngine::Graphics;
+using namespace IExeEngine::Input;
 
 void App::Run(const AppConfig& config)
 {
@@ -20,18 +21,23 @@ void App::Run(const AppConfig& config)
 	);
 	auto handle = myWindow.GetWindowHandle();
 	GraphicsSystem::StaticInitialize(handle, false);
+	InputSystem::StaticInitialize(handle);
 
 	// Last Step Before Running
 	ASSERT(mCurrentState != nullptr, "App: Need an app state to run");
 	mCurrentState->Initialize();
 
 	// Process Updates
+	
+	InputSystem* input = InputSystem::Get();
 	mRunning = true;
 	while (mRunning)
 	{
 		myWindow.ProcessMessage();
 
-		if (!myWindow.IsActive())
+		input->Update();
+
+		if (!myWindow.IsActive() || input->IsKeyPressed(KeyCode::ESCAPE))
 		{
 			Quit();
 			continue;
@@ -63,6 +69,7 @@ void App::Run(const AppConfig& config)
 	mCurrentState->Terminate();
 	
 	GraphicsSystem::StaticTerminate();
+	InputSystem::StaticTerminate();
 
 	myWindow.Terminate();
 }
