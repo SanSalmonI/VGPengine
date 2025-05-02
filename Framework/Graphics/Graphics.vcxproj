@@ -140,6 +140,7 @@
     <ClInclude Include="Inc\Graphics.h" />
     <ClInclude Include="Inc\GraphicsSystem.h" />
     <ClInclude Include="Inc\MeshBuffer.h" />
+    <ClInclude Include="Inc\PixelShader.h" />
     <ClInclude Include="Inc\VertexShader.h" />
     <ClInclude Include="Inc\VertexTypes.h" />
     <ClInclude Include="Src\Precompiled.h" />
@@ -147,6 +148,7 @@
   <ItemGroup>
     <ClCompile Include="Src\GraphicsSystem.cpp" />
     <ClCompile Include="Src\MeshBuffer.cpp" />
+    <ClCompile Include="Src\PixelShader.cpp" />
     <ClCompile Include="Src\Precompiled.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
