@@ -11,3 +11,5 @@
 #include "VertexShader.h"
 
 #include "PixelShader.h"
+
+#include "VertexTypes.h"

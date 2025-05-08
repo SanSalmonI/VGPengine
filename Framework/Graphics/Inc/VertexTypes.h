@@ -13,8 +13,8 @@ namespace IExeEngine::Graphics
 	constexpr uint32_t VE_Color      = 0x1 << 3;
 	constexpr uint32_t VE_TexCoord   = 0x1 << 3;
 
-#define VERTEX_FORMAT(fmt)\
-static constexpr uint32_t Format = fmt
+	#define VERTEX_FORMAT(fmt)\
+		static constexpr uint32_t Format = fmt
 
 	struct VertexP
 	{

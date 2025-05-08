@@ -28,7 +28,6 @@ void App::Run(const AppConfig& config)
 	mCurrentState->Initialize();
 
 	// Process Updates
-	
 	InputSystem* input = InputSystem::Get();
 	mRunning = true;
 	while (mRunning)

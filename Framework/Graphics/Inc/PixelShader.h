@@ -10,6 +10,6 @@ namespace IExeEngine::Graphics
 		void Bind();
 
 	private:
-		ID3D11PixelShader*
+		ID3D11PixelShader* mPixelShader = nullptr;
 	};
 }

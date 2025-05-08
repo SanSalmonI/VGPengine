@@ -24,7 +24,7 @@ void ShapeState::Initialize()
 	initData.pSysMem = mVertices.data();
 
 	HRESULT hr = device->CreateBuffer(&bufferDesc, &initData, &mVertexBuffer);
-	ASSERT(SUCCEEDED(hr), "Failed to create vertex buffer");
+	ASSERT(SUCCEEDED(hr), "Failed to create Vertex Buffer");
 	//====================================================================================================
 
 	// BIND TO FUNCTION IN SPECIFIED SHADER FILE
@@ -46,7 +46,7 @@ void ShapeState::Initialize()
 	{
 		LOG("%s", static_cast<const char*>(errorBlob->GetBufferPointer()));
 	}
-	ASSERT(SUCCEEDED(hr), "Failed to create vertex shader");
+	ASSERT(SUCCEEDED(hr), "Failed to create Vertex Shader");
 
 	hr = device->CreateVertexShader(
 		shaderBlob->GetBufferPointer(),
