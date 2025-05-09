@@ -3,9 +3,13 @@
 using namespace IExeEngine;
 using namespace IExeEngine::Math;
 using namespace IExeEngine::Graphics;
+using namespace IExeEngine::Input;
+
 
 void ShapeState::Initialize()
 {
+	mCamera.
+
 	// Creates a shape out of the vertices
 	CreateShape();
 	mMeshbuffer.Initialize(mVertices.data(), sizeof(VertexPC), mVertices.size());
@@ -27,7 +31,8 @@ void ShapeState::Terminate()
 
 void ShapeState::Update(float deltaTime)
 {
-
+	InputSystem* input = InputSystem::Get();
+	const float moveSpeed = input->IsKeyDown(KeyCode::LSHIFT)? 10.
 }
 
 void ShapeState::Render()
