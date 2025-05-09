@@ -13,5 +13,3 @@
 #include "PixelShader.h"
 
 #include "VertexTypes.h"
-
-#include "Camera.h"
