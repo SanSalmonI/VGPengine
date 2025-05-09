@@ -174,18 +174,18 @@ void TriForce::Update(float deltaTime)
 void TriForce::CreateShape()
 {
 	// Top triangle
-	mVertices.push_back({ { 0.0f, 0.5f, 0.0f }, Colors::Yellow });
 	mVertices.push_back({ { -0.25f, 0.25f, 0.0f }, Colors::Yellow });
+	mVertices.push_back({ { 0.0f, 0.5f, 0.0f }, Colors::Yellow });
 	mVertices.push_back({ { 0.25f, 0.25f, 0.0f }, Colors::Yellow });
 
 	// Bottom-left triangle
 	mVertices.push_back({ { -0.5f, 0.0f, 0.0f }, Colors::Yellow });
-	mVertices.push_back({ { 0.0f, 0.0f, 0.0f }, Colors::Yellow });
 	mVertices.push_back({ { -0.25f, 0.25f, 0.0f }, Colors::Yellow });
+	mVertices.push_back({ { 0.0f, 0.0f, 0.0f }, Colors::Yellow });
 
 	// Bottom-right triangle
-	mVertices.push_back({ { 0.0f, 0.0f, 0.0f }, Colors::Yellow });
 	mVertices.push_back({ { 0.5f, 0.0f, 0.0f }, Colors::Yellow });
+	mVertices.push_back({ { 0.0f, 0.0f, 0.0f }, Colors::Yellow });
 	mVertices.push_back({ { 0.25f, 0.25f, 0.0f }, Colors::Yellow });
 }
 
@@ -210,23 +210,23 @@ void House::Update(float deltaTime)
 void House::CreateShape()
 {
 	// Roof
-	mVertices.push_back({ { -0.45f, 0.2f, 0.0f }, Colors::DarkRed });
-	mVertices.push_back({ { 0.45f, 0.2f, 0.0f }, Colors::DarkRed });
+	mVertices.push_back({ { -0.5f, 0.2f, 0.0f }, Colors::DarkRed });
 	mVertices.push_back({ { 0.0f, 0.55f, 0.0f }, Colors::DarkRed });
+	mVertices.push_back({ { 0.5f, 0.2f, 0.0f }, Colors::DarkRed });
 
 	// Base of the house
-	mVertices.push_back({ { -0.5f, 0.2f, 0.0f }, Colors::AntiqueWhite });
-	mVertices.push_back({ { 0.5f, 0.2f, 0.0f }, Colors::AntiqueWhite });
-	mVertices.push_back({ { 0.5f, -0.3f, 0.0f }, Colors::AntiqueWhite });
+	mVertices.push_back({ { -0.4f, 0.2f, 0.0f }, Colors::AntiqueWhite });
+	mVertices.push_back({ { 0.4f, 0.2f, 0.0f }, Colors::AntiqueWhite });
+	mVertices.push_back({ { 0.4f, -0.3f, 0.0f }, Colors::AntiqueWhite });
 
-	mVertices.push_back({ { -0.5f, -0.3f, 0.0f }, Colors::AntiqueWhite });
-	mVertices.push_back({ { 0.5f, -0.3f, 0.0f }, Colors::AntiqueWhite });
-	mVertices.push_back({ { -0.5f, 0.2f, 0.0f }, Colors::AntiqueWhite });
+	mVertices.push_back({ { -0.4f, 0.2f, 0.0f }, Colors::AntiqueWhite });
+	mVertices.push_back({ { 0.4f, -0.3f, 0.0f }, Colors::AntiqueWhite });
+	mVertices.push_back({ { -0.4f, -0.3f, 0.0f }, Colors::AntiqueWhite });
 
 	// Door
+	mVertices.push_back({ { -0.1f, 0.0f, 0.0f }, Colors::SaddleBrown });
 	mVertices.push_back({ { -0.1f, -0.3f, 0.0f }, Colors::SaddleBrown });
 	mVertices.push_back({ { 0.1f, -0.3f, 0.0f }, Colors::SaddleBrown });
-	mVertices.push_back({ { -0.1f, 0.0f, 0.0f }, Colors::SaddleBrown });
 
 	mVertices.push_back({ { -0.1f, 0.0f, 0.0f }, Colors::SaddleBrown });
 	mVertices.push_back({ { 0.1f, 0.0f, 0.0f }, Colors::SaddleBrown });
@@ -254,9 +254,9 @@ void Heart::Update(float deltaTime)
 void Heart::CreateShape()
 {
 	// Top left lobe
-	mVertices.push_back({ { -0.15f, 0.5f, 0.0f }, Colors::DarkRed });
 	mVertices.push_back({ { -0.4f, 0.1f, 0.0f }, Colors::PaleVioletRed });
-	mVertices.push_back({ { -0.1f, 0.1f, 0.0f }, Colors::PaleVioletRed });
+	mVertices.push_back({ { -0.15f, 0.5f, 0.0f }, Colors::DarkRed });
+	mVertices.push_back({ { 0.1f, 0.1f, 0.0f }, Colors::PaleVioletRed });
 
 	// Top right lobe
 	mVertices.push_back({ { 0.15f, 0.5f, 0.0f }, Colors::DarkRed});
