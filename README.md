@@ -13,7 +13,7 @@ Everything you see here is deliberately “hand-rolled” to stay close to the G
 
 ## ✨ Current micro-demo
 
-![screenshot](GitRessources/Screenshot 2025-05-08 215529.png)
+![screenshot](GitResources/Screenshot%202025-05-08%20215529.png)
 
 ```cpp
 void Bunny::CreateShape()
