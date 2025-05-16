@@ -27,7 +27,5 @@ void Bunny::CreateShape()
     // … (heads, legs, body, etc. – 18 more triangles) …
 }
 
-![Entity–Component Diagram](GitResources/Screenshot 2025-05-08 215414.png)
-![Render Pipeline](GitResources/Screenshot 2025-05-08 215454.png)
-![Asset Workflow](GitResources/Screenshot 2025-05-08 215529.png)
+![screenshot](GitRessources/Screenshot 2025-05-08 215529.png)
 
