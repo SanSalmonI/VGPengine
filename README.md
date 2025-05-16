@@ -13,6 +13,7 @@ Everything you see here is deliberately “hand-rolled” to stay close to the G
 
 ## ✨ Current micro-demo
 
+![screenshot](GitRessources/Screenshot 2025-05-08 215529.png)
 
 ```cpp
 void Bunny::CreateShape()
@@ -27,5 +28,4 @@ void Bunny::CreateShape()
     // … (heads, legs, body, etc. – 18 more triangles) …
 }
 
-![screenshot](GitRessources/Screenshot 2025-05-08 215529.png)
 
