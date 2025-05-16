@@ -13,8 +13,6 @@ Everything you see here is deliberately “hand-rolled” to stay close to the G
 
 ## ✨ Current micro-demo
 
-Below is the *Bunny* shape we just built.  
-It shows how we pack plain structs ( `{ position, colour }` ) into a single vertex buffer and let the rasterizer do the rest.
 
 ```cpp
 void Bunny::CreateShape()
