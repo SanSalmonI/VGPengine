@@ -36,6 +36,18 @@
     <ClInclude Include="Inc\PixelShader.h">
       <Filter>Inc</Filter>
     </ClInclude>
+    <ClInclude Include="Comera.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstantBuffer.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Camera.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Precompiled.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Precompiled.cpp">
@@ -51,6 +63,12 @@
       <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="Src\PixelShader.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ConstantBuffer.cpp">
       <Filter>Src</Filter>
     </ClCompile>
   </ItemGroup>

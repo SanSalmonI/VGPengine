@@ -16,7 +16,10 @@ protected:
 	using Vertices = std::vector<IExeEngine::Graphics::VertexPC>;
 	Vertices mVertices;
 
+	IExeEngine::Graphics::Camera mCamera;
+	IExeEngine::Graphics::ConstantBuffer mTransformBuffer;
 	IExeEngine::Graphics::MeshBuffer mMeshbuffer;
 	IExeEngine::Graphics::VertexShader mVertexShader;
 	IExeEngine::Graphics::PixelShader mPixelShader;
+	
 };
