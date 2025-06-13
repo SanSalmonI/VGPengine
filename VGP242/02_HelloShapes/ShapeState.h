@@ -27,7 +27,7 @@ protected:
 	ID3D11PixelShader* mPixelShader = nullptr;
 };
 
-class TriForce : public ShapeState
+class Bunny : public ShapeState
 {
 public:
 	void Update(float deltaTime) override;
@@ -35,7 +35,7 @@ protected:
 	void CreateShape() override;
 };
 
-class House : public ShapeState
+class Butterfly : public ShapeState
 {
 public:
 	void Update(float deltaTime) override;
@@ -43,7 +43,7 @@ protected:
 	void CreateShape() override;
 };
 
-class Heart : public ShapeState
+class Fish : public ShapeState
 {
 public:
 	void Update(float deltaTime) override;
