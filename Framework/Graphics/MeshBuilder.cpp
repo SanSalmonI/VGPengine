@@ -136,7 +136,7 @@ MeshPC MeshBuilder::CreatePyramidPC(float size)
 {
 	MeshPC mesh;
 
-	int index = rand() % 100; 
+	int index = rand() % 100;
 
 	const float hs = size * 0.5f;
 
@@ -168,7 +168,7 @@ MeshPC MeshBuilder::CreateRectanglePC(float width, float height, float depth)
 {
 	MeshPC mesh;
 
-	int index = rand() % 100; 
+	int index = rand() % 100;
 
 	const float hw = width * 0.5f;
 	const float hh = height * 0.5f;
@@ -206,7 +206,7 @@ MeshPC MeshBuilder::CreatePlanePC(int numRows, int numColums, float spacing, boo
 
 	for (int r = 0; r <= numRows; ++r)
 	{
-		for (int c = 0;c <= numColums; ++c)
+		for (int c = 0; c <= numColums; ++c)
 		{
 			Math::Vector3 pos = (horizontal) ? Math::Vector3(w, 0.0f, h) : Math::Vector3(w, h, 0.0f);
 			mesh.vertices.push_back({ pos,GetNextColor(index) });
@@ -233,7 +233,7 @@ MeshPC MeshBuilder::CreateCylinderPC(int slices, int rings)
 	for (int r = 0; r <= rings; ++r)
 	{
 		float ring = static_cast<float>(r);
-		for (int s = 0;s <= slices;++s)
+		for (int s = 0; s <= slices; ++s)
 		{
 			float slice = static_cast<float>(s);
 			float rotation = (slice / fSlices) * Math::Constants::TwoPi;
