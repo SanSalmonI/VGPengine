@@ -51,7 +51,7 @@ namespace IExeEngine::Graphics
 
 		Math::Matrix4 GetPerspectiveMatrix() const;
 		Math::Matrix4 GetOrthographicMatrix() const;
-
+		
 	private:
 		ProjectionMode mProjectionMode = ProjectionMode::Perspective;
 
