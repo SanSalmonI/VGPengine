@@ -1,4 +1,4 @@
-﻿#include "ShapeState.h"
+#include "ShapeState.h"
 
 using namespace IExeEngine;
 using namespace IExeEngine::Math;
@@ -128,30 +128,32 @@ void ShapeState::Update(float deltaTime)
 {
 	if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::UP))
 	{
-		IExeEngine::MainApp().ChangeState("Bunny");
+		IExeEngine::MainApp().ChangeState("TriForce");
 	}
 
 	if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::LEFT))
 	{
-		IExeEngine::MainApp().ChangeState("Butterfly");
+		IExeEngine::MainApp().ChangeState("House");
 	}
 
 	if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::RIGHT))
 	{
-		IExeEngine::MainApp().ChangeState("Fish");
+		IExeEngine::MainApp().ChangeState("Heart");
 	}
 }
 
 void ShapeState::CreateShape()
 {
-	mVertices.push_back({ { 0.20f,  -0.80f, 0.0f }, Colors::Yellow });
-	mVertices.push_back({ { 0.02f,  0.05f, 0.0f }, Colors::GreenYellow });
-	mVertices.push_back({ { 0.50f, -0.27f, 0.0f }, Colors::Yellow });
+	mVertices.push_back({ { -0.5f,0.0f,0.0f }, Colors::Red });
+	mVertices.push_back({ {  0.0f,0.75f,0.0f }, Colors::Yellow });
+	mVertices.push_back({ {  0.5f,0.0f,0.0f }, Colors::Red });
 
-
+	mVertices.push_back({ { -0.5f,0.0f,0.0f }, Colors::Red });
+	mVertices.push_back({ {  0.5f,0.0f,0.0f }, Colors::Yellow });
+	mVertices.push_back({ {  0.0f, -0.75f,0.0f }, Colors::Red });
 }
 
-void Bunny::Update(float deltaTime)
+void TriForce::Update(float deltaTime)
 {
 	if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::DOWN))
 	{
@@ -160,76 +162,34 @@ void Bunny::Update(float deltaTime)
 
 	if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::LEFT))
 	{
-		IExeEngine::MainApp().ChangeState("Butterfly");
+		IExeEngine::MainApp().ChangeState("House");
 	}
 
 	if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::RIGHT))
 	{
-		IExeEngine::MainApp().ChangeState("Fish");
+		IExeEngine::MainApp().ChangeState("Heart");
 	}
 }
 
-void Bunny::CreateShape()
+void TriForce::CreateShape()
 {
+	// Top triangle
+	mVertices.push_back({ { -0.25f, 0.25f, 0.0f }, Colors::Yellow });
+	mVertices.push_back({ { 0.0f, 0.5f, 0.0f }, Colors::Yellow });
+	mVertices.push_back({ { 0.25f, 0.25f, 0.0f }, Colors::Yellow });
 
-	// 1) Ears
-	mVertices.push_back({ { 0.00f,  0.30f, 0.0f }, Colors::SaddleBrown });
-	mVertices.push_back({ { 0.30f,  0.70f, 0.0f }, Colors::SandyBrown });
-	mVertices.push_back({ { 0.10f,  0.15f, 0.0f }, Colors::Brown });
+	// Bottom-left triangle
+	mVertices.push_back({ { -0.5f, 0.0f, 0.0f }, Colors::Yellow });
+	mVertices.push_back({ { -0.25f, 0.25f, 0.0f }, Colors::Yellow });
+	mVertices.push_back({ { 0.0f, 0.0f, 0.0f }, Colors::Yellow });
 
-	// 2) Head (upper)
-	mVertices.push_back({ { -0.12f,  0.05f, 0.0f }, Colors::RosyBrown });
-	mVertices.push_back({ {  0.00f,  0.25f, 0.0f }, Colors::Brown });
-	mVertices.push_back({ {  0.11f,  0.17f, 0.0f }, Colors::Brown });
-	//    Head (lower)
-	mVertices.push_back({ { -0.12f,  0.05f, 0.0f }, Colors::RosyBrown });
-	mVertices.push_back({ {  0.11f,  0.17f, 0.0f }, Colors::Brown });
-	mVertices.push_back({ {  0.05f, -0.10f, 0.0f }, Colors::SaddleBrown });
-
-	// 3) Back ear
-	mVertices.push_back({ { 0.00f,  0.40f, 0.0f }, Colors::SaddleBrown });
-	mVertices.push_back({ { 0.20f,  0.75f, 0.0f }, Colors::Firebrick });
-	mVertices.push_back({ { 0.10f,  0.25f, 0.0f }, Colors::SaddleBrown });
-
-	// Foot
-	mVertices.push_back({ { 0.03f, -0.60f, 0.0f }, Colors::SandyBrown });
-	mVertices.push_back({ { 0.15f, -0.45f, 0.0f }, Colors::Brown });
-	mVertices.push_back({ { 0.20f, -0.60f, 0.0f }, Colors::SaddleBrown });
-
-	// Back legs
-	mVertices.push_back({ { 0.10f, -0.60f, 0.0f }, Colors:: SaddleBrown });
-	mVertices.push_back({ { 0.15f, -0.10f, 0.0f }, Colors::SandyBrown });
-	mVertices.push_back({ { 0.40f, -0.10f, 0.0f }, Colors::SandyBrown });
-
-	mVertices.push_back({ { 0.10f, -0.60f, 0.0f }, Colors::SaddleBrown });
-	mVertices.push_back({ { 0.40f, -0.10f, 0.0f }, Colors::SandyBrown });
-	mVertices.push_back({ { 0.40f, -0.60f, 0.0f }, Colors::SaddleBrown });
-
-	// 4) Body
-	mVertices.push_back({ { -0.05f,  0.05f, 0.0f }, Colors::SaddleBrown });
-	mVertices.push_back({ {  0.40f, -0.10f, 0.0f }, Colors::SandyBrown });
-	mVertices.push_back({ {  0.25f, -0.55f, 0.0f }, Colors::SaddleBrown });
-	// Front legs
-	mVertices.push_back({ { -0.05f, -0.50f, 0.0f }, Colors::SandyBrown });
-	mVertices.push_back({ {  0.00f, -0.10f, 0.0f }, Colors::SaddleBrown });
-	mVertices.push_back({ {  0.15f, -0.10f, 0.0f }, Colors::Brown });
-	// Chest
-	mVertices.push_back({ {  0.00f,  0.05f, 0.0f }, Colors::SaddleBrown });
-	mVertices.push_back({ {  0.25f, -0.55f, 0.0f }, Colors::SaddleBrown });
-	mVertices.push_back({ { -0.05f, -0.30f, 0.0f }, Colors::Brown });
-
-	//back front leg
-
-	mVertices.push_back({ { -0.10f, -0.45f, 0.0f }, Colors::SandyBrown });
-	mVertices.push_back({ {  0.00f, -0.10f, 0.0f }, Colors::SaddleBrown });
-	mVertices.push_back({ {  0.15f, -0.10f, 0.0f }, Colors::SaddleBrown });
+	// Bottom-right triangle
+	mVertices.push_back({ { 0.5f, 0.0f, 0.0f }, Colors::Yellow });
+	mVertices.push_back({ { 0.0f, 0.0f, 0.0f }, Colors::Yellow });
+	mVertices.push_back({ { 0.25f, 0.25f, 0.0f }, Colors::Yellow });
 }
 
-    
-
-
-
-void Butterfly::Update(float deltaTime)
+void House::Update(float deltaTime)
 {
 	if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::DOWN))
 	{
@@ -238,72 +198,42 @@ void Butterfly::Update(float deltaTime)
 
 	if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::UP))
 	{
-		IExeEngine::MainApp().ChangeState("Bunny");
+		IExeEngine::MainApp().ChangeState("TriForce");
 	}
 
 	if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::RIGHT))
 	{
-		IExeEngine::MainApp().ChangeState("Fish");
+		IExeEngine::MainApp().ChangeState("Heart");
 	}
 }
 
-void Butterfly::CreateShape()
+void House::CreateShape()
 {
+	// Roof
+	mVertices.push_back({ { -0.5f, 0.2f, 0.0f }, Colors::DarkRed });
+	mVertices.push_back({ { 0.0f, 0.55f, 0.0f }, Colors::DarkRed });
+	mVertices.push_back({ { 0.5f, 0.2f, 0.0f }, Colors::DarkRed });
 
-	// 1) Upper Wing R
-	mVertices.push_back({ { 0.10f,  0.05f, 0.0f }, Colors::Blue });
-	mVertices.push_back({ { 0.60f,  0.60f, 0.0f }, Colors::LightCyan });
-	mVertices.push_back({ { 0.40f, -0.15f, 0.0f }, Colors::White });
+	// Base of the house
+	mVertices.push_back({ { -0.4f, 0.2f, 0.0f }, Colors::AntiqueWhite });
+	mVertices.push_back({ { 0.4f, 0.2f, 0.0f }, Colors::AntiqueWhite });
+	mVertices.push_back({ { 0.4f, -0.3f, 0.0f }, Colors::AntiqueWhite });
 
-	mVertices.push_back({ { 0.02f,  0.05f, 0.0f }, Colors::Black });
-	mVertices.push_back({ { 0.70f,  0.80f, 0.0f }, Colors::DimGray });
-	mVertices.push_back({ { 0.40f, -0.30f, 0.0f }, Colors::DarkSlateBlue });
+	mVertices.push_back({ { -0.4f, 0.2f, 0.0f }, Colors::AntiqueWhite });
+	mVertices.push_back({ { 0.4f, -0.3f, 0.0f }, Colors::AntiqueWhite });
+	mVertices.push_back({ { -0.4f, -0.3f, 0.0f }, Colors::AntiqueWhite });
 
-	//2) Lower Wing R
-	mVertices.push_back({ { 0.22f,  -0.70f, 0.0f }, Colors::DarkCyan });
-	mVertices.push_back({ { 0.05f,  0.05f, 0.0f }, Colors::Blue });
-	mVertices.push_back({ { 0.45f, -0.25f, 0.0f }, Colors::White });
+	// Door
+	mVertices.push_back({ { -0.1f, 0.0f, 0.0f }, Colors::SaddleBrown });
+	mVertices.push_back({ { -0.1f, -0.3f, 0.0f }, Colors::SaddleBrown });
+	mVertices.push_back({ { 0.1f, -0.3f, 0.0f }, Colors::SaddleBrown });
 
-	mVertices.push_back({ { 0.20f,  -0.80f, 0.0f }, Colors::DimGray });
-	mVertices.push_back({ { 0.02f,  0.05f, 0.0f }, Colors::Black });
-	mVertices.push_back({ { 0.50f, -0.27f, 0.0f }, Colors::DarkSlateBlue });
-
-// 1') UPPER WING L 
-	mVertices.push_back({ { -0.60f,  0.60f, 0.0f }, Colors::LightCyan }); 
-	mVertices.push_back({ { -0.10f,  0.05f, 0.0f }, Colors::Blue });
-	mVertices.push_back({ { -0.40f, -0.15f, 0.0f }, Colors::White });
-
-
-	mVertices.push_back({ { -0.70f,  0.80f, 0.0f }, Colors::DimGray }); 
-	mVertices.push_back({ { -0.02f,  0.05f, 0.0f }, Colors::Black });
-	mVertices.push_back({ { -0.40f, -0.30f, 0.0f }, Colors::DarkSlateBlue });
-
-
-	// 2') LOWER WING L 
-
-	mVertices.push_back({ { -0.45f, -0.25f, 0.0f }, Colors::White }); 
-	mVertices.push_back({ { -0.05f,  0.05f, 0.0f }, Colors::Blue });
-	mVertices.push_back({ { -0.22f, -0.70f, 0.0f }, Colors::DarkCyan });
-
-
-	// 2'') LOWER WING L 
-	mVertices.push_back({ { -0.50f, -0.27f, 0.0f }, Colors::DarkSlateBlue }); 
-	mVertices.push_back({ { -0.02f,  0.05f, 0.0f }, Colors::Black });
-	mVertices.push_back({ { -0.20f, -0.80f, 0.0f }, Colors::DimGray });
-
-
-	//3) Upper body
-	mVertices.push_back({ { -0.05f,  0.10f, 0.0f }, Colors::DarkKhaki });
-	mVertices.push_back({ { 0.00f,  0.20f, 0.0f }, Colors::Brown });
-	mVertices.push_back({ { 0.05f, 0.10f, 0.0f }, Colors::Brown });
-
-	//3) lower body
-	mVertices.push_back({ { -0.05f,  0.10f, 0.0f }, Colors::DarkKhaki });
-	mVertices.push_back({ { 0.05f, 0.10f, 0.0f }, Colors::Brown });
-	mVertices.push_back({ { 0.00f,  -0.40f, 0.0f }, Colors::Brown });
+	mVertices.push_back({ { -0.1f, 0.0f, 0.0f }, Colors::SaddleBrown });
+	mVertices.push_back({ { 0.1f, 0.0f, 0.0f }, Colors::SaddleBrown });
+	mVertices.push_back({ { 0.1f, -0.3f, 0.0f }, Colors::SaddleBrown });
 }
 
-void Fish::Update(float deltaTime)
+void Heart::Update(float deltaTime)
 {
 	if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::DOWN))
 	{
@@ -312,44 +242,29 @@ void Fish::Update(float deltaTime)
 
 	if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::LEFT))
 	{
-		IExeEngine::MainApp().ChangeState("Butterfly");
+		IExeEngine::MainApp().ChangeState("House");
 	}
 
 	if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::UP))
 	{
-		IExeEngine::MainApp().ChangeState("Bunny");
+		IExeEngine::MainApp().ChangeState("TriForce");
 	}
 }
 
-void Fish::CreateShape()
+void Heart::CreateShape()
 {
-	//eye
-	mVertices.push_back({ { 0.40f,  0.05f, 0.0f }, Colors::Wheat });
-	mVertices.push_back({ { 0.45f,  0.00f, 0.0f }, Colors::Black });
-	mVertices.push_back({ { 0.40f, -0.05f, 0.0f }, Colors::White });
+	// Top left lobe
+	mVertices.push_back({ { -0.4f, 0.1f, 0.0f }, Colors::PaleVioletRed });
+	mVertices.push_back({ { -0.15f, 0.5f, 0.0f }, Colors::DarkRed });
+	mVertices.push_back({ { 0.1f, 0.1f, 0.0f }, Colors::PaleVioletRed });
 
-	//fin
-	mVertices.push_back({ { 0.15f,  -0.05f, 0.0f }, Colors::LightCyan });
-	mVertices.push_back({ { 0.30f,  -0.15f, 0.0f }, Colors::RoyalBlue });
-	mVertices.push_back({ { 0.20f, -0.25f, 0.0f }, Colors::Cyan });
+	// Top right lobe
+	mVertices.push_back({ { 0.15f, 0.5f, 0.0f }, Colors::DarkRed});
+	mVertices.push_back({ { 0.4f, 0.1f, 0.0f }, Colors::PaleVioletRed});
+	mVertices.push_back({ { -0.1f, 0.1f, 0.0f }, Colors::PaleVioletRed});
 
-	// 1) BODY  – large right-pointing triangle
-	mVertices.push_back({ { 0.00f,  0.40f, 0.0f }, Colors::LightCyan }); 
-	mVertices.push_back({ { 0.60f,  0.00f, 0.0f }, Colors::Blue }); 
-	mVertices.push_back({ { 0.00f, -0.40f, 0.0f }, Colors::DarkBlue }); 
-
-	// 2) TAIL  
-	mVertices.push_back({ { -0.20f,  0.30f, 0.0f }, Colors::LightGreen }); 
-	mVertices.push_back({ { 0.00f,  0.00f, 0.0f }, Colors::DarkBlue }); 
-	mVertices.push_back({ { -0.20f, -0.30f, 0.0f }, Colors::DarkGreen }); 
-
-
-	// 3) DORSAL FIN 
-	mVertices.push_back({ { 0.05f,  0.35f, 0.0f }, Colors::Blue }); 
-	mVertices.push_back({ { 0.10f,  0.60f, 0.0f }, Colors::SkyBlue }); 
-	mVertices.push_back({ { 0.25f,  0.20f, 0.0f }, Colors::Blue }); 
-
-
-	
-	
+	// Bottom triangle
+	mVertices.push_back({ { -0.4f, 0.1f, 0.0f },Colors::PaleVioletRed });
+	mVertices.push_back({ { 0.4f, 0.1f, 0.0f }, Colors::PaleVioletRed});
+	mVertices.push_back({ { 0.0f, -0.65f, 0.0f },Colors::DarkRed });
 }

@@ -11,9 +11,9 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE, LPSTR, int)
 
     IExeEngine::App& myApp = IExeEngine::MainApp();
 
-    myApp.AddState<Bunny>("Bunny");
-    myApp.AddState<Butterfly>("Butterfly");
-    myApp.AddState<Fish>("Fish");
+    myApp.AddState<TriForce>("TriForce");
+    myApp.AddState<House>("House");
+    myApp.AddState<Heart>("Heart");
 
     myApp.Run(config);
 

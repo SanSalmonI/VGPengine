@@ -15,7 +15,7 @@ void ShapeState::Initialize()
 
 	// Creates a shape out of the vertices
 	CreateShape();
-	mMeshbuffer.Initialize(mVertices.data(), sizeof(VertexPC), mVertices.size());
+	mMeshbuffer.Initialize(mMesh);
 
 	std::filesystem::path shaderFilePath = L"../../Assets/Shaders/DoTransformColor.fx";
 	mVertexShader.Initialize<VertexPC>(shaderFilePath);
@@ -24,7 +24,6 @@ void ShapeState::Initialize()
 
 void ShapeState::Terminate()
 {
-	mVertices.clear();
 	mTransformBuffer.Terminate();
 	mPixelShader.Terminate();
 	mVertexShader.Terminate();
@@ -33,26 +32,43 @@ void ShapeState::Terminate()
 
 void ShapeState::Update(float deltaTime)
 {
+	// Camera Controls:
 	InputSystem* input = InputSystem::Get();
-	const float moveSpeed = input->IsKeyDown(KeyCode::LSHIFT) ? 10.0f : 3.0f;
-	const float turnSpeed = 0.3f;
+	const float moveSpeed = input->IsKeyDown(KeyCode::LSHIFT) ? 10.0f : 4.0f;
+	const float turnSpeed = 0.5f;
 
 	if (input->IsKeyDown(KeyCode::W)) { mCamera.Walk(moveSpeed * deltaTime); }
 
-	else if (input->IsKeyDown(KeyCode::S)) { mCamera.Walk(-moveSpeed * deltaTime); }
+	else if (input->IsKeyDown(KeyCode::S)) { mCamera.Walk(- moveSpeed * deltaTime); }
 
 	else if (input->IsKeyDown(KeyCode::D)) { mCamera.Strafe(moveSpeed * deltaTime); }
 
-	else if (input->IsKeyDown(KeyCode::A)) { mCamera.Strafe(-moveSpeed * deltaTime); }
+	else if (input->IsKeyDown(KeyCode::A)) { mCamera.Strafe(- moveSpeed * deltaTime); }
 
 	else if (input->IsKeyDown(KeyCode::E)) { mCamera.Rise(moveSpeed * deltaTime); }
-
-	else if (input->IsKeyDown(KeyCode::Q)) { mCamera.Rise(-moveSpeed * deltaTime); }
+ 
+	else if (input->IsKeyDown(KeyCode::Q)) { mCamera.Rise(- moveSpeed * deltaTime); }
 
 	if (input->IsMouseDown(MouseButton::RBUTTON))
 	{
 		mCamera.Yaw(input->GetMouseMoveX() * turnSpeed * deltaTime);
 		mCamera.Pitch(input->GetMouseMoveY() * turnSpeed * deltaTime);
+	}
+
+	// Scene Change Controls:
+	if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::UP))
+	{
+		IExeEngine::MainApp().ChangeState("Pyramid");
+	}
+
+	if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::LEFT))
+	{
+		IExeEngine::MainApp().ChangeState("Cube");
+	}
+
+	if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::RIGHT))
+	{
+		IExeEngine::MainApp().ChangeState("Rectangle");
 	}
 }
 
@@ -79,59 +95,151 @@ void ShapeState::Render()
 
 void ShapeState::CreateShape()
 {
-	const float hs = 0.5f;
+	// mMesh = MeshBuilder::CreateRectanglePC(2.0f, 1.0f, 2.0f);
+	// mMesh = MeshBuilder::CreateCubePC(4.0f);
+	// mMesh = MeshBuilder::CreatePyramidPC(5.0f);
+	// mMesh = MeshBuilder::CreatePlanePC(10.f, 10.f, 1);
+	// mMesh = MeshBuilder::CreateCylinderPC(25.0f, 5.0f);
+	mMesh = MeshBuilder::CreateSpherePC(30, 30, 1.0f);
+}
 
-	// Front
-	mVertices.push_back({ { -hs, -hs, -hs }, Colors::Red });
-	mVertices.push_back({ { -hs,  hs, -hs }, Colors::Orange });
-	mVertices.push_back({ {  hs,  hs, -hs }, Colors::Gold });
+void CubeState::Update(float deltaTime)
+{
+//====================================================================================================================================================================
+	// Camera Controls:
+	InputSystem* input = InputSystem::Get();
+	const float moveSpeed = input->IsKeyDown(KeyCode::LSHIFT) ? 10.0f : 4.0f;
+	const float turnSpeed = 0.5f;
 
-	mVertices.push_back({ { -hs, -hs, -hs }, Colors::Red });
-	mVertices.push_back({ {  hs,  hs, -hs }, Colors::Orange });
-	mVertices.push_back({ {  hs, -hs, -hs }, Colors::Gold });
+	if (input->IsKeyDown(KeyCode::W)) { mCamera.Walk(moveSpeed * deltaTime); }
 
-	// Back
-	mVertices.push_back({ { -hs,  hs, -hs }, Colors::Red });
-	mVertices.push_back({ { -hs, -hs, -hs }, Colors::Orange });
-	mVertices.push_back({ {  hs,  hs, -hs }, Colors::Gold });
+	else if (input->IsKeyDown(KeyCode::S)) { mCamera.Walk(-moveSpeed * deltaTime); }
 
-	mVertices.push_back({ { -hs, -hs, -hs }, Colors::Red });
-	mVertices.push_back({ {  hs, -hs, -hs }, Colors::Orange });
-	mVertices.push_back({ {  hs,  hs, -hs }, Colors::Gold });
+	else if (input->IsKeyDown(KeyCode::D)) { mCamera.Strafe(moveSpeed * deltaTime); }
 
-	// Right
-	mVertices.push_back({ {  hs, -hs, -hs }, Colors::Red });
-	mVertices.push_back({ {  hs,  hs, -hs }, Colors::Orange });
-	mVertices.push_back({ {  hs,  hs,  hs }, Colors::Gold });
+	else if (input->IsKeyDown(KeyCode::A)) { mCamera.Strafe(-moveSpeed * deltaTime); }
 
-	mVertices.push_back({ {  hs, -hs, -hs }, Colors::Red });
-	mVertices.push_back({ {  hs,  hs,  hs }, Colors::Orange });
-	mVertices.push_back({ {  hs, -hs,  hs }, Colors::Gold });
+	else if (input->IsKeyDown(KeyCode::E)) { mCamera.Rise(moveSpeed * deltaTime); }
 
-	// Left
-	mVertices.push_back({ { -hs, -hs,  hs }, Colors::Red });
-	mVertices.push_back({ { -hs,  hs,  hs }, Colors::Orange });
-	mVertices.push_back({ {  hs,  hs, -hs }, Colors::Gold });
+	else if (input->IsKeyDown(KeyCode::Q)) { mCamera.Rise(-moveSpeed * deltaTime); }
 
-	mVertices.push_back({ { -hs, -hs,  hs }, Colors::Red });
-	mVertices.push_back({ {  hs,  hs, -hs }, Colors::Orange });
-	mVertices.push_back({ { -hs, -hs,  hs }, Colors::Gold });
+	if (input->IsMouseDown(MouseButton::RBUTTON))
+	{
+		mCamera.Yaw(input->GetMouseMoveX() * turnSpeed * deltaTime);
+		mCamera.Pitch(input->GetMouseMoveY() * turnSpeed * deltaTime);
+	}
+//===========================================================================================================================================================================================
 
-	// Top
-	mVertices.push_back({ { -hs,  hs, -hs }, Colors::Red });
-	mVertices.push_back({ { -hs,  hs,  hs }, Colors::Orange });
-	mVertices.push_back({ {  hs,  hs,  hs }, Colors::Gold });
+	if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::UP))
+	{
+		IExeEngine::MainApp().ChangeState("Pyramid");
+	}
 
-	mVertices.push_back({ { -hs,  hs, -hs }, Colors::Red });
-	mVertices.push_back({ {  hs,  hs,  hs }, Colors::Orange });
-	mVertices.push_back({ {  hs,  hs, -hs }, Colors::Gold });
+	if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::DOWN))
+	{
+		IExeEngine::MainApp().ChangeState("ShapeState");
+	}
 
-	// Bottom
-	mVertices.push_back({ { -hs, -hs, -hs }, Colors::Red });
-	mVertices.push_back({ {  hs, -hs,  hs }, Colors::Orange });
-	mVertices.push_back({ { -hs, -hs,  hs }, Colors::Gold });
+	if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::RIGHT))
+	{
+		IExeEngine::MainApp().ChangeState("Rectangle");
+	}
+}
+void CubeState::CreateShape()
+{
+	mMesh = MeshBuilder::CreateCubePC(1.0f);
+}
 
-	mVertices.push_back({ { -hs, -hs, -hs }, Colors::Red });
-	mVertices.push_back({ {  hs, -hs, -hs }, Colors::Orange });
-	mVertices.push_back({ {  hs, -hs,  hs }, Colors::Gold });
+void PyramidState::Update(float deltaTime)
+{
+//===============================================================================================================================================
+	// Camera Controls:
+	InputSystem* input = InputSystem::Get();
+	const float moveSpeed = input->IsKeyDown(KeyCode::LSHIFT) ? 10.0f : 4.0f;
+	const float turnSpeed = 0.5f;
+
+	if (input->IsKeyDown(KeyCode::W)) { mCamera.Walk(moveSpeed * deltaTime); }
+
+	else if (input->IsKeyDown(KeyCode::S)) { mCamera.Walk(-moveSpeed * deltaTime); }
+
+	else if (input->IsKeyDown(KeyCode::D)) { mCamera.Strafe(moveSpeed * deltaTime); }
+
+	else if (input->IsKeyDown(KeyCode::A)) { mCamera.Strafe(-moveSpeed * deltaTime); }
+
+	else if (input->IsKeyDown(KeyCode::E)) { mCamera.Rise(moveSpeed * deltaTime); }
+
+	else if (input->IsKeyDown(KeyCode::Q)) { mCamera.Rise(-moveSpeed * deltaTime); }
+
+	if (input->IsMouseDown(MouseButton::RBUTTON))
+	{
+		mCamera.Yaw(input->GetMouseMoveX() * turnSpeed * deltaTime);
+		mCamera.Pitch(input->GetMouseMoveY() * turnSpeed * deltaTime);
+	}
+//===========================================================================================================================================================================================
+
+	if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::DOWN))
+	{
+		IExeEngine::MainApp().ChangeState("ShapeState");
+	}
+
+	if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::LEFT))
+	{
+		IExeEngine::MainApp().ChangeState("Cube");
+	}
+
+	if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::RIGHT))
+	{
+		IExeEngine::MainApp().ChangeState("Rectangle");
+	}
+}
+void PyramidState::CreateShape()
+{
+	mMesh = MeshBuilder::CreatePyramidPC(1.0f);
+}
+
+void RectangleState::Update(float deltaTime)
+{
+//===========================================================================================================================================================================================
+	// Camera Controls:
+	InputSystem* input = InputSystem::Get();
+	const float moveSpeed = input->IsKeyDown(KeyCode::LSHIFT) ? 10.0f : 4.0f;
+	const float turnSpeed = 0.5f;
+
+	if (input->IsKeyDown(KeyCode::W)) { mCamera.Walk(moveSpeed * deltaTime); }
+
+	else if (input->IsKeyDown(KeyCode::S)) { mCamera.Walk(-moveSpeed * deltaTime); }
+
+	else if (input->IsKeyDown(KeyCode::D)) { mCamera.Strafe(moveSpeed * deltaTime); }
+
+	else if (input->IsKeyDown(KeyCode::A)) { mCamera.Strafe(-moveSpeed * deltaTime); }
+
+	else if (input->IsKeyDown(KeyCode::E)) { mCamera.Rise(moveSpeed * deltaTime); }
+
+	else if (input->IsKeyDown(KeyCode::Q)) { mCamera.Rise(-moveSpeed * deltaTime); }
+
+	if (input->IsMouseDown(MouseButton::RBUTTON))
+	{
+		mCamera.Yaw(input->GetMouseMoveX() * turnSpeed * deltaTime);
+		mCamera.Pitch(input->GetMouseMoveY() * turnSpeed * deltaTime);
+	}
+//===========================================================================================================================================================================================
+
+	if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::UP))
+	{
+		IExeEngine::MainApp().ChangeState("Pyramid");
+	}
+
+	if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::LEFT))
+	{
+		IExeEngine::MainApp().ChangeState("Cube");
+	}
+
+	if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::DOWN))
+	{
+		IExeEngine::MainApp().ChangeState("ShapeState");
+	}
+}
+void RectangleState::CreateShape()
+{
+	mMesh = MeshBuilder::CreateRectanglePC(1.0f, 1.0f, 2.0f);
 }

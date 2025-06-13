@@ -13,13 +13,34 @@ public:
 protected:
 	virtual void CreateShape();
 
-	using Vertices = std::vector<IExeEngine::Graphics::VertexPC>;
-	Vertices mVertices;
-
+	IExeEngine::Graphics::MeshPC mMesh;
 	IExeEngine::Graphics::Camera mCamera;
 	IExeEngine::Graphics::ConstantBuffer mTransformBuffer;
 	IExeEngine::Graphics::MeshBuffer mMeshbuffer;
 	IExeEngine::Graphics::VertexShader mVertexShader;
 	IExeEngine::Graphics::PixelShader mPixelShader;
-	
+};
+
+class CubeState : public ShapeState
+{
+public:
+	void Update(float deltaTime) override;
+protected:
+	void CreateShape() override;
+};
+
+class PyramidState : public ShapeState
+{
+public:
+	void Update(float deltaTime) override;
+protected:
+	void CreateShape() override;
+};
+
+class RectangleState : public ShapeState
+{
+public:
+	void Update(float deltaTime) override;
+protected:
+	void CreateShape() override;
 };

@@ -134,12 +134,6 @@
     <ProjectReference Include="..\..\Engine\IExeEngine\IExeEngine.vcxproj">
       <Project>{daca0f24-e27d-4787-ab9e-c75a1e5d2129}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Graphics\Graphics.vcxproj">
-      <Project>{04dbb877-8048-43b2-b930-dcbf5991192e}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Math\Math.vcxproj">
-      <Project>{e2f0ccaf-3354-48f8-a1b4-d89487c6ba41}</Project>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ShapeState.cpp" />
