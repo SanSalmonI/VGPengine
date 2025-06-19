@@ -33,12 +33,24 @@ Texture& Texture::operator=(Texture&& rhs) noexcept
 
 void Texture::Initialize(const std::filesystem::path& fileName)
 {
+    ASSERT(std::filesystem::exists(fileName),
+        "Texture: File not found: %s", fileName.string().c_str());
+
     auto device = GraphicsSystem::Get()->GetDevice();
     auto context = GraphicsSystem::Get()->GetContext();
 
-    HRESULT hr = DirectX::CreateWICTextureFromFile(device, context, fileName.c_str(), nullptr, &mShaderResourceView);
-    ASSERT(SUCCEEDED(hr), "Texture: Failed to create texture %s", fileName.c_str());
+    HRESULT hr = DirectX::CreateWICTextureFromFile(
+        device,
+        context,
+        fileName.wstring().c_str(),   // pass a `const wchar_t*`
+        nullptr,
+        &mShaderResourceView);
+
+    ASSERT(SUCCEEDED(hr),
+        "Texture: CreateWICTextureFromFile failed for %s (HR=0x%08X)",
+        fileName.string().c_str(), hr);
 }
+
 
 void Texture::Terminate()
 {
