@@ -1,4 +1,11 @@
-// Simple Shader that takes a position and sets the color
+// Simple Shader that takes a local position, convertes to NDC space,
+// and sets the color.
+
+// Information is passed to the GPU thrrough a buffer
+cbuffer TransformBuffer : register(b0)
+{
+    matrix wvp;
+};
 
 // Defines the expected vertex data per vetrex
 struct VS_INPUT
@@ -18,7 +25,7 @@ struct VS_OUTPUT
 VS_OUTPUT VS(VS_INPUT input)
 {
     VS_OUTPUT output;
-    output.position = float4(input.position, 1.0f);
+    output.position = mul(float4(input.position, 1.0f), wvp);
     output.color = input.color;
     return output;
 }
