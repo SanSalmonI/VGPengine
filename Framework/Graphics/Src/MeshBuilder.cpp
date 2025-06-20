@@ -432,13 +432,15 @@ MeshPX MeshBuilder::CreateOBJPX(const std::filesystem::path& filePath, float sca
 		{
 			float u, v = 0.0f;
 			fscanf_s(file, "%f %f\n", &u, &v);
-			uvCoords.push_back({ u, 1.0f - v });
+			//uvCoords.push_back({ u, 1.0f - v });
+			uvCoords.push_back({ u, v });
 		}
 		else if (strcmp(buffer, "f") == 0)
 		{
 			uint32_t p[4];
 			uint32_t uv[4];
 			int count = fscanf_s(file, "%d/%d/%*d %d/%d/%*d %d/%d/%*d %d/%d/%*d\n", &p[0], &uv[0], &p[1], &uv[1], &p[2], &uv[2], &p[3], &uv[3]);
+			//int count = fscanf_s(file, "%d/%d %d/%d %d/%d %d/%d\n", &p[0], &uv[0], &p[1], &uv[1], &p[2], &uv[2], &p[3], &uv[3]);
 			if (count % 3 == 0)
 			{
 				for (uint32_t i = 0; i < 3; ++i)

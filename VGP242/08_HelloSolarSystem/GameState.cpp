@@ -18,7 +18,7 @@ enum class PlanetRenderTarget
 	Neptune,
 	Pluto
 };
-PlanetRenderTarget gCurrentPlanet = PlanetRenderTarget::Sun;
+PlanetRenderTarget gCurrentPlanet;
 
 const char* gPlanetNames[] = 
 {
@@ -31,7 +31,11 @@ void GameState::Initialize()
 	// Basic camera
 	mCamera.SetPosition({ 0.0f, 50.0f, -150.0f });
 	mCamera.SetLookAt({ 0.0f, 0.0f,  0.0f });
+	mRenderTargetCamera.SetPosition({ 0.0f, 50.0f, -150.0f });
+	mRenderTargetCamera.SetLookAt({ 0.0f, 0.0f,  0.0f });
+	mRenderTargetCamera.SetAspectRatio(1.0f);
 
+	mRenderTarget.Initialize(512, 512, RenderTarget::Format::RGBA_U32);
 	// SimpleTexturing effect
 	mSimpleTextureEffect.Initialize();
 
@@ -98,7 +102,7 @@ void GameState::Initialize()
 		Math::Matrix4::Translation(mEarth.distanceFromCenter, 0.0f, 0.0f);
 
 	// ----- Mars ------------------------------------------------------------
-	mMars.radius = 0.48f;     
+	mMars.radius = 0.48f;
 	mMars.distanceFromCenter = 42.0f;     // orbit radius from Sun
 	mMars.orbitTranslation = 0.13f;     // orbital speed
 	mMars.rotationOnAxis = 1.0f;      // self-rotation
@@ -115,7 +119,7 @@ void GameState::Initialize()
 		Math::Matrix4::Translation(mMars.distanceFromCenter, 0.0f, 0.0f);
 
 	// ----- Moon ---------------------------------------------------------
-	mMoon.radius = 0.10f;      
+	mMoon.radius = 0.10f;
 	mMoon.distanceFromCenter = 1.0f;      // orbit radius from Earth
 	mMoon.orbitTranslation = 0.33f;      // orbital speed
 	mMoon.rotationOnAxis = 1.0f;       // self-rotation
@@ -135,7 +139,7 @@ void GameState::Initialize()
 			0.0f);
 
 	// ----- Jupiter --------------------------------------------------------
-	mJupiter.radius = 2.0f;      
+	mJupiter.radius = 2.0f;
 	mJupiter.distanceFromCenter = 51.0f;     // orbit radius
 	mJupiter.orbitTranslation = 0.10f;     // orbital speed
 	mJupiter.rotationOnAxis = 1.0f;      // self-rotation
@@ -153,20 +157,20 @@ void GameState::Initialize()
 
 	// ----- Saturn ---------------------------------------------------------
 	mSaturn.radius = 1.75f;   // size (with rings the mesh is wider)
-	mSaturn.distanceFromCenter = 72.0f;   
+	mSaturn.distanceFromCenter = 72.0f;
 	mSaturn.orbitTranslation = 0.08f;   // orbital speed (feel-free tweak)
 	mSaturn.rotationOnAxis = 1.0f;    // self-rotation
 
 
-	//MeshPX saturnObj =
-	//	MeshBuilder::CreateOBJPX(
-	//		L"../../Assets/Models/Planets/Saturn/Saturn.obj",
-	//		1.0f /* scale */);
-	//mSaturn.renderData.mesh.Initialize(saturnObj);
+	MeshPX saturnObj =
+		MeshBuilder::CreateOBJPX(
+			L"../../Assets/Models/Planets/Saturn/Saturn.obj", 0.5f);
+	mSaturn.renderData.mesh.Initialize(saturnObj); 
 
-	MeshPX saturnSphere =
+
+	/*MeshPX saturnSphere =
 		MeshBuilder::CreateSpherePX(60, 60, mSaturn.radius);
-	mSaturn.renderData.mesh.Initialize(saturnSphere);
+	mSaturn.renderData.mesh.Initialize(saturnSphere);*/
 
 
 	mSaturn.renderData.textureId =
@@ -339,12 +343,60 @@ void GameState::Update(float deltaTime)
 
 void GameState::Render()
 {
-	mSimpleTextureEffect.SetCamera(mCamera);
+	SimpleDraw::Render(mCamera);
+
+	// Render to Render Target ImGui Image
+	mSimpleTextureEffect.SetCamera(mRenderTargetCamera);
+	mRenderTarget.BeginRender();
 	mSimpleTextureEffect.Begin();
+	if (gCurrentPlanet == PlanetRenderTarget::Sun)
+	{
+		mSimpleTextureEffect.Render(mSun);
+	}
+	else if (gCurrentPlanet == PlanetRenderTarget::Mercury)
+	{
+		mSimpleTextureEffect.Render(mMercury.renderData);
+	}
+	else if (gCurrentPlanet == PlanetRenderTarget::Venus)
+	{
+		mSimpleTextureEffect.Render(mVenus.renderData);
+	}
+	else if (gCurrentPlanet == PlanetRenderTarget::Earth)
+	{
+		mSimpleTextureEffect.Render(mEarth.renderData);
+	}
+	else if (gCurrentPlanet == PlanetRenderTarget::Moon)
+	{
+		mSimpleTextureEffect.Render(mMoon.renderData);
+	}
+	else if (gCurrentPlanet == PlanetRenderTarget::Mars)
+	{
+		mSimpleTextureEffect.Render(mMars.renderData);
+	}
+	else if (gCurrentPlanet == PlanetRenderTarget::Jupiter)
+	{
+		mSimpleTextureEffect.Render(mJupiter.renderData);
+	}
+	else if (gCurrentPlanet == PlanetRenderTarget::Saturn)
+	{
+		mSimpleTextureEffect.Render(mSaturn.renderData);
+	}
+	else if (gCurrentPlanet == PlanetRenderTarget::Uranus)
+	{
+		mSimpleTextureEffect.Render(mUranus.renderData);
+	}
+	else if (gCurrentPlanet == PlanetRenderTarget::Neptune)
+	{
+		mSimpleTextureEffect.Render(mNeptune.renderData);
+	}
+	else if (gCurrentPlanet == PlanetRenderTarget::Pluto)
+	{
+		mSimpleTextureEffect.Render(mPluto.renderData);
+	}
+	mSimpleTextureEffect.End();
+	mRenderTarget.EndRender();
 
-	mSimpleTextureEffect.Render(mSpace);
-	mSimpleTextureEffect.Render(mSun);
-
+	// Render to Scene
 	mSimpleTextureEffect.SetCamera(mCamera);
 	mSimpleTextureEffect.Begin();
 
@@ -353,16 +405,13 @@ void GameState::Render()
 	mSimpleTextureEffect.Render(mMercury.renderData);
 	mSimpleTextureEffect.Render(mVenus.renderData);
 	mSimpleTextureEffect.Render(mEarth.renderData);
-	mSimpleTextureEffect.Render(mMars.renderData);
 	mSimpleTextureEffect.Render(mMoon.renderData);
+	mSimpleTextureEffect.Render(mMars.renderData);
 	mSimpleTextureEffect.Render(mJupiter.renderData);
 	mSimpleTextureEffect.Render(mSaturn.renderData);
 	mSimpleTextureEffect.Render(mUranus.renderData);
 	mSimpleTextureEffect.Render(mNeptune.renderData);
 	mSimpleTextureEffect.Render(mPluto.renderData);
-	
-
-	mSimpleTextureEffect.End();
 
 
 	mSimpleTextureEffect.End();
@@ -461,7 +510,7 @@ void GameState::DebugUI()
 void GameState::UpdateCamera(float deltaTime)
 {
 	Input::InputSystem* input = Input::InputSystem::Get();
-	const float moveSpeed = input->IsKeyDown(Input::KeyCode::LSHIFT) ? 10.0f : 1.0f;
+	const float moveSpeed = input->IsKeyDown(Input::KeyCode::LSHIFT) ? 50.0f : 10.0f;
 	const float turnSpeed = 1.0f;
 
 	if (input->IsKeyDown(Input::KeyCode::W)) mCamera.Walk(moveSpeed * deltaTime);
@@ -538,7 +587,7 @@ void GameState::UpdateRenderTargetCamera(float deltaTime, Math::Vector3 targetPo
 	}
 	else
 	{
-		mRenderTargetCamera.SetPosition(targetPosition + Math::Vector3(0.0f, 1.0f, -objectRadius));
+		mRenderTargetCamera.SetPosition(targetPosition + Math::Vector3(0.0f, 1.0f, -objectRadius * 1.2f));
 		mRenderTargetCamera.SetLookAt(targetPosition);
 	}
 }
