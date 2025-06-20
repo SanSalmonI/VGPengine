@@ -43,9 +43,7 @@ It’s a minimal scene—but every major subsystem (camera, shader pipeline, PBR
 
 ### 🔧 Live Debug UI
 Tap <kbd>Tab</kbd> (or your favourite hotkey) to summon an **ImGui-powered debug menu**.  
-✔️ Toggle wireframe, lighting passes, and post effects  
-✔️ Nudge material values and immediately see the result  
-✔️ Inspect FPS, camera transforms, and more
+✔️ Here the user can edit the fuctions and inspect models real time.
 
 ![In-engine ImGui debug menu with lighting, material, and performance controls](GitResources/DebugMenu.png)
 
@@ -53,6 +51,6 @@ Tap <kbd>Tab</kbd> (or your favourite hotkey) to summon an **ImGui-powered debug
 
 ### 🎯 Everything Working Together
 Below is a full integration demo—**primitives + debug UI + input + render loop**—all happily co-existing.  
-If it renders here, it’s ready for you to extend with your own meshes, shaders, and gameplay logic.
+If it renders here, it’s ready for you to extend with your own meshes and shadersc.
 
 ![Combined scene showing primitives and debug UI running simultaneously](GitResources/EverythingTogether.png)
