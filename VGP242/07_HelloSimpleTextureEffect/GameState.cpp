@@ -34,9 +34,9 @@ void GameState::Initialize()
     //mSword.mesh.Initialize(sword);
 
 	// Textures:
-	mSpace.textureId = TextureManager::Get()->LoadTexture(L"space.jpg");
-    mEarth.textureId = TextureManager::Get()->LoadTexture(L"earth.jpg");
-    mSun.textureId = TextureManager::Get()->LoadTexture(L"sun.jpg");
+	mSpace.textureId = TextureManager::Get()->LoadTexture(L"planets/space.jpg");
+    mEarth.textureId = TextureManager::Get()->LoadTexture(L"planets/earth.jpg");
+    mSun.textureId = TextureManager::Get()->LoadTexture(L"planets/sun.jpg");
     mAsteroid_1.textureId = TextureManager::Get()->LoadTexture(L"../../Assets/Models/Asteroid/Asteroid1/Asteroid1_BaseColor.jpg", false);
     mSaturn.textureId = TextureManager::Get()->LoadTexture(L"../../Assets/Models/Planets/Saturn/Saturn_Color.jpg", false);
     //mSword.textureId = TextureManager::Get()->LoadTexture(L"../../Assets/Models/Sword/Sword_BaseColor.jpg", false);

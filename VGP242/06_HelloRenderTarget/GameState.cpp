@@ -27,9 +27,9 @@ void GameState::Initialize()
 	MeshPX spaceSphere = MeshBuilder::CreateSkySpherePX(30, 30, 250.0f);
 	mSpace.meshBuffer.Initialize(spaceSphere);
 
-	mSpace.textureId = TextureManager::Get()->LoadTexture(L"space.jpg");
-    mEarth.textureId = TextureManager::Get()->LoadTexture(L"earth.jpg");
-    mSun.textureId = TextureManager::Get()->LoadTexture(L"sun.jpg");
+	mSpace.textureId = TextureManager::Get()->LoadTexture(L"planets/space.jpg");
+    mEarth.textureId = TextureManager::Get()->LoadTexture(L"planets/earth.jpg");
+    mSun.textureId = TextureManager::Get()->LoadTexture(L"planets/sun.jpg");
 
     // Moving other objects to the right positions
     mSun.worldMat = Math::Matrix4::Translation(0.0f, 0.0f, 0.0f);
