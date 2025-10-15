@@ -4,14 +4,31 @@ using namespace IExeEngine;
 using namespace IExeEngine::Graphics;
 using namespace IExeEngine::Input;
 
+
 void GameState::Initialize()
 {
 	mCamera.SetPosition({ 0.0f, 1.0f, -3.0f });
 	mCamera.SetLookAt({ 0.0f, 0.0f, 0.0f });
+
+	mDirectionalLight.direction = Math::Vector3{ 1.0f, -1.0f, 1.0f };
+	mDirectionalLight.ambient = { 0.2f, 0.2f, 0.2f, 1.0f };
+	mDirectionalLight.diffuse = { 0.8f, 0.8f, 0.8f, 1.0f };
+	mDirectionalLight.specular = { 1.0f, 1.0f, 1.0f, 1.0f };
+	Mesh mesh;
+	mRenderObject.meshBuffer.Initialize(mesh);
+
+	std::filesystem::path shaderFile = "Assets/Shaders/Standard.fx";
+	mStandardEffect.Initialize(shaderFile);
+	mStandardEffect.setCamera(mCamera);
+	mStandardEffect.SetDirectionalLight(mDirectionalLight);
+
+
 }
 
 void GameState::Terminate()
 {
+	mStandardEffect.Terminate();
+	mRenderObject.meshBuffer.Terminate();
 }
 
 void GameState::Update(float deltaTime)
@@ -24,12 +41,22 @@ void GameState::Render()
 	SimpleDraw::AddGroundPlane(20.0f, Colors::Wheat);
 	SimpleDraw::Render(mCamera);
 
-    
+	mStandardEffect.Begin();
+	mStandardEffect.Render(mRenderObject);
+	mStandardEffect.End();
 }
 
 void GameState::DebugUI()
 {
 	ImGui::Begin("Debug", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
+
+	if (ImGui::CollapsingHeader("Light", ImGuiTreeNodeFlags_DefaultOpen))
+	{
+		if (ImGui::DragFloat3("DirectionalLight", &mDirectionalLight.direction.x, 0.01f))
+		{
+
+		}
+	}
 
 	ImGui::End();
 }

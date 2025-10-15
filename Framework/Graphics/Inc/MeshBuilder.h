@@ -26,8 +26,9 @@ namespace IExeEngine::Graphics
         static MeshPC CreateCylinderPC(int slices, int rings);
 
         // Sphere
-        static MeshPC CreateSpherePC(int slices, int rings, float radius);
-        static MeshPX CreateSpherePX(int slices, int rings, float radius);
+		static MeshPC CreateSpherePC(int slices, int rings, float radius);
+		static MeshPX CreateSpherePX(int slices, int rings, float radius);
+
 
         // Sky Sphere/ 'Box'
         static MeshPX CreateSkySpherePX(int slices, int rings, float radius);

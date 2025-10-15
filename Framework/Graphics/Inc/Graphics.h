@@ -14,6 +14,16 @@
 
 #include "VertexTypes.h"
 
+#include "TransfSorm.h"
+
+#include "RenderObject.h"
+
+#include "StandardEffect.h"
+
+#include "DirectionalLight.h"
+
+#include "Effects.h"
+
 #include "Camera.h"
 
 #include "ConstantBuffer.h"
