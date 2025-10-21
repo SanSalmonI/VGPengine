@@ -1,4 +1,4 @@
-//Description: Standard effect for basic rendering
+//description: Cel Shader That uses cel shading effect on objects 
 
 cbuffer TransformBuffer : register(b0)
 {
@@ -101,19 +101,26 @@ float4 PS(VS_OUTPUT input) : SV_Target
     }
     
     //Emissive
-    float4 emissive = materialEmissive;
+    float edgeThickness = 0.25f;
+    //float edgeThreshhold = 0.01f;
+    float e = 1.0f - saturate(dot(-view, n));
+    e = smoothstep(edgeThickness - 0.01f, edgeThickness + 0.1f, e);
+    float4 emissive = e * materialEmissive;
     
     //Ambient 
     float4 ambient = lightAmbient * materialAmbient;
     
-    //Diffuse
+  //Diffuse
     float d = saturate(dot(light, n));
+    d = smoothstep(0.005f, 1f, d);
     float4 diffuse = d * lightDiffuse * materialDiffuse;
+ 
     
-    //Specular 
+    //Specular
     float3 r = reflect(-light, n);
     float base = saturate(dot(r, view));
     float s = pow(base, materialShininess);
+    s = smoothstep(0.005f, 1f, s);
     float4 specular = s * lightSpecular * materialSpecular;
     
     //Colors
@@ -121,7 +128,11 @@ float4 PS(VS_OUTPUT input) : SV_Target
     float4 specMapColor = (useSpecMap) ? specMap.Sample(textureSampler, input.texCoord).r : 1.0f;
     
     
-    float4 finalColor = (emissive + ambient + diffuse) * diffuseMapColor + (specular * specMapColor);
+    float4 finalColor = emissive + (ambient + diffuse) * diffuseMapColor + (specular * specMapColor);
     
     return finalColor;
 }
+    
+ 
+    
+   
