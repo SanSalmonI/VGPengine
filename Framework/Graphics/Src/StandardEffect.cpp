@@ -1,19 +1,19 @@
 #include "Precompiled.h"
 #include "StandardEffect.h"
+
+#include "VertexTypes.h"
 #include "Camera.h"
 #include "RenderObject.h"
-#include "VertexTypes.h"
 
 using namespace IExeEngine;
-
 using namespace IExeEngine::Graphics;
 
 void StandardEffect::Initialize(const std::filesystem::path& path)
 {
 	mTransformBuffer.Initialize();
-	mVertexShader.Initialize<Vertex>(path);
-	mPixelShader.Initialize(path);
 	mLightBuffer.Initialize();
+	mMaterialBuffer.Initialize();
+	mSettingsBuffer.Initialize();
 
 	mVertexShader.Initialize<Vertex>(path);
 	mPixelShader.Initialize(path);
@@ -27,22 +27,28 @@ void StandardEffect::Terminate()
 	mPixelShader.Terminate();
 	mVertexShader.Terminate();
 	mSettingsBuffer.Terminate();
-
-	mTransformBuffer.Terminate();
-
+	mMaterialBuffer.Terminate();
 	mLightBuffer.Terminate();
+	mTransformBuffer.Terminate();
 }
 
 void StandardEffect::Begin()
 {
 	mVertexShader.Bind();
 	mPixelShader.Bind();
+	mSampler.BindVS(0);
+	mSampler.BindPS(0);
+
 	mTransformBuffer.BindVS(0);
-	m
-	m
+	mLightBuffer.BindVS(1);
+	mLightBuffer.BindPS(1);
+	mMaterialBuffer.BindPS(2);
+	mSettingsBuffer.BindVS(3);
+	mSettingsBuffer.BindPS(3);
+
 }
 
-void StandardEffect::End() 
+void StandardEffect::End()
 {
 
 }
@@ -57,31 +63,30 @@ void StandardEffect::Render(const RenderObject& renderObject)
 	TransformData data;
 	data.wvp = Math::Transpose(matFinal);
 	data.world = Math::Transpose(matWorld);
-	data.ViewPosition = mCamera->GetPosition();
+	data.viewPosition = mCamera->GetPosition();
 	mTransformBuffer.Update(data);
 
 	SettingsData settings;
-	settings.useDiffuesMap = (renderObject.DiffuseMapId > 0 && mSettingsData.useDiffuesMap > 0) ? 1 : 0;
+	settings.useDiffuseMap = (renderObject.diffuseMapId > 0 && mSettingsData.useDiffuseMap > 0) ? 1 : 0;
 	settings.useSpecMap = (renderObject.specMapId > 0 && mSettingsData.useSpecMap > 0) ? 1 : 0;
-	settings.useNormalMap = (renderOnject.normalMapId > 0 && mSettingsData.useNormalMap > 0) ? 1 : 0;
+	settings.useNormalMap = (renderObject.normalMapId > 0 && mSettingsData.useNormalMap > 0) ? 1 : 0;
+	settings.useBumpMap = (renderObject.bumpMapId > 0 && mSettingsData.useBumpMap > 0) ? 1 : 0;
 	settings.bumpWeight = mSettingsData.bumpWeight;
 	mSettingsBuffer.Update(settings);
 
-	TextureManager* tm = TextureManager::Get();
-	tm->BindPs(renderObject.diffuseMapId, 0);
-	tm->BindPs(renderObject.specMapId, 1);
-	tm->BindPs(renderObject.normalMapId, 2);
-	tm->BindPs(renderObject.
-	tm->BindPs(renderObject.
-
-
 	mLightBuffer.Update(*mDirectionalLight);
-	mMaterialBuffer.Update()
+	mMaterialBuffer.Update(renderObject.material);
+
+	TextureManager* tm = TextureManager::Get();
+	tm->BindPS(renderObject.diffuseMapId, 0);
+	tm->BindPS(renderObject.specMapId, 1);
+	tm->BindPS(renderObject.normalMapId, 2);
+	tm->BindVS(renderObject.bumpMapId, 3);
 
 	renderObject.meshBuffer.Render();
 }
 
-void StandardEffect::setCamera(const Camera& camera)
+void StandardEffect::SetCamera(const Camera& camera)
 {
 	mCamera = &camera;
 }
@@ -93,18 +98,18 @@ void StandardEffect::SetDirectionalLight(const DirectionalLight& directionalLigh
 
 void StandardEffect::DebugUI()
 {
-	if (ImGui::CollapsingHeader("StandardEffecr", ImGuiTreeNodeFlags_DefaultOpen))
+	if (ImGui::CollapsingHeader("StandardEffect", ImGuiTreeNodeFlags_DefaultOpen))
 	{
-		bool useDiffuseMap = mSettingsData.useDiffuesMap > 0;
+		bool useDiffuseMap = mSettingsData.useDiffuseMap > 0;
 		if (ImGui::Checkbox("UseDiffuseMap", &useDiffuseMap))
 		{
-			mSettingsData.useDiffuesMap = (useDiffuseMap) ? 1 : 0;
+			mSettingsData.useDiffuseMap = (useDiffuseMap) ? 1 : 0;
 		}
 
-		bool useSpecMap = mSettingsData.useSpecMap > 0;
-		if (ImGui::Checkbox("UseSpeceMap", &useSpecMap))
+		bool useSpacMap = mSettingsData.useSpecMap > 0;
+		if (ImGui::Checkbox("UseSpecularMap", &useSpacMap))
 		{
-			mSettingsData.useSpecMap = (useSpecMap) ? 1 : 0;
+			mSettingsData.useSpecMap = (useSpacMap) ? 1 : 0;
 		}
 
 		bool useNormalMap = mSettingsData.useNormalMap > 0;
@@ -118,7 +123,7 @@ void StandardEffect::DebugUI()
 		{
 			mSettingsData.useBumpMap = (useBumpMap) ? 1 : 0;
 		}
-
-		ImGui::DragFloat("BumpWeight", &mSettingsData.bumpWeight, 0.1f, 0.0f, 100.0f);
+		ImGui::DragFloat("BumpWeight", &mSettingsData.bumpWeight, 0.01f, 0.0f, 100.0f);
 	}
+
 }

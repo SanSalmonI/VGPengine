@@ -14,7 +14,7 @@
 
 #include "VertexTypes.h"
 
-#include "TransfSorm.h"
+#include "Transform.h"
 
 #include "RenderObject.h"
 
