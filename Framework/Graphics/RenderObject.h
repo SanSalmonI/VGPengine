@@ -1,6 +1,7 @@
 #pragma once
 #include "MeshBuffer.h"
 #include "Transform.h"
+#include "Material.h"
 
 namespace IExeEngine::Graphics
 {
@@ -10,5 +11,8 @@ namespace IExeEngine::Graphics
 		void Terminate();
 		Transform transform;
 		MeshBuffer meshBuffer;
+		Material material;
+
+
 	};
 }

@@ -14,8 +14,12 @@ void GameState::Initialize()
 	mDirectionalLight.ambient = { 0.2f, 0.2f, 0.2f, 1.0f };
 	mDirectionalLight.diffuse = { 0.8f, 0.8f, 0.8f, 1.0f };
 	mDirectionalLight.specular = { 1.0f, 1.0f, 1.0f, 1.0f };
-	Mesh mesh;
+	Mesh mesh = MeshBuilder::CreateSphere(30,30,1.0f);
+	mRenderObject.SpecMapId = tm->LoadTexture("earth_spec.jpg");
+	mRenderObject.diffusemapID = tm->LoadTexture("earth_spec.jpg");
 	mRenderObject.meshBuffer.Initialize(mesh);
+	mRenderObject.normalMapId = tm->LoadTexture("earth_normal.jpg");
+	mRenderObject.bumpMapId = tm->LoadTexture("earth_bump.jpg");
 
 	std::filesystem::path shaderFile = "Assets/Shaders/Standard.fx";
 	mStandardEffect.Initialize(shaderFile);
