@@ -101,9 +101,9 @@ float4 PS(VS_OUTPUT input) : SV_Target
     }
     
     //Emissive
-    float edgeThickness = 0.25f;
+    float edgeThickness = 0.85f;
     //float edgeThreshhold = 0.01f;
-    float e = 1.0f - saturate(dot(-view, n));
+    float e = 1.0f - saturate(dot(view, n));
     e = smoothstep(edgeThickness - 0.01f, edgeThickness + 0.1f, e);
     float4 emissive = e * materialEmissive;
     

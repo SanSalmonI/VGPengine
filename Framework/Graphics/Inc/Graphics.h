@@ -16,6 +16,8 @@
 
 #include "Transform.h"
 
+#include "Model.h"
+
 #include "RenderObject.h"
 
 #include "StandardEffect.h"
