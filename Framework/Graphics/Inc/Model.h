@@ -27,7 +27,7 @@ namespace IExeEngine::Graphics
 	
 
 	std::vector<MeshData> meshData;
-	std::vector<MaterialData> materialdata;
+	std::vector<MaterialData> materialData;
 	};
 }
 

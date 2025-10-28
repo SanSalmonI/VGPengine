@@ -18,6 +18,10 @@
 
 #include "Model.h"
 
+#include "ModelIO.h"
+
+#include "ModelManager.h"
+
 #include "RenderObject.h"
 
 #include "StandardEffect.h"
