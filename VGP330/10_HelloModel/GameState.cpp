@@ -27,7 +27,7 @@ void GameState::Initialize()
 	mDirectionalLight.diffuse = { 0.7f, 0.7f, 0.7f, 1.0f };
 	mDirectionalLight.specular = { 0.9f, 0.9f, 0.9f, 1.0f };
 
-	mCharacter.Initialize("../../Assets/Models/Character01.model");
+	mCharacter.Initialize("Character01/Character01.model");
 
 	std::filesystem::path shaderFile = L"../../Assets/Shaders/Standard.fx";
 	mStandardEffect.Initialize(shaderFile);

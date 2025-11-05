@@ -66,7 +66,7 @@ void ModelIO::LoadModel(std::filesystem::path filePath, Model& model)
 	for (uint32_t m = 0; m < meshCount; ++m)
 	{
 		Model::MeshData& meshData = model.meshData[m];
-		fscanf_s(file, "MaterialIndex: %d\n", meshData.materialIndex);
+		fscanf_s(file, "MaterialIndex: %d\n", &meshData.materialIndex);
 
 		 Mesh& mesh = meshData.mesh;
 		 uint32_t vertexCount = 0;
@@ -81,11 +81,11 @@ void ModelIO::LoadModel(std::filesystem::path filePath, Model& model)
 				&v.uvCoord.x, &v.uvCoord.y);
 		}
 		uint32_t indexCount = 0;
-		fscanf_s(file, "IndexCount %d\n", indexCount);
+		fscanf_s(file, "IndexCount %d\n", &indexCount);
 		mesh.indices.resize(indexCount);
 		for (uint32_t i = 2; i < indexCount; i += 3)
 		{
-			fscanf_s(file, " %d %d %d\n", mesh.indices[i - 2], mesh.indices[i - 1], mesh.indices[i]);
+			fscanf_s(file, " %d %d %d\n", &mesh.indices[i - 2], &mesh.indices[i - 1], &mesh.indices[i]);
 
 		}
 	}
@@ -93,11 +93,81 @@ void ModelIO::LoadModel(std::filesystem::path filePath, Model& model)
 }
 
 
-void ModelIO::SaveMaterial(std::filesystem::path directory, const Model& model)
+void ModelIO::SaveMaterial(std::filesystem::path filePath, const Model& model)
+{
+	if(model.materialData.empty())
+	{
+		return;
+	}
+
+	filePath.replace_extension("material");
+
+	FILE* file = nullptr;
+	fopen_s(&file, filePath.u8string().c_str(), "w");
+	if (file == nullptr)
+	{
+		return;
+	}
+
+	uint32_t materialCount = static_cast<uint32_t>(model.materialData.size());
+	fprintf(file, "MaterialCount %u\n", materialCount);
+	for (const Model::MaterialData& materialData : model.materialData)
+	{
+		const Material& material = materialData.material;
+		fprintf(file, "%f %f %f %f\n", material.emissive.r, material.emissive.g, material.emissive.b, material.emissive.a);
+		fprintf(file, "%f %f %f %f\n", material.ambient.r, material.ambient.g, material.ambient.b, material.ambient.a);
+		fprintf(file, "%f %f %f %f\n", material.diffuse.r, material.diffuse.g, material.diffuse.b, material.diffuse.a);
+		fprintf(file, "Shininess %f\n", material.shininess);
+
+		fprintf_s(file, "%s\n", materialData.diffuseMapName.empty() ? "<NONE>" : materialData.diffuseMapName.c_str());
+		fprintf_s(file, "%s\n", materialData.SpecMapName.empty() ? "<NONE>" : materialData.SpecMapName.c_str());
+		fprintf_s(file, "%s\n", materialData.normalMapName.empty() ? "<NONE>" : materialData.normalMapName.c_str());
+		fprintf_s(file, "%s\n", materialData.bumpMapName.empty() ? "<NONE>" : materialData.bumpMapName.c_str());
+		
+	}
+	fclose(file);
+}
+void ModelIO::LoadMaterial(std::filesystem::path filePath, Model& model)
 {
 
-}
-void ModelIO::LoadMaterial(std::filesystem::path directory, Model& model)
-{
+	filePath.replace_extension("material");
+
+	FILE* file = nullptr;
+	fopen_s(&file, filePath.u8string().c_str(), "r");
+	if (file == nullptr)
+	{
+		return;
+	}
+
+	auto TryReadTextureName = [&](auto& fileName)
+	{
+		char buffer[MAX_PATH];
+		fscanf_s(file, "%s\n", &buffer, (uint32_t)sizeof(buffer));
+		if (strcmp(buffer, "<NONE>") != 0)
+		{
+			fileName = filePath.replace_filename(buffer).string();
+		}
+		
+	};
+
+	uint32_t materialCount = 0;
+	fscanf_s(file, "MaterialCount %d\n", &materialCount);
+	model.materialData.resize(materialCount);
+	for (Model::MaterialData& materialData : model.materialData)
+	{
+		Material& m = materialData.material;
+		fscanf_s(file, "%f %f %f %f\n", &m.emissive.r, &m.emissive.g, &m.emissive.b, &m.emissive.a);
+		fscanf_s(file, "%f %f %f %f\n", &m.ambient.r, &m.ambient.g, &m.ambient.b, &m.ambient.a);
+		fscanf_s(file, "%f %f %f %f\n", &m.diffuse.r, &m.diffuse.g, &m.diffuse.b, &m.diffuse.a);
+		fscanf_s(file, "Shininess %f\n", &m.shininess);
+
+		TryReadTextureName(materialData.diffuseMapName);
+		TryReadTextureName(materialData.SpecMapName);
+		TryReadTextureName(materialData.normalMapName);
+		TryReadTextureName(materialData.bumpMapName);
+
+	}
+	fclose(file);
+
 
 }
