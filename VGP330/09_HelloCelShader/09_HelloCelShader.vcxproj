@@ -59,31 +59,19 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\VSProps\IExeEngine.props" />
-    <Import Project="..\External\assimp-5.2.5\VSProps\Assimp.props" />
-    <Import Project="..\VSProps\EngineLib.props" />
-    <Import Project="..\VSProps\Common\Library.props" />
+    <Import Project="..\..\VSProps\IExeEngine.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\VSProps\IExeEngine.props" />
-    <Import Project="..\External\assimp-5.2.5\VSProps\Assimp.props" />
-    <Import Project="..\VSProps\EngineLib.props" />
-    <Import Project="..\VSProps\Common\Library.props" />
+    <Import Project="..\..\VSProps\IExeEngine.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\VSProps\IExeEngine.props" />
-    <Import Project="..\External\assimp-5.2.5\VSProps\Assimp.props" />
-    <Import Project="..\VSProps\EngineLib.props" />
-    <Import Project="..\VSProps\Common\Library.props" />
+    <Import Project="..\..\VSProps\IExeEngine.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\VSProps\IExeEngine.props" />
-    <Import Project="..\External\assimp-5.2.5\VSProps\Assimp.props" />
-    <Import Project="..\VSProps\EngineLib.props" />
-    <Import Project="..\VSProps\Common\Library.props" />
+    <Import Project="..\..\VSProps\IExeEngine.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

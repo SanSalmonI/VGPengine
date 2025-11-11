@@ -22,6 +22,8 @@
 
 #include "ModelManager.h"
 
+#include "PostProcessingEffect.h"
+
 #include "RenderObject.h"
 
 #include "StandardEffect.h"

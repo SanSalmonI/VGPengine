@@ -55,6 +55,7 @@ void Texture::Initialize(const std::filesystem::path& fileName)
 void Texture::Terminate()
 {
     SafeRelease(mShaderResourceView);
+
 }
 
 void Texture::BindVS(uint32_t slot) const

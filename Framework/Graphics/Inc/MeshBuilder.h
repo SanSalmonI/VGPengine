@@ -38,5 +38,8 @@ namespace IExeEngine::Graphics
 
 		//load obj
 		static MeshPX CreateOBJPX(const std::filesystem::path& filePath, float scale);
+
+		//screen Quad
+		static MeshPX CreateScreenQuadPX();
 	};
 }
