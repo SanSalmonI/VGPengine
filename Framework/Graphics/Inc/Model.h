@@ -19,7 +19,7 @@ namespace IExeEngine::Graphics
 	{
 		Material material;
 		std::string diffuseMapName;
-		std::string SpecMapName;
+		std::string specMapName;
 		std::string normalMapName;
 		std::string bumpMapName;
 

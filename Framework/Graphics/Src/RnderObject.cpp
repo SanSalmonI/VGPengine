@@ -40,7 +40,7 @@ void RenderGroup::Initialize(const std::filesystem::path& modelFilePath)
 			renderObject.material = materialData.material;
 
 			renderObject.diffuseMapId = TryLoadTexture(materialData.diffuseMapName);
-			renderObject.specMapId = TryLoadTexture(materialData.SpecMapName);
+			renderObject.specMapId = TryLoadTexture(materialData.specMapName);
 			renderObject.normalMapId = TryLoadTexture(materialData.normalMapName);
 			renderObject.bumpMapId = TryLoadTexture(materialData.bumpMapName);
 

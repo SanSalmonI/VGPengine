@@ -20,6 +20,12 @@
 
 #include "ModelIO.h"
 
+#include "ShadowEffect.h"
+
+#include "Terrain.h"
+
+#include "TerrainEffect.h"
+
 #include "ModelManager.h"
 
 #include "PostProcessingEffect.h"

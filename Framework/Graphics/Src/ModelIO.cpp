@@ -120,7 +120,7 @@ void ModelIO::SaveMaterial(std::filesystem::path filePath, const Model& model)
 		fprintf(file, "Shininess %f\n", material.shininess);
 
 		fprintf_s(file, "%s\n", materialData.diffuseMapName.empty() ? "<NONE>" : materialData.diffuseMapName.c_str());
-		fprintf_s(file, "%s\n", materialData.SpecMapName.empty() ? "<NONE>" : materialData.SpecMapName.c_str());
+		fprintf_s(file, "%s\n", materialData.specMapName.empty() ? "<NONE>" : materialData.specMapName.c_str());
 		fprintf_s(file, "%s\n", materialData.normalMapName.empty() ? "<NONE>" : materialData.normalMapName.c_str());
 		fprintf_s(file, "%s\n", materialData.bumpMapName.empty() ? "<NONE>" : materialData.bumpMapName.c_str());
 		
@@ -162,7 +162,7 @@ void ModelIO::LoadMaterial(std::filesystem::path filePath, Model& model)
 		fscanf_s(file, "Shininess %f\n", &m.shininess);
 
 		TryReadTextureName(materialData.diffuseMapName);
-		TryReadTextureName(materialData.SpecMapName);
+		TryReadTextureName(materialData.specMapName);
 		TryReadTextureName(materialData.normalMapName);
 		TryReadTextureName(materialData.bumpMapName);
 
