@@ -189,6 +189,7 @@ int main(int argc, char* argv[])
 
 	Model model;
 
+	//Matrix4 rotationMatrix = Matrix4::RotationAxis(Vector3::XAxis, 90.0f * Math::Constants::DegToRad) * Matrix4::Translation(Vector3::YAxis * 0.4f);
 	if (scene->HasMeshes())
 	{
 		printf("Reading MeshData...\n");
@@ -226,6 +227,13 @@ int main(int argc, char* argv[])
 				vertex.tangent = tangents ? ToVector3(tangents[v]) : Vector3::Zero;
 				vertex.uvCoord = texCoords ? ToTexCoord(texCoords[v]) : Vector2::Zero;
 			}
+			//for (uint32_t v = 0; v < numVertices; ++v)
+			//{
+			//	Vertex& vertex = mesh.vertices[v];
+			//	vertex.position = TransformCoord(vertex.position, rotationMatrix);
+			//	vertex.normal = TransformNormal(vertex.normal, rotationMatrix);
+			//	vertex.tangent = TransformNormal(vertex.tangent, rotationMatrix);
+			//}
 
 			printf("Reading Indices...\n");
 			mesh.indices.reserve(numIndices);
@@ -267,7 +275,7 @@ int main(int argc, char* argv[])
 
 			materialData.diffuseMapName = FindTexture(scene, aiMaterial,aiTextureType_DIFFUSE,
 				args, "_diff", materialIndex);
-			materialData.SpecMapName = FindTexture(scene, aiMaterial, aiTextureType_DIFFUSE,
+			materialData.specMapName = FindTexture(scene, aiMaterial, aiTextureType_DIFFUSE,
 				args, "_spec", materialIndex);
 			materialData.normalMapName = FindTexture(scene, aiMaterial, aiTextureType_NORMALS,
 				args, "_norm", materialIndex);

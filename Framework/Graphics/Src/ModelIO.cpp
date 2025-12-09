@@ -117,6 +117,7 @@ void ModelIO::SaveMaterial(std::filesystem::path filePath, const Model& model)
 		fprintf_s(file, "%f %f %f %f\n", material.emissive.r, material.emissive.g, material.emissive.b, material.emissive.a);
 		fprintf_s(file, "%f %f %f %f\n", material.ambient.r, material.ambient.g, material.ambient.b, material.ambient.a);
 		fprintf_s(file, "%f %f %f %f\n", material.diffuse.r, material.diffuse.g, material.diffuse.b, material.diffuse.a);
+		fprintf_s(file, "%f %f %f %f\n", material.specular.r, material.specular.g, material.specular.b, material.specular.a);
 		fprintf_s(file, "Shininess %f\n", material.shininess);
 
 		fprintf_s(file, "%s\n", materialData.diffuseMapName.empty() ? "<NONE>" : materialData.diffuseMapName.c_str());
@@ -159,6 +160,7 @@ void ModelIO::LoadMaterial(std::filesystem::path filePath, Model& model)
 		fscanf_s(file, "%f %f %f %f\n", &m.emissive.r, &m.emissive.g, &m.emissive.b, &m.emissive.a);
 		fscanf_s(file, "%f %f %f %f\n", &m.ambient.r, &m.ambient.g, &m.ambient.b, &m.ambient.a);
 		fscanf_s(file, "%f %f %f %f\n", &m.diffuse.r, &m.diffuse.g, &m.diffuse.b, &m.diffuse.a);
+		fscanf_s(file, "%f %f %f %f\n", &m.specular.r, &m.specular.g, &m.specular.b, &m.specular.a);
 		fscanf_s(file, "Shininess %f\n", &m.shininess);
 
 		TryReadTextureName(materialData.diffuseMapName);

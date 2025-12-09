@@ -20,14 +20,16 @@ void GameState::Initialize()
     mGround.diffuseMapId = TextureManager::Get()->LoadTexture("HexGround/HexGround_Diff.jpg");
     mGround.transform.position = { 0.0f, 0.0f, 0.0f };
 
-	mCharacter.Initialize("Character_01/Character_01.fbx");
+	mCharacter.Initialize("Character01/Character01.model");
     mCharacter.transform.position = { 0.0f, 0.0f, 0.0f };
+    mCharacter.transform.scale = { 10.0f, 10.0f, 10.0f };
+	//mCharacter.transform.rotation = { 0.0f, 0.0f, 0.0f };
 
     MeshPX screenQuadMesh = MeshBuilder::CreateScreenQuadPX();
     mScreenQuad.meshBuffer.Initialize(screenQuadMesh);
 
     std::filesystem::path shaderFile = L"../../Assets/Shaders/Standard.fx";
-    mStandardEffect.Initialize(shaderFile);
+    mStandardEffect.Initialize(shaderFile);	
     mStandardEffect.SetCamera(mCamera);
     mStandardEffect.SetDirectionalLight(mDirectionalLight);
     mStandardEffect.SetLightCamera(mShadowEffect.GetLightCamera());
