@@ -125,9 +125,6 @@
     <ClCompile Include="Src\RenderTarget.cpp">
       <Filter>Src</Filter>
     </ClCompile>
-    <ClCompile Include="Src\RnderObject.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Sampler.cpp">
       <Filter>Src</Filter>
     </ClCompile>

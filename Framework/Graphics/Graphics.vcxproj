@@ -202,7 +202,6 @@
     </ClCompile>
     <ClCompile Include="Src\RenderObject.cpp" />
     <ClCompile Include="Src\RenderTarget.cpp" />
-    <ClCompile Include="Src\RnderObject.cpp" />
     <ClCompile Include="Src\Sampler.cpp" />
     <ClCompile Include="Src\ShadowEffect.cpp" />
     <ClCompile Include="Src\SimpleDraw.cpp" />

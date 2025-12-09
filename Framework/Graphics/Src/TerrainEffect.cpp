@@ -5,6 +5,7 @@
 #include "Camera.h"
 #include "GraphicsSystem.h"
 #include "VertexTypes.h"
+#include "Texture.h"
 
 using namespace IExeEngine;
 using namespace IExeEngine::Graphics;

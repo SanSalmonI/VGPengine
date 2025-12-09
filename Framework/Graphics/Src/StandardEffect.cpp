@@ -134,6 +134,15 @@ void StandardEffect::SetDirectionalLight(const DirectionalLight& directionalLigh
 {
 	mDirectionalLight = &directionalLight;
 }
+void StandardEffect::SetLightCamera(const Camera& camera)
+{
+	mLightCamera = &camera;
+}
+
+void StandardEffect::SetShadowMap(const Texture& shadowMap)
+{
+	mShadowMap = &shadowMap;
+}
 
 void StandardEffect::DebugUI()
 {

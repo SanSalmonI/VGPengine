@@ -1,5 +1,5 @@
 #include "Precompiled.h"
-#include "ModelIO.h"'
+#include "ModelIO.h"
 #include "Model.h"
 
 using namespace IExeEngine;
@@ -22,28 +22,28 @@ void ModelIO::SaveModel(std::filesystem::path filePath, const Model& model)
 	}
 
 	const uint32_t meshCount = static_cast<uint32_t>(model.meshData.size());
-	fprintf(file, "MeshCount %u\n", meshCount);
+	fprintf_s(file, "MeshCount %u\n", meshCount);
 	for(uint32_t m=0;m<meshCount;++m)
 	{
 		const Model::MeshData& meshData = model.meshData[m];
-		fprintf(file, "MaterialIndex: %d\n", meshData.materialIndex);
+		fprintf_s(file, "MaterialIndex: %d\n", meshData.materialIndex);
 
 		const Mesh& mesh = meshData.mesh;
 		const uint32_t vertexCount = static_cast<uint32_t>(mesh.vertices.size());
-		fprintf(file, "VertexCount %d\n", vertexCount);
+		fprintf_s(file, "VertexCount %d\n", vertexCount);
 		for (const Vertex& v : mesh.vertices)
 		{
-			fprintf(file, " %f %f %f %f %f %f %f %f %f %f %f\n",
+			fprintf_s(file, " %f %f %f %f %f %f %f %f %f %f %f\n",
 				v.position.x, v.position.y, v.position.z,
 				v.normal.x, v.normal.y, v.normal.z,
 				v.tangent.x, v.tangent.y, v.tangent.z,
 				v.uvCoord.x, v.uvCoord.y);
 		}
 		const uint32_t indexCount = static_cast<uint32_t>(mesh.indices.size());
-		fprintf(file, "IndexCount %d\n", indexCount);
+		fprintf_s(file, "IndexCount %d\n", indexCount);
 		for(uint32_t i = 2; i < indexCount; i += 3)
 		{
-			fprintf(file, " %d %d %d\n", mesh.indices[i - 2], mesh.indices[i - 1], mesh.indices[i]);
+			fprintf_s(file, " %d %d %d\n", mesh.indices[i - 2], mesh.indices[i - 1], mesh.indices[i]);
 
 		}
 	}
@@ -110,14 +110,14 @@ void ModelIO::SaveMaterial(std::filesystem::path filePath, const Model& model)
 	}
 
 	uint32_t materialCount = static_cast<uint32_t>(model.materialData.size());
-	fprintf(file, "MaterialCount %u\n", materialCount);
+	fprintf_s(file, "MaterialCount %u\n", materialCount);
 	for (const Model::MaterialData& materialData : model.materialData)
 	{
 		const Material& material = materialData.material;
-		fprintf(file, "%f %f %f %f\n", material.emissive.r, material.emissive.g, material.emissive.b, material.emissive.a);
-		fprintf(file, "%f %f %f %f\n", material.ambient.r, material.ambient.g, material.ambient.b, material.ambient.a);
-		fprintf(file, "%f %f %f %f\n", material.diffuse.r, material.diffuse.g, material.diffuse.b, material.diffuse.a);
-		fprintf(file, "Shininess %f\n", material.shininess);
+		fprintf_s(file, "%f %f %f %f\n", material.emissive.r, material.emissive.g, material.emissive.b, material.emissive.a);
+		fprintf_s(file, "%f %f %f %f\n", material.ambient.r, material.ambient.g, material.ambient.b, material.ambient.a);
+		fprintf_s(file, "%f %f %f %f\n", material.diffuse.r, material.diffuse.g, material.diffuse.b, material.diffuse.a);
+		fprintf_s(file, "Shininess %f\n", material.shininess);
 
 		fprintf_s(file, "%s\n", materialData.diffuseMapName.empty() ? "<NONE>" : materialData.diffuseMapName.c_str());
 		fprintf_s(file, "%s\n", materialData.specMapName.empty() ? "<NONE>" : materialData.specMapName.c_str());

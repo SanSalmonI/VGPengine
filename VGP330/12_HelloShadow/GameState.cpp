@@ -20,10 +20,8 @@ void GameState::Initialize()
     mGround.diffuseMapId = TextureManager::Get()->LoadTexture("HexGround/HexGround_Diff.jpg");
     mGround.transform.position = { 0.0f, 0.0f, 0.0f };
 
-	mCharacter.Initialize("Character_01/Character_01.model"); // Lil Timmy
+	mCharacter.Initialize("Character_01/Character_01.fbx");
     mCharacter.transform.position = { 0.0f, 0.0f, 0.0f };
-
-    
 
     MeshPX screenQuadMesh = MeshBuilder::CreateScreenQuadPX();
     mScreenQuad.meshBuffer.Initialize(screenQuadMesh);

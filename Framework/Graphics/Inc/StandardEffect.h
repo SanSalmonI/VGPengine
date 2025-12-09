@@ -11,6 +11,7 @@ namespace IExeEngine::Graphics
 		class Camera;
 		class RenderObject;
 		class RenderGroup;
+		class Texture;
 
 		class StandardEffect final
 		{
@@ -54,7 +55,7 @@ namespace IExeEngine::Graphics
 				int useShadowMap = 1;
 				float bumpWeight = 0.1f;
 				float depthBias = 0.000003f;
-				float padding[3] = { 0.0f };
+				float padding = 0.0f;
 			};
 
 			using TransformBuffer = TypedConstantBuffer<TransformData>;
