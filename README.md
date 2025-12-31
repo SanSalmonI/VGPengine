@@ -1,4 +1,4 @@
-# 🐇 3D-Graphics Engine (WIP)
+# 3D-Graphics Engine (WIP)
 
 A lightweight C++ playground for learning modern **3D graphics programming**.  
 The goal is to keep the core codebase minimal so we can focus on:
@@ -11,7 +11,7 @@ Everything you see here is deliberately “hand-rolled” to stay close to the G
 
 ---
 
-## ✨ Current micro-demo
+## Current demo
 
 ![screenshot](GitResources/Screenshot%202025-05-08%20215414.png)
 ![screenshot](GitResources/Screenshot%202025-05-08%20215529.png)
@@ -31,9 +31,9 @@ void Bunny::CreateShape()
 }
 
 ```
-## 🚀 Quick Tour
+## Quick Tour
 
-### 🌐 Real-Time Primitives
+###  Real-Time Primitives
 Shapez 3D starts with the fundamentals: watch it light, shade, and depth-test a **sphere, cube, rectangular prism, and pyramid** in real time.  
 It’s a minimal scene—but every major subsystem (camera, shader pipeline, PBR materials) is already live.
 
@@ -41,15 +41,15 @@ It’s a minimal scene—but every major subsystem (camera, shader pipeline, PBR
 
 ---
 
-### 🔧 Live Debug UI
+###  Live Debug UI
 Tap <kbd>Tab</kbd> (or your favourite hotkey) to summon an **ImGui-powered debug menu**.  
-✔️ Here the user can edit the fuctions and inspect models real time.
+Here the user can edit the fuctions and inspect models real time.
 
 ![In-engine ImGui debug menu with lighting, material, and performance controls](GitResources/DebugMenu.png)
 
 ---
 
-### 🎯 Everything Working Together
+###  Everything Working Together
 Below is a full integration demo—**primitives + debug UI + input + render loop**—all happily co-existing.  
 If it renders here, it’s ready for you to extend with your own meshes and shadersc.
 
