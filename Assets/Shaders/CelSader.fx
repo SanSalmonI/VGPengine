@@ -100,27 +100,28 @@ float4 PS(VS_OUTPUT input) : SV_Target
         n = normalize(mul(unpackedNormalMap, tbnw));
     }
     
-    //Emissive
-    float edgeThickness = 0.85f;
-    //float edgeThreshhold = 0.01f;
+    //Edge detection (Outline)
+	float edgeThickness = 0.3f;
     float e = 1.0f - saturate(dot(view, n));
-    e = smoothstep(edgeThickness - 0.01f, edgeThickness + 0.1f, e);
-    float4 emissive = e * materialEmissive;
+	float4 emissive = materialEmissive;
+	if(e > edgeThickness)
+		emissive = float4(0.0f, 0.0f, 0.0f, 1.0f);
     
     //Ambient 
     float4 ambient = lightAmbient * materialAmbient;
     
-  //Diffuse
+    //Diffuse (Quantized)
     float d = saturate(dot(light, n));
-    d = smoothstep(0.005f, 1f, d);
+	float bands = 3.0f;
+	d = floor(d * bands) / bands;
     float4 diffuse = d * lightDiffuse * materialDiffuse;
- 
-    
-    //Specular
+
+    //Specular (Quantized)
     float3 r = reflect(-light, n);
     float base = saturate(dot(r, view));
     float s = pow(base, materialShininess);
-    s = smoothstep(0.005f, 1f, s);
+	if (s > 0.5f) s = 1.0f;
+	else s = 0.0f;
     float4 specular = s * lightSpecular * materialSpecular;
     
     //Colors

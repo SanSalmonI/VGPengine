@@ -450,7 +450,7 @@ Mesh MeshBuilder::CreateSphere(int slices, int rings, float radius)
 	return mesh;
 }
 
-MeshPX MeshBuilder::CreateSkyBoxSpherePX(int slices, int rings, float radius)
+MeshPX MeshBuilder::CreateSkySpherePX(int slices, int rings, float radius)
 {
 	MeshPX mesh;
 	float vertRotation = (Math::Constants::Pi / static_cast<float>(rings));

@@ -51,7 +51,7 @@ void GameState::Initialize()
 	mRenderObject3.diffuseMapId = tm3->LoadTexture(L"ground/ground_diffuse.jpg");
 
 
-	std::filesystem::path shaderFile = L"../../Assets/Shaders/Standard.fx";
+	std::filesystem::path shaderFile = L"../../Assets/Shaders/CelSader.fx";
 	mStandardEffect.Initialize(shaderFile);
 	mStandardEffect.SetCamera(mCamera);
 	mStandardEffect.SetDirectionalLight(mDirectionalLight);

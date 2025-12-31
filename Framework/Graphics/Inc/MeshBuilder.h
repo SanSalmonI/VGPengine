@@ -34,7 +34,8 @@ namespace IExeEngine::Graphics
 
 
 		//sky
-		static MeshPX CreateSkyBoxSpherePX(int slices, int rings, float radius);
+		static MeshPX CreateSkySpherePX(int slices, int rings, float radius);
+
 
 		//load obj
 		static MeshPX CreateOBJPX(const std::filesystem::path& filePath, float scale);
