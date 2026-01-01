@@ -54,3 +54,47 @@ Below is a full integration demo—**primitives + debug UI + input + render loop
 If it renders here, it’s ready for you to extend with your own meshes and shadersc.
 
 ![Combined scene showing primitives and debug UI running simultaneously](GitResources/EverythingTogether.png)
+
+---
+
+## V2 Features
+
+### Lights
+Standard Blinn-Phong lighting model implementation supporting diffuse, specular, and ambient components. Normals are mapped from tangent space to world space using a TBN (Tangent-Bitangent-Normal) matrix derived from the geometry.
+
+![Lights Placeholder](Screenshot 2025-12-31 145941.png)
+
+### Light Effects
+Featuring a stylized **Cel Shader** that quantizes lighting into discrete bands. It features a 3-band diffuse step function and binary specular highlights. Outlines are generated using a dot-product edge detection method compared against the view vector.
+
+![Cell Shader Placeholder](Screenshot 2025-12-31 152923.png)
+
+### Model Loader and Render Group
+A robust `Model` class that handles mesh data and material properties, managed by a `RenderGroup` system that batches render calls and handles hierarchical transformations.
+
+![Model Loader Placeholder](Screenshot 2025-12-31 153945.png)
+
+### Post Processing Effects
+A configurable post-processing pipeline featuring:
+*   **Monochrome**: Converts the scene to grayscale using luminance weighting.
+*   **Chromatic Aberration**: Simulates lens distortion by offsetting red and blue channels radially.
+*   **Blur**: Implements a 3x3 box blur or motion blur kernel for depth-of-field and motion effects.
+
+![Post Processing Placeholder](Screenshot 2025-12-31 154642.png)
+
+### Shadows
+Dynamic shadow mapping using a depth-only pass from the light's perspective. The depth map is sampled during the main render pass to determine occlusion.
+
+![Shadows Placeholder](Screenshot 2025-12-31 154808.png)
+
+### Custom Shader
+A procedurally generated **Opal Gemstone** shader featuring:
+*   **Volumetric Depth**: Simulates milky interior depth using a facing-ratio approximation.
+*   **Internal Structure**: Fractal Voronoi noise to create crystal domains.
+*   **Iridescence**: View-dependent color shifting ("Schiller effect") using tangent-space diffraction grating simulation controlled by the view angle and crystal facet orientation.
+
+![Opal Gif 1](Animation4.gif)
+![Opal Gif 2](Animation3.gif)
+![Opal Gif 3](Animation2.gif)
+![Opal Gif 4](Animation1.gif)
+![Opal Gif ](Animation.gif)
