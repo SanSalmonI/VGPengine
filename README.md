@@ -88,12 +88,13 @@ Post-processing stack with effects such as:
 ### 5) Shadows using a depth map
 Shadowing implemented via a depth map pass.
 
-![V2 depth map shadow](GitResources/V2/depthmap_shadow_placeholder.png)
+![V2 depth map shadow](GitResources/depthmap_shadow_placeholder.png)
 
 ### 6) Procedural opal gemstone shader (custom)
 A custom shader that procedurally renders opal-like gemstones.
 
 Opal shader demos (4 gifs):
+
 ![Opal shader demo 01](GitResources/opal_01.gif)
 ![Opal shader demo 02](GitResources/opal_02.gif)
 ![Opal shader demo 03](GitResources/opal_03.gif)
