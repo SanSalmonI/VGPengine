@@ -15,10 +15,6 @@ Everything here is deliberately hand-rolled to stay close to the GPU.
 ### Current demo screenshots
 ![screenshot](GitResources/Screenshot%202025-05-08%20215414.png)
 
-If you have additional screenshots, add them here as extra image lines:
-- ![screenshot](GitResources/<your_screenshot_2>.png)
-- ![screenshot](GitResources/<your_screenshot_3>.png)
-
 ### Example: building geometry by hand
 ```cpp
 void Bunny::CreateShape()
@@ -69,18 +65,17 @@ Lighting pipeline supports:
 - normal
 - shadow maps
 
-![V2 lighting maps](GitResources/V2/lighting_maps_placeholder.png)
+![V2 lighting maps](GitResources/lighting_maps_placeholder.png)
 
 ### 2) Lighting effects: cel shading
 A stylized cel shader for toon-like lighting and banded shading.
 
-![V2 cel shader](GitResources/V2/cel_shader_placeholder.png)
+![V2 cel shader](GitResources/cel_shader_placeholder.png)
 
 ### 3) Model loader and render groups
 Loads external models and organizes draw calls using render groups.
 
-![V2 model loader](GitResources/V2/model_loader_placeholder.png)
-![V2 render groups](GitResources/V2/render_groups_placeholder.png)
+![V2 model loader](GitResources/model_loader_placeholder.png)
 
 ### 4) Post-processing effects
 Post-processing stack with effects such as:
@@ -88,7 +83,7 @@ Post-processing stack with effects such as:
 - chromatic aberration
 - blur
 
-![V2 post processing](GitResources/V2/post_processing_placeholder.png)
+![V2 post processing](GitResources/post_processing_placeholder.png)
 
 ### 5) Shadows using a depth map
 Shadowing implemented via a depth map pass.
@@ -99,7 +94,7 @@ Shadowing implemented via a depth map pass.
 A custom shader that procedurally renders opal-like gemstones.
 
 Opal shader demos (4 gifs):
-![Opal shader demo 01](GitResources/V2/opal_01.gif)
-![Opal shader demo 02](GitResources/V2/opal_02.gif)
-![Opal shader demo 03](GitResources/V2/opal_03.gif)
-![Opal shader demo 04](GitResources/V2/opal_04.gif)
+![Opal shader demo 01](GitResources/opal_01.gif)
+![Opal shader demo 02](GitResources/opal_02.gif)
+![Opal shader demo 03](GitResources/opal_03.gif)
+![Opal shader demo 04](GitResources/opal_04.gif)
