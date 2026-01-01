@@ -1,100 +1,105 @@
-# 3D-Graphics Engine (WIP)
+# 3D Graphics Engine (WIP)
 
-A lightweight C++ playground for learning modern **3D graphics programming**.  
-The goal is to keep the core codebase minimal so we can focus on:
+A lightweight C++ playground for learning modern 3D graphics programming.
 
-* raw vertex-buffer manipulation (no scene graph magic),
-* shader experimentation, and
-* rapid iteration on tiny geometry samples.
+The goal is to keep the core codebase minimal so the focus stays on:
+- raw vertex-buffer manipulation (no scene graph magic)
+- shader experimentation
+- rapid iteration on small geometry samples
 
-Everything you see here is deliberately “hand-rolled” to stay close to the GPU.
+Everything here is deliberately hand-rolled to stay close to the GPU.
 
----
 
-## Current demo
+## Demos (V1)
 
+### Current demo screenshots
 ![screenshot](GitResources/Screenshot%202025-05-08%20215414.png)
-![screenshot](GitResources/Screenshot%202025-05-08%20215529.png)
-![screenshot](GitResources/Screenshot%202025-05-08%20215454.png)
 
+If you have additional screenshots, add them here as extra image lines:
+- ![screenshot](GitResources/<your_screenshot_2>.png)
+- ![screenshot](GitResources/<your_screenshot_3>.png)
+
+### Example: building geometry by hand
 ```cpp
 void Bunny::CreateShape()
 {
     mVertices.clear();
 
-    // ——— ears ———
+    // ears
     mVertices.push_back({ { 0.00f,  0.30f, 0.0f }, Colors::Brown });
     mVertices.push_back({ { 0.30f,  0.70f, 0.0f }, Colors::Brown });
     mVertices.push_back({ { 0.10f,  0.15f, 0.0f }, Colors::Brown });
 
-    // … (heads, legs, body, etc. – 18 more triangles) …
+    // ... (heads, legs, body, etc.) ...
 }
-
 ```
+
+
 ## Quick Tour
 
-###  Real-Time Primitives
-Shapez 3D starts with the fundamentals: watch it light, shade, and depth-test a **sphere, cube, rectangular prism, and pyramid** in real time.  
-It’s a minimal scene—but every major subsystem (camera, shader pipeline, PBR materials) is already live.
+### Real-time primitives
+The engine starts with the fundamentals: lighting, shading, and depth testing for:
+- sphere
+- cube
+- rectangular prism
+- pyramid
 
 ![3D primitives rendered in real time (sphere, cube, rectangular prism, pyramid)](GitResources/3dShapez.png)
 
----
-
-###  Live Debug UI
-Tap <kbd>Tab</kbd> (or your favourite hotkey) to summon an **ImGui-powered debug menu**.  
-Here the user can edit the fuctions and inspect models real time.
+### Live debug UI
+Press Tab (or your configured hotkey) to open an ImGui-powered debug menu.
+Use it to tweak values and inspect the scene while the engine is running.
 
 ![In-engine ImGui debug menu with lighting, material, and performance controls](GitResources/DebugMenu.png)
 
----
-
-###  Everything Working Together
-Below is a full integration demo—**primitives + debug UI + input + render loop**—all happily co-existing.  
-If it renders here, it’s ready for you to extend with your own meshes and shadersc.
+### Everything working together
+An integration demo showing primitives, debug UI, input, and the render loop running together.
 
 ![Combined scene showing primitives and debug UI running simultaneously](GitResources/EverythingTogether.png)
 
----
 
-## V2 Features
+## Feature Highlights (V2)
 
-### Lights
-Standard Blinn-Phong lighting model implementation supporting diffuse, specular, and ambient components. Normals are mapped from tangent space to world space using a TBN (Tangent-Bitangent-Normal) matrix derived from the geometry.
+Replace the placeholders below with your real images and gifs once exported.
 
-![Lights Placeholder](Screenshot 2025-12-31 145941.png)
+### 1) Lighting with material maps
+Lighting pipeline supports:
+- diffuse (albedo)
+- specular
+- normal
+- shadow maps
 
-### Light Effects
-Featuring a stylized **Cel Shader** that quantizes lighting into discrete bands. It features a 3-band diffuse step function and binary specular highlights. Outlines are generated using a dot-product edge detection method compared against the view vector.
+![V2 lighting maps](GitResources/V2/lighting_maps_placeholder.png)
 
-![Cell Shader Placeholder](Screenshot 2025-12-31 152923.png)
+### 2) Lighting effects: cel shading
+A stylized cel shader for toon-like lighting and banded shading.
 
-### Model Loader and Render Group
-A robust `Model` class that handles mesh data and material properties, managed by a `RenderGroup` system that batches render calls and handles hierarchical transformations.
+![V2 cel shader](GitResources/V2/cel_shader_placeholder.png)
 
-![Model Loader Placeholder](Screenshot 2025-12-31 153945.png)
+### 3) Model loader and render groups
+Loads external models and organizes draw calls using render groups.
 
-### Post Processing Effects
-A configurable post-processing pipeline featuring:
-*   **Monochrome**: Converts the scene to grayscale using luminance weighting.
-*   **Chromatic Aberration**: Simulates lens distortion by offsetting red and blue channels radially.
-*   **Blur**: Implements a 3x3 box blur or motion blur kernel for depth-of-field and motion effects.
+![V2 model loader](GitResources/V2/model_loader_placeholder.png)
+![V2 render groups](GitResources/V2/render_groups_placeholder.png)
 
-![Post Processing Placeholder](Screenshot 2025-12-31 154642.png)
+### 4) Post-processing effects
+Post-processing stack with effects such as:
+- monochrome
+- chromatic aberration
+- blur
 
-### Shadows
-Dynamic shadow mapping using a depth-only pass from the light's perspective. The depth map is sampled during the main render pass to determine occlusion.
+![V2 post processing](GitResources/V2/post_processing_placeholder.png)
 
-![Shadows Placeholder](Screenshot 2025-12-31 154808.png)
+### 5) Shadows using a depth map
+Shadowing implemented via a depth map pass.
 
-### Custom Shader
-A procedurally generated **Opal Gemstone** shader featuring:
-*   **Volumetric Depth**: Simulates milky interior depth using a facing-ratio approximation.
-*   **Internal Structure**: Fractal Voronoi noise to create crystal domains.
-*   **Iridescence**: View-dependent color shifting ("Schiller effect") using tangent-space diffraction grating simulation controlled by the view angle and crystal facet orientation.
+![V2 depth map shadow](GitResources/V2/depthmap_shadow_placeholder.png)
 
-![Opal Gif 1](Animation4.gif)
-![Opal Gif 2](Animation3.gif)
-![Opal Gif 3](Animation2.gif)
-![Opal Gif 4](Animation1.gif)
-![Opal Gif ](Animation.gif)
+### 6) Procedural opal gemstone shader (custom)
+A custom shader that procedurally renders opal-like gemstones.
+
+Opal shader demos (4 gifs):
+![Opal shader demo 01](GitResources/V2/opal_01.gif)
+![Opal shader demo 02](GitResources/V2/opal_02.gif)
+![Opal shader demo 03](GitResources/V2/opal_03.gif)
+![Opal shader demo 04](GitResources/V2/opal_04.gif)
