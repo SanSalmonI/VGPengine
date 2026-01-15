@@ -10,6 +10,8 @@
 
 #include "VertexShader.h"
 
+#include "Bone.h"
+
 #include "KeyFrame.h"
 
 #include "PixelShader.h"
