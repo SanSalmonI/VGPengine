@@ -10,6 +10,8 @@
 
 #include "VertexShader.h"
 
+#include "KeyFrame.h"
+
 #include "PixelShader.h"
 
 #include "VertexTypes.h"
@@ -17,6 +19,10 @@
 #include "Transform.h"
 
 #include "Model.h"
+
+#include "Animation.h"
+
+#include "AnimationBuilder.h"
 
 #include "ModelIO.h"
 

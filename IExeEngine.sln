@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11222.15 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IExeEngine", "Engine\IExeEngine\IExeEngine.vcxproj", "{DACA0F24-E27D-4787-AB9E-C75A1E5D2129}"
 EndProject
@@ -76,6 +76,10 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "15_HelloOpalShader", "VGP330\15_HelloOpalShader\15_HelloOpalShader.vcxproj", "{B6344AC4-86D2-4FBE-B52B-2F47E5D671AF}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "09_HelloCelShader", "VGP330\09_HelloCelShader\09_HelloCelShader.vcxproj", "{3C13ED10-7958-466B-80C3-603D56745146}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VGP334", "VGP334", "{18DBE8CC-1C54-4AC1-80F2-C30AF7CB9C08}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "14_HelloAnimation", "VGP334\14_HelloAnimation\14_HelloAnimation.vcxproj", "{933F7EAA-5AFC-442C-A6F6-BC0935378D72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -261,6 +265,14 @@ Global
 		{3C13ED10-7958-466B-80C3-603D56745146}.Release|x64.Build.0 = Release|x64
 		{3C13ED10-7958-466B-80C3-603D56745146}.Release|x86.ActiveCfg = Release|Win32
 		{3C13ED10-7958-466B-80C3-603D56745146}.Release|x86.Build.0 = Release|Win32
+		{933F7EAA-5AFC-442C-A6F6-BC0935378D72}.Debug|x64.ActiveCfg = Debug|x64
+		{933F7EAA-5AFC-442C-A6F6-BC0935378D72}.Debug|x64.Build.0 = Debug|x64
+		{933F7EAA-5AFC-442C-A6F6-BC0935378D72}.Debug|x86.ActiveCfg = Debug|Win32
+		{933F7EAA-5AFC-442C-A6F6-BC0935378D72}.Debug|x86.Build.0 = Debug|Win32
+		{933F7EAA-5AFC-442C-A6F6-BC0935378D72}.Release|x64.ActiveCfg = Release|x64
+		{933F7EAA-5AFC-442C-A6F6-BC0935378D72}.Release|x64.Build.0 = Release|x64
+		{933F7EAA-5AFC-442C-A6F6-BC0935378D72}.Release|x86.ActiveCfg = Release|Win32
+		{933F7EAA-5AFC-442C-A6F6-BC0935378D72}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -291,6 +303,7 @@ Global
 		{F1131DFE-EDE5-4132-A5A2-9F6D784B2BE2} = {06700CDF-3450-46DD-A0D9-41A65B332550}
 		{B6344AC4-86D2-4FBE-B52B-2F47E5D671AF} = {06700CDF-3450-46DD-A0D9-41A65B332550}
 		{3C13ED10-7958-466B-80C3-603D56745146} = {06700CDF-3450-46DD-A0D9-41A65B332550}
+		{933F7EAA-5AFC-442C-A6F6-BC0935378D72} = {18DBE8CC-1C54-4AC1-80F2-C30AF7CB9C08}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C84562D2-23AD-4C29-92D2-1A4C470BECEF}

@@ -114,6 +114,15 @@
     <ClInclude Include="Inc\TerrainEffect.h">
       <Filter>Inc</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\KeyFrame.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Animation.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\AnimationBuilder.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\PixelShader.cpp">
@@ -186,6 +195,12 @@
       <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="Src\TerrainEffect.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Animation.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\AnimationBuilder.cpp">
       <Filter>Src</Filter>
     </ClCompile>
   </ItemGroup>
