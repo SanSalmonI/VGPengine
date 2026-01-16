@@ -12,6 +12,8 @@
 
 #include "Bone.h"
 
+#include "Skeleton.h"
+
 #include "KeyFrame.h"
 
 #include "PixelShader.h"
