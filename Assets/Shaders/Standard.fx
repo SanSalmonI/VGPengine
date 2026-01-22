@@ -34,6 +34,7 @@ cbuffer SettingsBuffer : register(b3)
     bool useShadowMap;
     float bumpMapWeight;
     float depthBias;
+    bool useSkinning;
 }
 
 cbuffer BoneTransformBuffer : register(b4)
@@ -78,6 +79,8 @@ struct VS_INPUT
     float3 normal : NORMAL;
     float3 tangent : TANGENT;
     float2 texCoord : TEXCOORD;
+    int4 boneIndices : BLENDINDICES;
+    float4 boneWeights : BLENDWEIGHTS;
 };
 
 struct VS_OUTPUT
@@ -93,6 +96,15 @@ struct VS_OUTPUT
 
 VS_OUTPUT VS(VS_INPUT input)
 {
+    matrix toWorld = world;
+    matrix toNDC = wvp;
+    if (useSkinning)
+    {
+        matrix boneTransform = GetBoneTransform(input.boneIndices, input.boneWeights);
+        toWorld = mul(boneTransform, world);
+        toNDC = mul(boneTransform, wvp);
+    }
+    
     float3 localPosition = input.position;
     if (useBumpMap)
     {
@@ -102,9 +114,9 @@ VS_OUTPUT VS(VS_INPUT input)
     }
        
     VS_OUTPUT output;
-    output.position = mul(float4(localPosition, 1.0f), wvp);
-    output.worldNormal = mul(input.normal, (float3x3) world);
-    output.worldTangent = mul(input.tangent, (float3x3) world);
+    output.position = mul(float4(localPosition, 1.0f), toNDC);
+    output.worldNormal = mul(input.normal, (float3x3) toWorld);
+    output.worldTangent = mul(input.tangent, (float3x3) toWorld);
     output.texCoord = input.texCoord;
     output.dirToLight = -lightDirection;
     
