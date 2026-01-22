@@ -36,6 +36,11 @@ cbuffer SettingsBuffer : register(b3)
     float depthBias;
 }
 
+cbuffer BoneTransformBuffer : register(b4)
+{
+    matrix boneTransforms[256];
+}
+
 SamplerState textureSampler : register(s0);
 
 Texture2D diffuseMap : register(t0);
@@ -43,6 +48,29 @@ Texture2D specMap : register(t1);
 Texture2D normalMap : register(t2);
 Texture2D bumpMap : register(t3);
 Texture2D shadowMap : register(t4);
+
+static matrix Identity = 
+{
+    1,0,0,0,
+    0,1,0,0,
+    0,0,1,0,
+    0,0,0,1
+};
+
+matrix GetBoneTransform(int4 indices, float4 weights)
+{
+    if(length(weights) <= 0.0f)
+    {
+        return Identity;
+    }
+    
+    matrix transform = boneTransforms[indices[0]] * weights[0];
+    
+    transform += boneTransforms[indices[1] * weights[1]];
+    transform += boneTransforms[indices[2] * weights[2]];
+    transform += boneTransforms[indices[3] * weights[3]];
+    return transform;                                   
+}
 
 struct VS_INPUT
 {

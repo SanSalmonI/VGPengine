@@ -6,8 +6,10 @@
 #include "TextureManager.h"
 #include "ModelManager.h"
 
+
 namespace IExeEngine::Graphics
 {
+	struct Skeleton;
 	class RenderObject
 	{
 	public:
@@ -29,5 +31,6 @@ namespace IExeEngine::Graphics
 			Transform transform;
 			ModelId modelId;
 			std::vector<RenderObject> renderObjects;
+			const Skeleton* skeleton;
 	};
 }

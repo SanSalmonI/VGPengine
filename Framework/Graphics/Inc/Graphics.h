@@ -14,6 +14,8 @@
 
 #include "Skeleton.h"
 
+#include "AnimationUtil.h"
+
 #include "KeyFrame.h"
 
 #include "PixelShader.h"

@@ -4,9 +4,12 @@
 #include "VertexTypes.h"
 #include "Camera.h"
 #include "RenderObject.h"
+#include "AnimationUtil.h"
 
 using namespace IExeEngine;
 using namespace IExeEngine::Graphics;
+
+static constexpr size_t MaxBoneCount = 256;
 
 void StandardEffect::Initialize(const std::filesystem::path& path)
 {
@@ -14,6 +17,7 @@ void StandardEffect::Initialize(const std::filesystem::path& path)
 	mLightBuffer.Initialize();
 	mMaterialBuffer.Initialize();
 	mSettingsBuffer.Initialize();
+	mBoneTransformBuffer.Initialize(MaxBoneCount * sizeof(Math::Matrix4));
 
 	mVertexShader.Initialize<Vertex>(path);
 	mPixelShader.Initialize(path);
@@ -26,6 +30,7 @@ void StandardEffect::Terminate()
 	mSampler.Terminate();
 	mPixelShader.Terminate();
 	mVertexShader.Terminate();
+	mBoneTransformBuffer.Terminate();
 	mSettingsBuffer.Terminate();
 	mMaterialBuffer.Terminate();
 	mLightBuffer.Terminate();
@@ -45,6 +50,7 @@ void StandardEffect::Begin()
 	mMaterialBuffer.BindPS(2);
 	mSettingsBuffer.BindVS(3);
 	mSettingsBuffer.BindPS(3);
+	mBoneTransformBuffer.BindVS(4);
 
 }
 
@@ -125,6 +131,20 @@ void StandardEffect::Render(const RenderGroup& renderGroup)
 	settings.useShadowMap = (mShadowMap != nullptr && mSettingsData.useShadowMap > 0) ? 1 : 0;
 	settings.depthBias = mSettingsData.depthBias;
 	settings.bumpWeight = mSettingsData.bumpWeight;
+	settings.useSkinning = mSettingsData.useSkinning > 0 && renderGroup.skeleton != nullptr;
+
+	if(settings.useSkinning)
+	{
+		AnimationUtil::BoneTransforms boneTransforms;
+		AnimationUtil::ComouteBoneTransorms(renderGroup.modelId, boneTransforms);
+		AnimationUtil::ApplyBoneOffsets(renderGroup.modelId, boneTransforms);
+		for (Math::Matrix4& transform : boneTransforms)
+		{
+			transform = Math::Transpose(transform);
+		}
+		boneTransforms.resize(MaxBoneCount);
+		mBoneTransformBuffer.Update(boneTransforms.data());
+	}
 
 	for (const RenderObject& renderObject : renderGroup.renderObjects)
 	{
@@ -201,6 +221,11 @@ void StandardEffect::DebugUI()
 
 		}
 		ImGui::DragFloat("DepthBias", &mSettingsData.depthBias, 0.000001f, 0.0f, 1.0f, "%.6f");
+		bool useSkinning = mSettingsData.useSkinning > 0;
+		if (ImGui::Checkbox("UseSkinning", &useSkinning))
+		{
+			mSettingsData.useSkinning = (useSkinning) ? 1 : 0;
+		}
 	}
 
 }

@@ -12,5 +12,7 @@ namespace IExeEngine::Graphics
 
 		void SaveMaterial(std::filesystem::path directory, const Model& model);
 		void LoadMaterial(std::filesystem::path directory, Model& model);
+		void SaveSkeleton(std::filesystem::path filePath, const Model& model);
+		void LoadSkeleton(std::filesystem::path filePath, Model& model);
 	}
 }
