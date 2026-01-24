@@ -5,6 +5,7 @@
 #include "Material.h"
 #include "TextureManager.h"
 #include "ModelManager.h"
+#include "Animator.h"
 
 
 namespace IExeEngine::Graphics

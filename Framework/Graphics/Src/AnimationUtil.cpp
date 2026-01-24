@@ -11,9 +11,13 @@ using namespace IExeEngine::Graphics;
 
 namespace 
 {
-	void conputeBoneTransformsRecursive(const Bone* bone, AnimationUtil::BoneTransforms& boneTransforms) {
+	void conputeBoneTransformsRecursive(const Bone* bone, AnimationUtil::BoneTransforms& boneTransforms, const Animator* animator) {
 		if (bone != nullptr)
 		{
+			if (animator != nullptr || !animator->GetToParentTransform(bone,  boneTransforms[bone->index]))
+			{
+				boneTransforms[bone->index] = bone->toParentTransform;
+			}
 			//set the bone transform to the array of matrices
 			boneTransforms[bone->index] = bone->toParentTransform;
 			//if there is a parent, apply the parent's transform as well
@@ -23,21 +27,21 @@ namespace
 			}
 			for (const Bone* child : bone->children)
 			{
-				conputeBoneTransformsRecursive(child, boneTransforms);
+				conputeBoneTransformsRecursive(child, boneTransforms, animator);
 			}
 			return;
 		}
 	}
 }
 
-void AnimationUtil::ComouteBoneTransorms(ModelId modelId, BoneTransforms& boneTransforms)
+void AnimationUtil::ComouteBoneTransorms(ModelId modelId, BoneTransforms& boneTransforms, const Animator* animator)
 {
 	const Model* model = ModelManager::Get()->GetModel(modelId);
 	if (model != nullptr && model->skeleton != nullptr)
 	{
 		//resize the bone transforms to match the number of bones in the skeleton
 		boneTransforms.resize(model->skeleton->bones.size());
-		conputeBoneTransformsRecursive(model->skeleton->root, boneTransforms);
+		conputeBoneTransformsRecursive(model->skeleton->root, boneTransforms, animator);
 
 	}
 }
@@ -71,6 +75,7 @@ void AnimationUtil::ApplyBoneOffsets(ModelId modelId, BoneTransforms& boneTransf
 		{
 			//apply the offset transform to the bone transform
 			boneTransforms[bone->index] = boneTransforms[bone->index] * bone->offsetTransform;
+
 		}
 	}
 }

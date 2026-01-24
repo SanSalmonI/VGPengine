@@ -17,6 +17,7 @@ namespace IExeEngine::Graphics
 		Math::Vector3 GetScale(float time) const;
 
 		friend class AnimationBuilder;
+		friend class AnimationIO;
 
 		PositionKeys mPositionKeys;
 		RotationKeys mRotationKeys;

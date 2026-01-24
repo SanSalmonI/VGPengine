@@ -16,6 +16,10 @@
 
 #include "AnimationUtil.h"
 
+#include	"AnimationClip.h"
+
+#include "Animator.h"
+
 #include "KeyFrame.h"
 
 #include "PixelShader.h"

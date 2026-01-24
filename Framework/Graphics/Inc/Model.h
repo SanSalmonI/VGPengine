@@ -3,6 +3,7 @@
 #include "MeshTypes.h"
 #include "Material.h"
 #include "Skeleton.h"
+#include "AnimationClip.h"
 
 namespace IExeEngine::Graphics
 {
@@ -16,20 +17,21 @@ namespace IExeEngine::Graphics
 		};
 	
 
-	struct MaterialData
-	{
+		struct MaterialData
+		{
 		Material material;
 		std::string diffuseMapName;
 		std::string specMapName;
 		std::string normalMapName;
 		std::string bumpMapName;
 
-	};
+		};
 	
 
 	std::vector<MeshData> meshData;
 	std::vector<MaterialData> materialData;
 	std::unique_ptr<Skeleton> skeleton;
+	std::vector<AnimationClip> animationClips;
 	};
 }
 
