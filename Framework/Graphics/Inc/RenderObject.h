@@ -32,6 +32,7 @@ namespace IExeEngine::Graphics
 			Transform transform;
 			ModelId modelId;
 			std::vector<RenderObject> renderObjects;
-			const Skeleton* skeleton;
+			const Skeleton* skeleton = nullptr;
+			const Animator* animator = nullptr;
 	};
 }

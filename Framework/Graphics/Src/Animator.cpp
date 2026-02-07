@@ -1,3 +1,4 @@
+#include "Precompiled.h"
 #include "ModelManager.h"
 #include "Animator.h"
 #include "Animation.h"
