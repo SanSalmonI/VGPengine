@@ -10,3 +10,7 @@
 
 #include "RigidBody.h"
 
+#include "PhysicsDebugDraw.h"
+
+#include "SoftBody.h"
+

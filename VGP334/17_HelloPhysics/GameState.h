@@ -18,12 +18,28 @@ private:
 	IExeEngine::Graphics::Camera mCamera;
 	IExeEngine::Graphics::DirectionalLight mDirectionalLight;
 
+	IExeEngine::Graphics::RenderObject mGroundObject;
+	IExeEngine::Graphics::RenderObject mRenderObject;
 	IExeEngine::Graphics::RenderObject mBallObject;
 	IExeEngine::Physics::RigidBody mBallRigidBody;
 	IExeEngine::Physics::CollisionShape mBallShape;
 
+	struct BoxData
+	{
+		IExeEngine::Graphics::RenderObject box;
+		IExeEngine::Physics::RigidBody rigidBody;
+		IExeEngine::Physics::CollisionShape shape;
+	};
+
+	using Boxes = std::vector<BoxData>;
+	Boxes mBoxes;
+
 	IExeEngine::Graphics::StandardEffect mStandardEffect;
-	float mAnimationTime = 0.0f;
-	IExeEngine::Graphics::Animation mAnimation;
+
+	//cloth
+	IExeEngine::Graphics::RenderObject mCloth;
+	IExeEngine::Graphics::Mesh mClothMesh;
+	IExeEngine::Physics::SoftBody mClothSoftBody;
+
 
 };

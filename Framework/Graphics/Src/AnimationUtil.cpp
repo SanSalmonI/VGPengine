@@ -34,7 +34,7 @@ namespace
 	}
 }
 
-void AnimationUtil::ComouteBoneTransorms(ModelId modelId, BoneTransforms& boneTransforms, const Animator* animator)
+void AnimationUtil::ComouteBoneTransforms(ModelId modelId, BoneTransforms& boneTransforms, const Animator* animator)
 {
 	const Model* model = ModelManager::Get()->GetModel(modelId);
 	if (model != nullptr && model->skeleton != nullptr)

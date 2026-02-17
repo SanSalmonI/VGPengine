@@ -3,6 +3,7 @@
 using namespace IExeEngine;
 using namespace IExeEngine::Graphics;
 using namespace IExeEngine::Input;
+using namespace IExeEngine::Physics;
 
 
 void GameState::Initialize()
@@ -32,19 +33,35 @@ void GameState::Initialize()
 	mStandardEffect.SetCamera(mCamera);
 	mStandardEffect.SetDirectionalLight(mDirectionalLight);
 
-	mAnimationTime = 0.0f;
-	mAnimation = AnimationBuilder()
-		.AddPositionKey({ 0.0f, 0.0f, 0.0f }, 0.0f)
-		.AddPositionKey({ 0.0f, 2.0f, 0.0f }, 3.0f)
-		.AddPositionKey({ 0.0f, 0.0f, 0.0f }, 5.0f)
-		.AddRotationKey(Math::Quaternion::Identity, 0.0f)
-		.AddRotationKey(Math::Quaternion::CreateFromAxisAngle(Math::Vector3::YAxis, Math::Constants::DegToRad), 3.0f)
-		.AddRotationKey(Math::Quaternion::CreateFromAxisAngle(Math::Vector3::YAxis, Math::Constants::DegToRad), 4.0f)
-		.AddRotationKey(Math::Quaternion::CreateFromAxisAngle(Math::Vector3::YAxis, Math::Constants::DegToRad), 5.0f)
-		.AddScaleKey(Math::Vector3::One, 0.0f)
-		.AddScaleKey(Math::Vector3::One * 0.1f, 2.5f)
-		.AddScaleKey(Math::Vector3::One, 5.0f)
-		.Build();
+	Mesh boxShape = MeshBuilder::CreateCube(1.0f);
+	TextureId boxTexture = tm->LoadTexture(L"earth.jpg");
+
+	float yOffset = 4.5f;
+	float xOffset = 0.0f;
+	int rowCount = 1;
+	int boxIndex = 0;
+	while (boxIndex < mBoxes.size())
+	{
+		xOffset = -((static_cast<float>(rowCount) - 1.0f) * 0.5f);
+		for (int r = 0; r < rowCount; r++) {
+		
+			BoxData& boxData = mBoxes[boxIndex];
+			boxData.box.meshBuffer.Initialize(boxShape);
+			boxData.box.diffuseMapId = boxTexture;
+			boxData.box.transform.position.x = xOffset;
+			boxData.box.transform.position.y = yOffset;
+			boxData.box.transform.position.z = 4.0f;
+			boxData.shape.InitializeBox({ 0.5f, 0.5f, 0.5f });
+			xOffset += 1.0f;
+			++boxIndex;
+		}
+		yOffset -= 1.0f;
+		rowCount += 1;
+	}
+	for (int i = mBoxes.size() - 1; i >= 0; --i)
+	{
+		mBoxes[i].rigidBody.Initialize(mBoxes[i].box.transform, mBoxes[i].shape, 1.0f);
+	}
 }
 
 void GameState::Terminate()
@@ -57,10 +74,12 @@ void GameState::Update(float deltaTime)
 {
 	UpdateCamera(deltaTime);
 
-	mAnimationTime += deltaTime;
-	while (mAnimationTime > mAnimation.GetDuration())
+	if (InputSystem::Get()->IsKeyPressed(Input::KeyCode::SPACE))
 	{
-		mAnimationTime -= mAnimation.GetDuration();
+		Math::Vector3 spawnPos = mCamera.GetPosition() + (mCamera.GetDirection() * 0.5f);
+		mBallRigidBody.SetPosition(spawnPos);
+		mBallRigidBody.SetVelocity(mCamera.GetDirection() * 20.0f);
+
 	}
 }
 
@@ -70,6 +89,12 @@ void GameState::Render()
 		mStandardEffect.SetCamera(mCamera);
 		mStandardEffect.Render(mRenderObject);
 		mStandardEffect.Render(mGroundObject);
+	
+
+	for (BoxData& boxData : mBoxes)
+	{
+		mStandardEffect.Render(boxData.box);
+	}
 	mStandardEffect.End();
 }
 
@@ -95,6 +120,7 @@ void GameState::DebugUI()
 	ImGui::Text("Choose sphere to render and edit");
 
 	mStandardEffect.DebugUI();
+	PhysicsWorld::Get()->DebugUI();
 	ImGui::End();
 }
 

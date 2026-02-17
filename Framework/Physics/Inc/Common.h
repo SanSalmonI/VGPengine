@@ -9,6 +9,14 @@
 #include <Bullet/btBulletCollisionCommon.h>
 #include <Bullet/btBulletDynamicsCommon.h>
 
+//spftbody
+#include <Bullet/BulletSoftBody/btSoftRigidDynamicsWorld.h>
+#include <Bullet/BulletSoftBody/btSoftBodyHelpers.h>
+#include <Bullet/BulletSoftBody/btSoftBodyRigidBodyCollisionConfiguration.h>
+#include <Bullet/BulletSoftBody/btSoftBodySolvers.h>
+
+#define USE_SOFT_BODY 
+
 //helper functions
 template<class T>
 inline void SafeDelete(T*& ptr)
@@ -24,7 +32,7 @@ inline btVector3 ToBtVector3(const Math::Vector3& v)
 {
 	return btVector3(v.x, v.y, v.z);
 }
-inline Math::Vector3 ToMathVector3(const btVector3& v)
+inline Math::Vector3 ToVector3(const btVector3& v)
 {
 	return {
 		static_cast<float>(v.getX()),
