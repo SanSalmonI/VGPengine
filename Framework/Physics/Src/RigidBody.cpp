@@ -15,6 +15,8 @@ void RigidBody::Initialize(Graphics::Transform& graphicsTransform, CollisionShap
 	mGraphicsTransform = &graphicsTransform;
 	mMass = mass;
 
+	btVector3 localInertia = btVector3();
+	shape.mCollisionShape->calculateLocalInertia(mMass, localInertia);
 	mMotionState = new btDefaultMotionState(ConverTobtTransform(graphicsTransform));
 	mRigidBody = new btRigidBody(mMass, mMotionState, shape.mCollisionShape);
 	PhysicsWorld::Get()->Register(this);

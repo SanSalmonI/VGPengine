@@ -62,12 +62,31 @@ void GameState::Initialize()
 	{
 		mBoxes[i].rigidBody.Initialize(mBoxes[i].box.transform, mBoxes[i].shape, 1.0f);
 	}
+
+	int rows = 20;
+	int columns = 20;
+	mClothMesh = MeshBuilder::CreatePlane(rows, columns, 0.5f);
+	for (Graphics::Vertex& vertex : mClothMesh.vertices)
+	{
+		vertex.position.y += 10.0f;
+	}
+
+	uint32_t lastVertex = mClothMesh.vertices.size() - 1;
+	uint32_t lastVertexOS = lastVertex - columns;
+	mClothSoftBody.Initialize(mClothMesh, 1.0f, { lastVertex, lastVertexOS });
+	mCloth.meshBuffer.Initialize(nullptr, sizeof(Vertex), mClothMesh.vertices.size());
+	mCloth.diffuseMapId = tm->LoadTexture(L"planets/venus.jpg");
+
 }
 
 void GameState::Terminate()
 {
 	mRenderObject.Terminate();
 	mStandardEffect.Terminate();
+
+	mCloth.meshBuffer.Terminate();
+	
+
 }
 
 void GameState::Update(float deltaTime)
@@ -85,6 +104,7 @@ void GameState::Update(float deltaTime)
 
 void GameState::Render()
 {
+	mCloth MeshBuffer.Update(mClothMesh.vertices.data(), mClothMesh.vertices.size());
 		mStandardEffect.Begin();
 		mStandardEffect.SetCamera(mCamera);
 		mStandardEffect.Render(mRenderObject);
