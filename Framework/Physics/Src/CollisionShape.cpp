@@ -41,10 +41,14 @@ void CollisionShape::InitializeHull(const Math::Vector3& halfExtents, const Math
 
 
 	};
-
+	for (Math::Vector3& point : points)
+	{
+		hullShape->addPoint(ToBtVector3(point), false);
+	}
+	hullShape->recalcLocalAabb();
 	mCollisionShape = hullShape;
 
 }
 void CollisionShape::Terminate(){
-
+	SafeDelete(mCollisionShape);
 }

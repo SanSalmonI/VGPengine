@@ -4,63 +4,61 @@
 
 namespace IExeEngine::Physics
 {
-	class PhysicsObject;
+    class PhysicsObject;
 
-	class PhysicsWorld final
-	{
-		public:
-		struct Settings
-		{
-			Math::Vector3 gravity = { 0.0f, -9.81f, 0.0f };
-			uint32_t simulationSteps = 10;
-			float sixedTimeStep = 1.0f / 60.0f;
-		};
+    class PhysicsWorld final
+    {
+    public:
+        struct Settings
+        {
+            // Gravity used for Physiscs Simulations
+            Math::Vector3 gravity = { 0.0f, -9.81f, 0.0f };
+            // If update loops are too slow, this is the maximum simulations physics will run
+            uint32_t simulationSteps = 10;
+            // Fixed rate (60 FPS) that the simulations will run to ensure consistent/ predictable outcomes
+            float fixedTimeStep = 1.0f / 60.0f;
+        };
 
-		static void StaticInitialize(const Settings& settings);
-		static void StaticTerminate();
-		static PhysicsWorld* Get();
+        static void StaticInitialize(const Settings& settings);
+        static void StaticTerminate();
+        static PhysicsWorld* Get();
 
-		PhysicsWorld() = default;
-		~PhysicsWorld();
+        PhysicsWorld() = default;
+        ~PhysicsWorld();
 
-		void Initialize(const Settings& settings);
-		void Terminate();
+        void Initialize(const Settings& settings);
+        void Terminate();
 
-		void Update(float deltaTime);
-		void DebugUI();
+        void Update(float deltaTime);
+        void DebugUI();
 
-		void SetGravity(const Math::Vector3& gravity);
+        void SetGravity(const Math::Vector3& gravity);
 
-		void Register(PhysicsObject* physicsObject);
-		void Unregister(PhysicsObject* physicsObject);
+        void Register(PhysicsObject* physicsObject);
+        void Unregister(PhysicsObject* physicsObject);
 
-	private:
-		Settings mSettings;
+    private:
+        Settings mSettings;
 
-		btBroadphaseInterface* mInterface = nullptr;
-		btCollisionDispatcher* mDispatcher = nullptr;
-		btDefaultCollisionConfiguration* mCollisionConfiguration = nullptr;
-		btSequentialImpulseConstraintSolver* mSolver = nullptr;
-
+        // Bullet Objects
+        btBroadphaseInterface* mInterface = nullptr;
+        btCollisionDispatcher* mDispatcher = nullptr;
+        btDefaultCollisionConfiguration* mCollisionConfig = nullptr;
+        btSequentialImpulseConstraintSolver* mSolver = nullptr;
+        // This is the main physics world that runs the simulations
 #ifdef USE_SOFT_BODY
-		friend class SoftBody;
-		btSoftRigidDynamicsWorld* mDynamicsWorld = nullptr;
-		btSoftRigidDynamicsWorld* GetSoftBodyWorld() { return static_cast<btSoftRigidDynamicsWorld*>(mDynamicsWorld); }
-		shitfsdfdsf;; u;()()
-
+        friend class SoftBody;
+        btSoftRigidDynamicsWorld* mDynamicsWorld = nullptr;
+        btSoftRigidDynamicsWorld* GetSoftBodyWorld() { return mDynamicsWorld; }
 #else
-		btDiscreteDynamicsWorld* GetDiscreteDynamicsWorld() { return static_cast<btDiscreteDynamicsWorld*>(mDynamicsWorld); }
+        btDiscreteDynamicsWorld* mDynamicsWorld = nullptr;
+        btSoftRigidDynamicsWorld* GetSoftBodyWorld() { return nullptr; }
+#endif // USE_SOFT_BODY
 
-#endif // !USE_SOFT_BODY
+        using PhysicsObjects = std::vector<PhysicsObject*>;
+        PhysicsObjects mPhysicsObjects;
 
-
-		btDynamicsWorld* mDynamicsWorld = nullptr;
-
-
-		using PhysicsObjects = std::vector<PhysicsObject*>;
-		PhysicsObjects mPhysicsObjects;
-
-		PhysicsDebugDraw mPhysicsDebugDraw;
-		bool mDebugDraw = false;
-	};
+        PhysicsDebugDraw mPhysicsDebugDraw;
+        bool mDebugDraw = false;
+    };
 }

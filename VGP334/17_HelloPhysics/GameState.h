@@ -5,41 +5,51 @@
 class GameState : public IExeEngine::AppState
 {
 public:
-	void Initialize() override;
-	void Terminate() override;
-	void Update(float deltaTime) override;
-	void Render() override;
-	void DebugUI() override;
+    void Initialize() override;
+
+    void Terminate() override;
+
+    void Update(float deltaTime) override;
+
+    void Render() override;
+
+    void DebugUI() override;
 
 private:
 
-	void UpdateCamera(float deltaTime);
+    void UpdateCamera(float deltaTime);
 
-	IExeEngine::Graphics::Camera mCamera;
-	IExeEngine::Graphics::DirectionalLight mDirectionalLight;
+    IExeEngine::Graphics::Camera mCamera;
+    IExeEngine::Graphics::DirectionalLight mDirectionalLight;
 
-	IExeEngine::Graphics::RenderObject mGroundObject;
-	IExeEngine::Graphics::RenderObject mRenderObject;
-	IExeEngine::Graphics::RenderObject mBallObject;
-	IExeEngine::Physics::RigidBody mBallRigidBody;
-	IExeEngine::Physics::CollisionShape mBallShape;
+    // Ball info
+    IExeEngine::Graphics::RenderObject mFootball;
+    IExeEngine::Physics::CollisionShape mBallShape;
+    IExeEngine::Physics::RigidBody mBallRigidBody;
 
-	struct BoxData
-	{
-		IExeEngine::Graphics::RenderObject box;
-		IExeEngine::Physics::RigidBody rigidBody;
-		IExeEngine::Physics::CollisionShape shape;
-	};
+    // Ground info
+    IExeEngine::Graphics::RenderObject mGroundObject;
+    IExeEngine::Physics::CollisionShape mGroundShape;
+    IExeEngine::Physics::RigidBody mGroundRigidBody;
 
-	using Boxes = std::vector<BoxData>;
-	Boxes mBoxes;
+    struct BoxData
+    {
+        IExeEngine::Graphics::RenderObject box;
+        IExeEngine::Physics::CollisionShape shape;
+        IExeEngine::Physics::RigidBody rigidBody;
+    };
+    using Boxes = std::vector<BoxData>;
+    Boxes mBoxes;
 
-	IExeEngine::Graphics::StandardEffect mStandardEffect;
+    IExeEngine::Graphics::StandardEffect mStandardEffect;
 
-	//cloth
-	IExeEngine::Graphics::RenderObject mCloth;
-	IExeEngine::Graphics::Mesh mClothMesh;
-	IExeEngine::Physics::SoftBody mClothSoftBody;
+    // Cloth info
+    IExeEngine::Graphics::RenderObject mCloth;
+    IExeEngine::Graphics::Mesh mClothMesh;
+    IExeEngine::Physics::SoftBody mClothSoftBody;
 
-
+    // Cloth Ball info
+    IExeEngine::Graphics::RenderObject mClothBall;
+    IExeEngine::Graphics::Mesh mClothBallMesh;
+    IExeEngine::Physics::SoftBody mClothBallSoftBody;
 };

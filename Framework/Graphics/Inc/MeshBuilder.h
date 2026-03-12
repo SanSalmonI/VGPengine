@@ -42,5 +42,8 @@ namespace IExeEngine::Graphics
 
 		//screen Quad
 		static MeshPX CreateScreenQuadPX();
+
+		// Sprite Quad
+		static MeshPX CreateSpriteQuadPX(float width, float height);
 	};
 }

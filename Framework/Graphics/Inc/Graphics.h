@@ -62,6 +62,8 @@
 
 #include "MeshBuilder.h"
 
+#include "ParticleSystemEffect.h"
+
 #include "Texture.h"
 
 #include "Sampler.h"

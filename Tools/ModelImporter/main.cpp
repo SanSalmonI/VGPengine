@@ -99,7 +99,7 @@ void ExportEmbeddedTexture (const aiTexture* texture, const Arguments& args,
 {
 	printf("Exporting embedded texture to %s...\n", fileName.u8string().c_str());
 	std::string fullFileName = args.outputFileName.u8string();
-	fullFileName = fullFileName.substr(0, fullFileName.rfind('/'));
+	fullFileName = fullFileName.substr(0, fullFileName.rfind('/') + 1);
 	fullFileName += fileName.filename().u8string();
 	FILE* file = nullptr;
 	auto err = fopen_s(&file, fullFileName.c_str(), "wb");

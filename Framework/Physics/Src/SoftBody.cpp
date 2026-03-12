@@ -9,11 +9,12 @@ using namespace IExeEngine::Graphics;
 SoftBody::~SoftBody() {
 	ASSERT(mSoftBody == nullptr, "SoftBody: terminated before destruction");
 }
-void SoftBody::Initialize(Graphics::Mesh& mesh, float mass, const std::vector<uint32_t>& fixedVertices){
+void SoftBody::Initialize(Graphics::Mesh& mesh, float mass, const std::vector<uint32_t>& fixedVertices) {
 
 #ifdef USE_SOFT_BODY
 	btSoftRigidDynamicsWorld* world = PhysicsWorld::Get()->GetSoftBodyWorld();
 	ASSERT(world != nullptr, "SoftBody: Physics world does not support soft bodies");
+	mSoftBody = new btSoftBody(&world->getWorldInfo(), mesh.vertices.size(), nullptr, nullptr);
 #else
 	ASSERT(false, "soft bodies are not supported in this build");
 	return;
@@ -24,7 +25,7 @@ void SoftBody::Initialize(Graphics::Mesh& mesh, float mass, const std::vector<ui
 	pm->m_kAST = 0.8f;
 	pm->m_kLST = 0.8f;
 	pm->m_kVST = 0.8f;
-	mSoftBody->m_cfg.kMT =0.2f;
+	mSoftBody->m_cfg.kMT = 0.2f;
 	mSoftBody->m_cfg.kCHR = 1.0f;
 	mSoftBody->m_cfg.piterations = 10;
 	mSoftBody->m_cfg.viterations = 10;
@@ -49,13 +50,14 @@ void SoftBody::Initialize(Graphics::Mesh& mesh, float mass, const std::vector<ui
 		mSoftBody->appendLink(index3, index0);
 		mSoftBody->appendLink(index1, index3);
 		mSoftBody->appendLink(index0, index2);
-	
+
 	}
 
 	for (const int& fixedNode : fixedVertices)
 	{
 		mSoftBody->m_nodes[fixedNode].m_im = 0.0f;
 	}
+	PhysicsWorld::Get()->Register(this);
 }
 void SoftBody::Terminate() {
 
@@ -68,7 +70,7 @@ void SoftBody::SyncWithGraphics() {
 
 	for (size_t i = 0; i < mMesh->vertices.size(); ++i)
 	{
-	
+
 		mMesh->vertices[i].position = ToVector3(mSoftBody->m_nodes[i].m_x);
 	}
 }

@@ -1,68 +1,77 @@
 #pragma once
-// framework headers
 
+
+// Framework Headers:
 #include <Math/Inc/DWMath.h>
 #include <Core/Inc/Core.h>
 #include <Graphics/Inc/Graphics.h>
 
-//Bullet headers
+// Bullet Headers
 #include <Bullet/btBulletCollisionCommon.h>
 #include <Bullet/btBulletDynamicsCommon.h>
 
-//spftbody
+// Softbody Headers
 #include <Bullet/BulletSoftBody/btSoftRigidDynamicsWorld.h>
 #include <Bullet/BulletSoftBody/btSoftBodyHelpers.h>
 #include <Bullet/BulletSoftBody/btSoftBodyRigidBodyCollisionConfiguration.h>
 #include <Bullet/BulletSoftBody/btSoftBodySolvers.h>
+// If we want to use softbody code, we enable this, comment it out if we dont
+#define USE_SOFT_BODY
 
-#define USE_SOFT_BODY 
-
-//helper functions
+// Helper Functions
 template<class T>
 inline void SafeDelete(T*& ptr)
 {
-	if (ptr)
-	{
-		delete ptr;
-		ptr = nullptr;
-	}
+    if (ptr)
+    {
+        delete ptr;
+        ptr = nullptr;
+    }
 }
 
 inline btVector3 ToBtVector3(const Math::Vector3& v)
 {
-	return btVector3(v.x, v.y, v.z);
+    return btVector3(v.x, v.y, v.z);
 }
+
 inline Math::Vector3 ToVector3(const btVector3& v)
 {
-	return {
-		static_cast<float>(v.getX()),
-		static_cast<float>(v.getY()),
-		static_cast<float>(v.getZ())
-	};
+    return {
+        static_cast<float>(v.getX()),
+        static_cast<float>(v.getY()),
+        static_cast<float>(v.getZ())
+    };
 }
+
 inline btQuaternion ToBtQuaternion(const Math::Quaternion& q)
 {
-	return btQuaternion(q.x, q.y, q.z, q.w);
+    return btQuaternion(q.x, q.y, q.z, q.w);
 }
-inline Math::Quaternion ToMathQuaternion(const btQuaternion& q)
+
+inline Math::Quaternion ToQuaternion(const btQuaternion& q)
 {
-	return {
-		static_cast<float>(q.x()),
-		static_cast<float>(q.y()),
-		static_cast<float>(q.z()),
-		static_cast<float>(q.w())
-	};
+    return {
+        static_cast<float>(q.getX()),
+        static_cast<float>(q.getY()),
+        static_cast<float>(q.getZ()),
+        static_cast<float>(q.getW())
+    };
 }
-inline Graphics::Color ToColor(const btVector3& v)
+
+inline Graphics::Color ToColor(const btVector3& c)
 {
-	return Graphics::Color{
-		static_cast<float>(v.getX()),
-		static_cast<float>(v.getY()),
-		static_cast<float>(v.getZ()),
-		1.0f
-	};
+    return {
+        static_cast<float>(c.getX()),
+        static_cast<float>(c.getY()),
+        static_cast<float>(c.getZ()),
+        1.0f
+    };
 }
-inline btTransform ConverTobtTransform(const Graphics::Transform& t)
+
+inline btTransform ConvertToBtTransform(const Graphics::Transform& t)
 {
-	return btTransform(ToBtQuaternion(t.rotation), ToBtVector3(t.position));
+    return btTransform(
+        ToBtQuaternion(t.rotation),
+        ToBtVector3(t.position)
+    );
 }

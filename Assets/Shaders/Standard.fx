@@ -32,9 +32,9 @@ cbuffer SettingsBuffer : register(b3)
     bool useNormalMap;
     bool useBumpMap;
     bool useShadowMap;
+    bool useSkinning;
     float bumpMapWeight;
     float depthBias;
-    bool useSkinning;
 }
 
 cbuffer BoneTransformBuffer : register(b4)
@@ -67,9 +67,9 @@ matrix GetBoneTransform(int4 indices, float4 weights)
     
     matrix transform = boneTransforms[indices[0]] * weights[0];
     
-    transform += boneTransforms[indices[1] * weights[1]];
-    transform += boneTransforms[indices[2] * weights[2]];
-    transform += boneTransforms[indices[3] * weights[3]];
+    transform += boneTransforms[indices[1]] * weights[1];
+    transform += boneTransforms[indices[2]] * weights[2];
+    transform += boneTransforms[indices[3]] * weights[3];
     return transform;                                   
 }
 

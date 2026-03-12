@@ -27,7 +27,7 @@ void GameState::Initialize()
 	mDirectionalLight.diffuse = { 0.7f, 0.7f, 0.7f, 1.0f };
 	mDirectionalLight.specular = { 0.9f, 0.9f, 0.9f, 1.0f };
 
-	mCharacter.Initialize("Character01/Character01.model");
+	mCharacter.Initialize("Character02/Character02.model");
 
 	std::filesystem::path shaderFile = L"../../Assets/Shaders/Standard.fx";
 	mStandardEffect.Initialize(shaderFile);
@@ -52,7 +52,7 @@ void GameState::Render()
 	if (mDrawSkeleton) 
 	{
 		AnimationUtil::BoneTransforms boneTransforms;
-		AnimationUtil::ComouteBoneTransorms(mCharacter.modelId, boneTransforms);
+		AnimationUtil::ComputeBoneTransforms(mCharacter.modelId, boneTransforms);
 		AnimationUtil::DrawSkeleton(mCharacter.modelId, boneTransforms);
 		SimpleDraw::AddGroundPlane(20.0f, Colors::White);
 		SimpleDraw::Render(mCamera);

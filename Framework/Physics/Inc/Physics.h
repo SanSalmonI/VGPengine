@@ -14,3 +14,7 @@
 
 #include "SoftBody.h"
 
+#include	"ParticleSystem.h"
+
+#include "Particle.h"
+

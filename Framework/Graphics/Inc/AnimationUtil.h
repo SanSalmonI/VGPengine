@@ -5,13 +5,13 @@
 
 namespace IExeEngine::Graphics::AnimationUtil
 {
-	//defining a vector of bone matrices to use for skeleton calculations
-	using BoneTransforms = std::vector<Math::Matrix4>;
+    // Defining a vector of bone matrices to use for skeleton calculations
+    using BoneTransforms = std::vector<Math::Matrix4>;
 
-	void ComouteBoneTransforms(ModelId, BoneTransforms& boneTransforms, const Animator* animator=nullptr);
-	//to be called after ComputeBoneTransform, draws the skeleton using SimpleDraw
-	void DrawSkeleton(ModelId modelId, const BoneTransforms& boneTransofms);
-	//to ve calles to apply bone offsets for skinning data
-	void ApplyBoneOffsets(ModelId modelId, BoneTransforms& boneTransforms);
-
+    // Compute all the matricies for all the bones in the hierarchy
+    void ComputeBoneTransforms(ModelId modelId, BoneTransforms& boneTransforms, const Animator* animator = nullptr);
+    // To be called after ComputeBoneTransforms, draws the skeleton hierarchy
+    void DrawSkeleton(ModelId modelId, const BoneTransforms& boneTransforms);
+    // To be called to apply bone offsets for skinning data
+    void ApplyBoneOffsets(ModelId modelId, BoneTransforms& boneTransforms);
 }

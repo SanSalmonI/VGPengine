@@ -327,6 +327,7 @@ void ModelIO::LoadSkeleton(std::filesystem::path filePath, Model& model)
 		ReadMatrix(boneData->toParentTransform);
 		ReadMatrix(boneData->offsetTransform);
 	}
+	fclose(file);
 }
 void ModelIO::SaveAnimation(std::filesystem::path filePath, const Model& model) {
 	if (model.animationClips.empty() || model.skeleton == nullptr || model.skeleton->bones.empty())

@@ -4,34 +4,38 @@
 
 namespace IExeEngine::Physics
 {
-	class CollisionShape;
+    class CollisionShape;
 
-	class RigidBody final : public PhysicsObject
-	{
-	public:
-		RigidBody() = default;
-		~RigidBody() override;
+    class RigidBody final : public PhysicsObject
+    {
+    public:
+        RigidBody() = default;
+        ~RigidBody() override;
 
-		void Initialize(Graphics::Transform& graphicsTransform, CollisionShape& shape, float mass = 0.0f);
-		void Terminate();
+        void Initialize(Graphics::Transform& graphicsTransform, const CollisionShape& shape, float mass = 0.0f, bool addToWorld = true);
+        void Terminate();
 
-		void SetPosition(const Math::Vector3& position);
-		void SetVelocity(const Math::Vector3& velocity);
-		const Math::Vector3& GetVelocity() const;
+        void Activate();
+        void Deactivate();
+        void SetCollisionFlags(int flags);
 
-		bool IsDynamic() const;
+        void SetPosition(const Math::Vector3& position);
 
+        void SetVelocity(const Math::Vector3& velocity);
 
-	private:
-		void SyncWithGraphics() override;
-		btRigidBody* GetRigidBody() override;
-		btRigidBody* mRigidBody = nullptr;
-		btDefaultMotionState* mMotionState = nullptr;
-		float mMass = 0.0f;
+        const Math::Vector3 GetVelocity() const;
 
-		Graphics::Transform* mGraphicsTransform = nullptr;
+        bool IsDynamic() const;
 
-	};
+    private:
+        void SyncWithGraphics() override;
+
+        btRigidBody* GetRigidBody() override;
+
+        btRigidBody* mRigidBody = nullptr;
+        btDefaultMotionState* mMotionState = nullptr;
+        float mMass = 0.0f;
+
+        Graphics::Transform* mGraphicsTransform = nullptr;
+    };
 }
-		
-		

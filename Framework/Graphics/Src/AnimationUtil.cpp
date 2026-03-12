@@ -14,7 +14,7 @@ namespace
 	void conputeBoneTransformsRecursive(const Bone* bone, AnimationUtil::BoneTransforms& boneTransforms, const Animator* animator) {
 		if (bone != nullptr)
 		{
-			if (animator != nullptr || !animator->GetToParentTransform(bone,  boneTransforms[bone->index]))
+			if (animator == nullptr || !animator->GetToParentTransform(bone,  boneTransforms[bone->index]))
 			{
 				boneTransforms[bone->index] = bone->toParentTransform;
 			}
@@ -34,7 +34,7 @@ namespace
 	}
 }
 
-void AnimationUtil::ComouteBoneTransforms(ModelId modelId, BoneTransforms& boneTransforms, const Animator* animator)
+void AnimationUtil::ComputeBoneTransforms(ModelId modelId, BoneTransforms& boneTransforms, const Animator* animator)
 {
 	const Model* model = ModelManager::Get()->GetModel(modelId);
 	if (model != nullptr && model->skeleton != nullptr)
