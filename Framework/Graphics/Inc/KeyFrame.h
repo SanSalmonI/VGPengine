@@ -2,23 +2,28 @@
 
 namespace IExeEngine::Graphics
 {
-	template<class T>
-	struct KeyFrame
-	{
-		KeyFrame() = default;
-		KeyFrame(const T& k, float t)
-			: key(k), time(t)
-		{
-		}
-		T key = T();
-		float time = 0.0f;
-	};
+    template<class T>
+    struct Keyframe
+    {
+        Keyframe() = default;
+        Keyframe(const T& k, float t) :
+            key(k), time(t)
+        {
 
-	template<class T>
-	using KeyFrames = std::vector<KeyFrame<T>>;
+        }
 
-	using PositionKeys = KeyFrames<Math::Vector3>;
-	using RotationKeys = KeyFrames<Math::Quaternion>;
-	using ScaleKeys = KeyFrames<Math::Vector3>;
+        T key = T();
+        float time = 0.0f;
+    };
 
+    using AnimationCallback = std::function<void()>;
+
+    template<class T>
+    using Keyframes = std::vector<Keyframe<T>>;
+
+    using PositionKeys = Keyframes<Math::Vector3>;
+    using RotationKeys = Keyframes<Math::Quaternion>;
+    using ScaleKeys = Keyframes<Math::Vector3>;
+
+    using EventKeys = Keyframes<AnimationCallback>;
 }

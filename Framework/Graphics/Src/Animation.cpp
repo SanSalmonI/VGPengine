@@ -68,6 +68,17 @@ Math::Quaternion Animation::GetRotation(float time) const
 	return mRotationKeys.back().key;
 }
 
+void Animation::PlayEvents(float prevTime, float curTime)
+{
+	for (uint32_t i = 0; i < mEventKeys.size(); ++i)
+	{
+		if (mEventKeys[i].time > prevTime && mEventKeys[i].time <= curTime) // Greater than previous keyframe time and less than or equal to current keyframe time
+		{
+			mEventKeys[i].key(); // Call the event callback
+		}
+	}
+}
+
 Math::Vector3 Animation::GetScale(float time) const
 {
 	if (mScaleKeys.empty())

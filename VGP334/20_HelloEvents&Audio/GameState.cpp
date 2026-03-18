@@ -22,7 +22,7 @@ void GameState::Initialize()
     mParticleSystemEffect.SetCamera(mCamera);
 
     ParticleSystemInfo info;
-    info.textureId = TextureManager::Get()->LoadTexture(L"../../Assets/Textures/Images/bullet_bill.png");
+    info.textureId = TextureManager::Get()->LoadTexture(L"../../Assets/Textures/Images/white.png");
     info.maxParticles = 1000;
     info.particlesPerEmit = { 8 ,12 };
     info.delay = 1.0f;
@@ -39,7 +39,7 @@ void GameState::Initialize()
     info.endColour = { Graphics::Colors::White, Graphics::Colors::White };
     mParticleSystem.Initialize(info);
 
-    info.textureId = TextureManager::Get()->LoadTexture(L"../../Assets/Textures/Images/explosion.png");
+    info.textureId = TextureManager::Get()->LoadTexture(L"../../Assets/Textures/Images/white.png");
     info.particlesPerEmit = { 10, 250 };
     info.spawnSpeed = { 7.0f, 25.0f };
     info.delay = 0.0f;
@@ -58,7 +58,7 @@ void GameState::Initialize()
     mBallRigidBody.Initialize(mFootball.transform, mBallShape, 5.0f);
 
     TextureManager* tm_basket = TextureManager::Get();
-	mFootball.diffuseMapId = tm_basket->LoadTexture(L"../../Assets/Textures/misc/Brazuca.jpg");
+	mFootball.diffuseMapId = tm_basket->LoadTexture(L"../../Assets/Textures/misc/basketball.jpg");
 
 	// Ground
     Mesh plane = MeshBuilder::CreatePlane(20, 20, 1.0f, true);
@@ -134,34 +134,28 @@ void GameState::Initialize()
         });
     
     // Sounds
-    SoundEffectManager* sm = SoundEffectManager::Get();
-    mLaunchSoundId = sm->Load("megamanx_blast.wav");
-    mExplosionSoundId = sm->Load("explosion.wav");
+    //SoundEffectManager* sm = SoundEffectManager::Get();
+    //mLaunchSoundId = sm->Load("megamanx_blast.wav");
+    //mExplosionSoundId = sm->Load("explosion.wav");
 
-    auto launchFirework = [&]()
-        {
-            SoundEffectManager::Get()->Play(mLaunchSoundId);
-        };
+    //auto launchFirework = [&]()
+    //    {
+    //        SoundEffectManager::Get()->Play(mLaunchSoundId);
+    //    };
 
-    auto spawnFirework = [&]()
-    {
-        mFireworkParticles.SpawnParticles();
-        SoundEffectManager::Get()->Play(mExplosionSoundId);
-    };
-    mFireworkAnimation = AnimationBuilder()
-        .AddPositionKey(Math::Vector3::Zero, 0.0f)
-        .AddPositionKey(Math::Vector3::Zero, 2.0f)
-        .AddPositionKey(Math::Vector3::YAxis * 25.0f, 4.0f)
-        .AddEventKey(launchFirework, 2.0f)
-        .AddEventKey(spawnFirework, 4.0f)
-        .Build();
+    //auto spawnFirework = [&]()
+    //{
+    //    mFireworkParticles.SpawnParticles();
+    //    SoundEffectManager::Get()->Play(mExplosionSoundId);
+    //};
+
 }
 
 void GameState::Terminate()
 {
-    SoundEffectManager* sm = SoundEffectManager::Get();
-    sm->Stop(mLaunchSoundId);
-    sm->Stop(mExplosionSoundId);
+    //SoundEffectManager* sm = SoundEffectManager::Get();
+    //sm->Stop(mLaunchSoundId);
+    //sm->Stop(mExplosionSoundId);
 
     EventManager* em = EventManager::Get();
     em->RemoveListener(PressSpaceEvent::StaticGetTypeId(), mSpacePressedListenerId);

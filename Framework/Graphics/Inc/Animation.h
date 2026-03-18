@@ -9,6 +9,7 @@ namespace IExeEngine::Graphics
 		public:
 			Transform GetTransform(float time) const;
 			float GetDuration() const;
+			void PlayEvents(float prevTime, float curTime);
 
 	private:
 
@@ -22,6 +23,7 @@ namespace IExeEngine::Graphics
 		PositionKeys mPositionKeys;
 		RotationKeys mRotationKeys;
 		ScaleKeys mScaleKeys;
+		EventKeys mEventKeys;
 		float mDuration = 0.0f;
 
 		

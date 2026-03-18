@@ -57,7 +57,7 @@ void GameState::Render()
 	if (mDrawSkeleton) 
 	{
 		AnimationUtil::BoneTransforms boneTransforms;
-		AnimationUtil::ComouteBoneTransorms(mCharacter.modelId, boneTransforms, &mAnimator);
+		AnimationUtil::ComputeBoneTransforms(mCharacter.modelId, boneTransforms, &mAnimator);
 		AnimationUtil::DrawSkeleton(mCharacter.modelId, boneTransforms);
 		SimpleDraw::AddGroundPlane(20.0f, Colors::White);
 		SimpleDraw::Render(mCamera);
