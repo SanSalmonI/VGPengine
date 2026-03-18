@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{5906d5a4-ab99-4f6e-b4a1-282d78e58da6}</ProjectGuid>
-    <RootNamespace>Core</RootNamespace>
+    <ProjectGuid>{6d956802-cde8-4aee-a101-b2412a2aea02}</ProjectGuid>
+    <RootNamespace>Audio</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -135,24 +135,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Inc\Audio.h" />
+    <ClInclude Include="Inc\AudioSystem.h" />
     <ClInclude Include="Inc\Common.h" />
-    <ClInclude Include="Inc\Core.h" />
-    <ClInclude Include="Inc\DebugUtil.h" />
-    <ClInclude Include="Inc\Event.h" />
-    <ClInclude Include="Inc\EventManager.h" />
-    <ClInclude Include="Inc\TimeUtil.h" />
-    <ClInclude Include="Inc\Window.h" />
-    <ClInclude Include="Inc\WindowMessageHandler.h" />
+    <ClInclude Include="Inc\SoundEffectManager.h" />
     <ClInclude Include="Src\Precompiled.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Src\EventManager.cpp" />
+    <ClCompile Include="Src\AudioSystem.cpp" />
     <ClCompile Include="Src\Precompiled.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Src\TimeUtil.cpp" />
-    <ClCompile Include="Src\Window.cpp" />
-    <ClCompile Include="Src\WindowMessageHandler.cpp" />
+    <ClCompile Include="Src\SoundEffectManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\External\DirectXTK\Audio\DirectXTKAudio_Desktop_2022_Win8.vcxproj">
+      <Project>{4f150a30-cecb-49d1-8283-6a3f57438cf5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\Core.vcxproj">
+      <Project>{5906d5a4-ab99-4f6e-b4a1-282d78e58da6}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
