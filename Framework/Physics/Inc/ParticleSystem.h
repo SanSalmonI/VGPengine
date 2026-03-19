@@ -33,7 +33,8 @@ namespace IExeEngine::Physics
         bool IsActive();
         void DebugUI();
 
-        void SetPositon(const Math::Vector3& position);
+        void SetPosition(const Math::Vector3& position);
+
 
         void SpawnParticles();
         void Render(Graphics::ParticleSystemEffect& effect);

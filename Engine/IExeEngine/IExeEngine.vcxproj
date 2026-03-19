@@ -149,6 +149,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Framework\Audio\Audio.vcxproj">
+      <Project>{6d956802-cde8-4aee-a101-b2412a2aea02}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\Core\Core.vcxproj">
       <Project>{5906d5a4-ab99-4f6e-b4a1-282d78e58da6}</Project>
     </ProjectReference>

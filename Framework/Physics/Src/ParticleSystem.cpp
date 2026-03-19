@@ -88,11 +88,6 @@ void ParticleSystem::DebugUI()
     ImGui::PopID();
 }
 
-void ParticleSystem::SetPositon(const Math::Vector3& position)
-{
-    mInfo.spawnPosition = position;
-}
-
 void ParticleSystem::SpawnParticles()
 {
     int numParticles = mInfo.particlesPerEmit.GetRandomInc();
@@ -129,6 +124,11 @@ void ParticleSystem::InitializeParticles(uint32_t maxParticles)
         mParticles[i] = std::make_unique<Particle>();
         mParticles[i]->Initialize();
     }
+}
+
+void ParticleSystem::SetPosition(const Math::Vector3& position)
+{
+    mInfo.spawnPosition = position;
 }
 
 void ParticleSystem::SpawnSingleParticle()

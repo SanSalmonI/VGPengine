@@ -65,7 +65,8 @@ bool Animator::GetToParentTransform(const Bone* bone, Math::Matrix4& transform) 
 	const Model* model = ModelManager::Get()->GetModel(mModelId);
 	const AnimationClip& animClip = model->animationClips[mClipIndex];
 	const Animation* animation = animClip.boneAnimations[bone->index].get();
-	if (animation = nullptr) {
+	if (animation == nullptr) 
+	{
 		return false;
 	}
 	Transform animTransform = animation->GetTransform(mAnimationTick);
