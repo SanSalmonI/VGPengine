@@ -135,10 +135,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Inc\AnimatorComponent.h" />
     <ClInclude Include="Inc\App.h" />
     <ClInclude Include="Inc\AppState.h" />
+    <ClInclude Include="Inc\CameraComponent.h" />
+    <ClInclude Include="Inc\CameraService.h" />
     <ClInclude Include="Inc\Common.h" />
+    <ClInclude Include="Inc\Component.h" />
+    <ClInclude Include="Inc\FPSCameraComponent.h" />
+    <ClInclude Include="Inc\GameObject.h" />
+    <ClInclude Include="Inc\GameObjectFactory.h" />
+    <ClInclude Include="Inc\GameObjectHandle.h" />
+    <ClInclude Include="Inc\GameWorld.h" />
     <ClInclude Include="Inc\IExeEngine.h" />
+    <ClInclude Include="Inc\MeshComponent.h" />
+    <ClInclude Include="Inc\ModelComponent.h" />
+    <ClInclude Include="Inc\PhysicsService.h" />
+    <ClInclude Include="Inc\RenderObjectComponent.h" />
+    <ClInclude Include="Inc\RenderService.h" />
+    <ClInclude Include="Inc\RigidBodyComponent.h" />
+    <ClInclude Include="Inc\SaveUtil.h" />
+    <ClInclude Include="Inc\Service.h" />
+    <ClInclude Include="Inc\SoundBankComponent.h" />
+    <ClInclude Include="Inc\SoundEventComponent.h" />
+    <ClInclude Include="Inc\TransformComponent.h" />
+    <ClInclude Include="Inc\TypeIds.h" />
     <ClInclude Include="Src\Precompiled.h" />
   </ItemGroup>
   <ItemGroup>

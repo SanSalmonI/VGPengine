@@ -141,11 +141,13 @@
     <ClInclude Include="Inc\Event.h" />
     <ClInclude Include="Inc\EventManager.h" />
     <ClInclude Include="Inc\TimeUtil.h" />
+    <ClInclude Include="Inc\TypedAllocator.h" />
     <ClInclude Include="Inc\Window.h" />
     <ClInclude Include="Inc\WindowMessageHandler.h" />
     <ClInclude Include="Src\Precompiled.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\BlockAllocator.cpp" />
     <ClCompile Include="Src\EventManager.cpp" />
     <ClCompile Include="Src\Precompiled.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -153,6 +155,9 @@
     <ClCompile Include="Src\TimeUtil.cpp" />
     <ClCompile Include="Src\Window.cpp" />
     <ClCompile Include="Src\WindowMessageHandler.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Inc\BlockAllocator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

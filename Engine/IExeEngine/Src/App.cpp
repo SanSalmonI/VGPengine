@@ -62,13 +62,17 @@ void App::Run(const AppConfig& config)
 			mCurrentState->Initialize();
 		}
 
+   AudioSystem::Get()->Update();
 		float deltaTime = TimeUtil::GetDeltaTime();
 	#if defined(_DEBUG)
 		if (deltaTime < 0.5f) // Primarily for handling Breakpoints
 	#endif
 		{
 			mCurrentState->Update(deltaTime);
-			PhysicsWorld::Get()->Update(deltaTime);
+
+#ifndef USE_PHYSICS_SERVICE // ifndef - if not defined
+            PhysicsWorld::Get()->Update(deltaTime);
+#endif		// IF we are NOT using the physics service -> Use the regular update
 		}
 
 		GraphicsSystem* gs = GraphicsSystem::Get();
@@ -86,16 +90,16 @@ void App::Run(const AppConfig& config)
 	LOG("App Quit");
 	mCurrentState->Terminate();
 	
-	PhysicsWorld::StaticTerminate();
-	ModelManager::StaticTerminate();
-	TextureManager::StaticTerminate();
+    SoundEffectManager::StaticTerminate();
+    AudioSystem::StaticTerminate();
+    PhysicsWorld::StaticTerminate();
+    EventManager::StaticTerminate();
+    ModelManager::StaticTerminate();
+    TextureManager::StaticTerminate();
 	DebugUI::StaticTerminate();
 	SimpleDraw::StaticTerminate();
 	GraphicsSystem::StaticTerminate();
 	InputSystem::StaticTerminate();
-	EventManager::StaticTerminate();
-	SoundEffectManager::StaticTerminate();
-	AudioSystem::StaticTerminate();
 	myWindow.Terminate();
 }
 

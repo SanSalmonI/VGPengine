@@ -9,7 +9,28 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Precompiled.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Animation.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\AnimationBuilder.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\AnimationClip.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\AnimationUtil.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Animator.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
     <ClInclude Include="Inc\BlendState.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Bone.h">
       <Filter>Inc</Filter>
     </ClInclude>
     <ClInclude Include="Inc\Camera.h">
@@ -39,6 +60,9 @@
     <ClInclude Include="Inc\GraphicsSystem.h">
       <Filter>Inc</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\KeyFrame.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
     <ClInclude Include="Inc\Material.h">
       <Filter>Inc</Filter>
     </ClInclude>
@@ -51,7 +75,22 @@
     <ClInclude Include="Inc\MeshTypes.h">
       <Filter>Inc</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\Model.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ModelIO.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ModelManager.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ParticleSystemEffect.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
     <ClInclude Include="Inc\PixelShader.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\PostProcessingEffect.h">
       <Filter>Inc</Filter>
     </ClInclude>
     <ClInclude Include="Inc\Precompiled.h">
@@ -66,13 +105,25 @@
     <ClInclude Include="Inc\Sampler.h">
       <Filter>Inc</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\ShadowEffect.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
     <ClInclude Include="Inc\SimpleDraw.h">
       <Filter>Inc</Filter>
     </ClInclude>
     <ClInclude Include="Inc\SimpleTextureEffect.h">
       <Filter>Inc</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\Skeleton.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
     <ClInclude Include="Inc\StandardEffect.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Terrain.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\TerrainEffect.h">
       <Filter>Inc</Filter>
     </ClInclude>
     <ClInclude Include="Inc\Texture.h">
@@ -88,57 +139,6 @@
       <Filter>Inc</Filter>
     </ClInclude>
     <ClInclude Include="Inc\VertexTypes.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Precompiled.h">
-      <Filter>Src</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\Model.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\ModelIO.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\ModelManager.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\PostProcessingEffect.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\ShadowEffect.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\Terrain.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\TerrainEffect.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\KeyFrame.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\Animation.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\AnimationBuilder.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\Bone.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\Skeleton.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\AnimationUtil.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\AnimationClip.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\Animator.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\ParticleSystemEffect.h">
       <Filter>Inc</Filter>
     </ClInclude>
   </ItemGroup>

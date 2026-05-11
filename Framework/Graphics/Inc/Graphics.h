@@ -12,6 +12,8 @@
 
 #include "Bone.h"
 
+#include "Material.h"
+
 #include "Skeleton.h"
 
 #include "AnimationUtil.h"

@@ -2,10 +2,8 @@
 
 #include "Color.h"
 
-namespace IExeEngine
+namespace IExeEngine::Graphics
 {
-	namespace Graphics
-	{
 		struct DirectionalLight
 		{
 			Color ambient = Colors::White; // Overall light color
@@ -14,5 +12,4 @@ namespace IExeEngine
 			Math::Vector3 direction = Math::Vector3::ZAxis; // Pointing down the Z axis
 			float padding = 0.0f; // Padding to make the structure 16 byte aligned
 		};
-	}
 }
