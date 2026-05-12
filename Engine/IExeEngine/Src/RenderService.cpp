@@ -114,6 +114,7 @@ void RenderService::Register(const RenderObjectComponent* renderObjectComponent)
         {
             animator = &animatorComponent->GetAnimator();
         }
+
         Entry& entry = mRenderEntries.emplace_back();
         entry.renderComponent = renderObjectComponent;
         entry.transformComponent = renderObjectComponent->GetOwner().GetComponent<TransformComponent>();
