@@ -90,7 +90,7 @@ void App::Run(const AppConfig& config)
 	LOG("App Quit");
 	mCurrentState->Terminate();
 	
-	SoundEffectManager::StaticTerminate();
+    SoundEffectManager::StaticTerminate();
     AudioSystem::StaticTerminate();
     PhysicsWorld::StaticTerminate();
     EventManager::StaticTerminate();

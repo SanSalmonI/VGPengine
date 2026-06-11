@@ -15,10 +15,20 @@ void GameObject::Initialize()
 
     mId = ++gUniqueId;
     mInitialized = true;
+
+    for (GameObject* child : mChildren)
+    {
+        child->Initialize();
+    }
 }
 
 void GameObject::Terminate()
 {
+    for (GameObject* child : mChildren)
+    {
+        child->Terminate();
+    }
+
     for (auto& component : mComponents)
     {
         component->Terminate();
@@ -32,6 +42,14 @@ void GameObject::Update(float deltaTime)
     for (auto& component : mComponents)
     {
         component->Update(deltaTime);
+    }
+}
+
+void GameObject::LateUpdate(float deltaTime)
+{
+    for (auto& component : mComponents)
+    {
+        component->LateUpdate(deltaTime);
     }
 }
 
@@ -79,4 +97,47 @@ GameWorld& GameObject::GetWorld()
 const GameWorld& GameObject::GetWorld() const
 {
     return *mWorld;
+}
+
+void GameObject::AddChild(GameObject* child)
+{
+    mChildren.push_back(child);
+}
+
+uint32_t GameObject::GetChildCount() const
+{
+    return mChildren.size();
+}
+
+GameObject* GameObject::GetChild(uint32_t index)
+{
+    if (index < GetChildCount())
+    {
+        return mChildren[index];
+    }
+    return nullptr;
+}
+
+const GameObject* GameObject::GetChild(uint32_t index) const
+{
+    if (index < GetChildCount())
+    {
+        return mChildren[index];
+    }
+    return nullptr;
+}
+
+void GameObject::SetParent(GameObject* parent)
+{
+    mParent = parent;
+}
+
+GameObject* GameObject::GetParent()
+{
+    return mParent;
+}
+
+const GameObject* GameObject::GetParent() const
+{
+    return mParent;
 }

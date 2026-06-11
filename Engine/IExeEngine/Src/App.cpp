@@ -2,7 +2,6 @@
 #include "App.h"
 #include "AppState.h"
 
-
 using namespace IExeEngine;
 using namespace IExeEngine::Core;
 using namespace IExeEngine::Graphics;
@@ -28,16 +27,22 @@ void App::Run(const AppConfig& config)
 	DebugUI::StaticInitialize(handle, false, true);
 	SimpleDraw::StaticInitialize(config.maxVertexCount);
 	TextureManager::StaticInitialize(L"../../Assets/Textures");
-	ModelManager::StaticInitialize(L"../../Assets/Models");
-	SoundEffectManager::StaticInitialize(L"../../Assets/Audio");
-	AudioSystem::StaticInitialize();
-	
-	PhysicsWorld::Settings settings;
-	PhysicsWorld::StaticInitialize(settings);
+    ModelManager::StaticInitialize(L"../../Assets/Models");
+
+    PhysicsWorld::Settings physicsSettings;
+    PhysicsWorld::StaticInitialize(physicsSettings);
+
 	EventManager::StaticInitialize();
 
+    AudioSystem::StaticInitialize();
+    SoundEffectManager::StaticInitialize(L"../../Assets/Audio");
+
+	UIFont::StaticInitialize(UIFont::FontType::Verdana);
+
+	UISpriteRenderer::StaticInitialize();
+
 	// Last Step Before Running
-	ASSERT(mCurrentState != nullptr, "App: Need an app state to run");
+	ASSERT(mCurrentState != nullptr, "App: Need an app state to run!");
 	mCurrentState->Initialize();
 
 	// Process Updates
@@ -62,7 +67,8 @@ void App::Run(const AppConfig& config)
 			mCurrentState->Initialize();
 		}
 
-   AudioSystem::Get()->Update();
+        AudioSystem::Get()->Update();
+
 		float deltaTime = TimeUtil::GetDeltaTime();
 	#if defined(_DEBUG)
 		if (deltaTime < 0.5f) // Primarily for handling Breakpoints
@@ -72,7 +78,7 @@ void App::Run(const AppConfig& config)
 
 #ifndef USE_PHYSICS_SERVICE // ifndef - if not defined
             PhysicsWorld::Get()->Update(deltaTime);
-#endif		// IF we are NOT using the physics service -> Use the regular update
+#endif		// IF we are NOT using the physics service -> Use the regular update				
 		}
 
 		GraphicsSystem* gs = GraphicsSystem::Get();
@@ -90,6 +96,8 @@ void App::Run(const AppConfig& config)
 	LOG("App Quit");
 	mCurrentState->Terminate();
 	
+	UISpriteRenderer::StaticTerminate();
+	UIFont::StaticTerminate();
     SoundEffectManager::StaticTerminate();
     AudioSystem::StaticTerminate();
     PhysicsWorld::StaticTerminate();
@@ -100,6 +108,7 @@ void App::Run(const AppConfig& config)
 	SimpleDraw::StaticTerminate();
 	GraphicsSystem::StaticTerminate();
 	InputSystem::StaticTerminate();
+
 	myWindow.Terminate();
 }
 

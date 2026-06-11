@@ -21,53 +21,14 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Inc\Common.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\IExeEngine.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Precompiled.h">
       <Filter>Src</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\AnimatorComponent.h">
-      <Filter>Inc\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\CameraComponent.h">
-      <Filter>Inc\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\Component.h">
-      <Filter>Inc\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\FPSCameraComponent.h">
-      <Filter>Inc\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\MeshComponent.h">
-      <Filter>Inc\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\ModelComponent.h">
-      <Filter>Inc\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\RenderObjectComponent.h">
-      <Filter>Inc\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\RigidBodyComponent.h">
-      <Filter>Inc\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\SoundBankComponent.h">
-      <Filter>Inc\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\SoundEventComponent.h">
-      <Filter>Inc\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\TransformComponent.h">
-      <Filter>Inc\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\CameraService.h">
-      <Filter>Inc\Services</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\PhysicsService.h">
-      <Filter>Inc\Services</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\RenderService.h">
-      <Filter>Inc\Services</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\Service.h">
-      <Filter>Inc\Services</Filter>
     </ClInclude>
     <ClInclude Include="Inc\App.h">
       <Filter>Inc</Filter>
@@ -75,29 +36,89 @@
     <ClInclude Include="Inc\AppState.h">
       <Filter>Inc</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\Common.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
     <ClInclude Include="Inc\GameObject.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\GameObjectFactory.h">
-      <Filter>Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\GameObjectHandle.h">
       <Filter>Inc</Filter>
     </ClInclude>
     <ClInclude Include="Inc\GameWorld.h">
       <Filter>Inc</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\IExeEngine.h">
+    <ClInclude Include="Inc\GameObjectHandle.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Component.h">
+      <Filter>Inc\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\TypeIds.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\TransformComponent.h">
+      <Filter>Inc\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CameraComponent.h">
+      <Filter>Inc\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\FPSCameraComponent.h">
+      <Filter>Inc\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Service.h">
+      <Filter>Inc\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\GameObjectFactory.h">
       <Filter>Inc</Filter>
     </ClInclude>
     <ClInclude Include="Inc\SaveUtil.h">
       <Filter>Inc</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\TypeIds.h">
-      <Filter>Inc</Filter>
+    <ClInclude Include="Inc\CameraService.h">
+      <Filter>Inc\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\RenderObjectComponent.h">
+      <Filter>Inc\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\RenderService.h">
+      <Filter>Inc\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\MeshComponent.h">
+      <Filter>Inc\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ModelComponent.h">
+      <Filter>Inc\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\AnimatorComponent.h">
+      <Filter>Inc\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\RigidBodyComponent.h">
+      <Filter>Inc\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\PhysicsService.h">
+      <Filter>Inc\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\SoundEventComponent.h">
+      <Filter>Inc\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\SoundBankComponent.h">
+      <Filter>Inc\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\UIComponent.h">
+      <Filter>Inc\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\UIRenderService.h">
+      <Filter>Inc\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\UITextComponent.h">
+      <Filter>Inc\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\UISpriteComponent.h">
+      <Filter>Inc\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\UIButtonComponent.h">
+      <Filter>Inc\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\PlayerControllerComponent.h">
+      <Filter>Inc\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\TPSCameraComponent.h">
+      <Filter>Inc\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -110,7 +131,13 @@
     <ClCompile Include="Src\IExeEngine.cpp">
       <Filter>Src</Filter>
     </ClCompile>
-    <ClCompile Include="Src\AnimatorComponent.cpp">
+    <ClCompile Include="Src\GameObject.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\GameWorld.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\TransformComponent.cpp">
       <Filter>Src\Components</Filter>
     </ClCompile>
     <ClCompile Include="Src\CameraComponent.cpp">
@@ -119,35 +146,59 @@
     <ClCompile Include="Src\FPSCameraComponent.cpp">
       <Filter>Src\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Src\GameObjectFactory.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SaveUtil.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CameraService.cpp">
+      <Filter>Src\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\RenderObjectComponent.cpp">
+      <Filter>Src\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\RenderService.cpp">
+      <Filter>Src\Services</Filter>
+    </ClCompile>
     <ClCompile Include="Src\MeshComponent.cpp">
       <Filter>Src\Components</Filter>
     </ClCompile>
     <ClCompile Include="Src\ModelComponent.cpp">
       <Filter>Src\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Src\RenderObjectComponent.cpp">
+    <ClCompile Include="Src\AnimatorComponent.cpp">
       <Filter>Src\Components</Filter>
     </ClCompile>
     <ClCompile Include="Src\RigidBodyComponent.cpp">
       <Filter>Src\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Src\SoundBankComponent.cpp">
-      <Filter>Src\Components</Filter>
+    <ClCompile Include="Src\PhysicsService.cpp">
+      <Filter>Src\Services</Filter>
     </ClCompile>
     <ClCompile Include="Src\SoundEventComponent.cpp">
       <Filter>Src\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Src\TransformComponent.cpp">
+    <ClCompile Include="Src\SoundBankComponent.cpp">
       <Filter>Src\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Src\CameraService.cpp">
+    <ClCompile Include="Src\UIRenderService.cpp">
       <Filter>Src\Services</Filter>
     </ClCompile>
-    <ClCompile Include="Src\PhysicsService.cpp">
-      <Filter>Src\Services</Filter>
+    <ClCompile Include="Src\UITextComponent.cpp">
+      <Filter>Src\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Src\RenderService.cpp">
-      <Filter>Src\Services</Filter>
+    <ClCompile Include="Src\UISpriteComponent.cpp">
+      <Filter>Src\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\UIButtonComponent.cpp">
+      <Filter>Src\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\PlayerControllerComponent.cpp">
+      <Filter>Src\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\TPSCameraComponent.cpp">
+      <Filter>Src\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

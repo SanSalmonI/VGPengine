@@ -5,6 +5,7 @@
 #include "CameraService.h"
 #include "RenderService.h"
 #include "PhysicsService.h"
+#include "UIRenderService.h"
 
 using namespace IExeEngine;
 
@@ -61,6 +62,7 @@ void GameWorld::Terminate()
 
 void GameWorld::Update(float deltaTime)
 {
+    // Game Objects Update
     for (Slot& slot : mGameObjectSlots)
     {
         if (slot.gameObject != nullptr)
@@ -68,9 +70,18 @@ void GameWorld::Update(float deltaTime)
             slot.gameObject->Update(deltaTime);
         }
     }
+    // Services Update (i.e. Physics)
     for (auto& service : mServices)
     {
         service->Update(deltaTime);
+    }
+    // Game Objects Late Update (React to the physiscs update before rendering)
+    for (Slot& slot : mGameObjectSlots)
+    {
+        if (slot.gameObject != nullptr)
+        {
+            slot.gameObject->LateUpdate(deltaTime);
+        }
     }
     
     ProcessDestoyList();
@@ -167,6 +178,10 @@ void GameWorld::LoadLevel(const std::filesystem::path& levelFile)
         else if (serviceName == "PhysicsService")
         {
             newService = AddService<PhysicsService>();
+        }
+        else if (serviceName == "UIRenderService")
+        {
+            newService = AddService<UIRenderService>();
         }
         else
         {

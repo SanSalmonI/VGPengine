@@ -2,6 +2,7 @@
 #include "GameObjectFactory.h"
 #include "Component.h"
 #include "GameObject.h"
+#include "GameWorld.h"
 // components includes we've made 
 #include "TransformComponent.h"
 #include "CameraComponent.h"
@@ -12,6 +13,11 @@
 #include "RigidBodyComponent.h"
 #include "SoundEventComponent.h"
 #include "SoundBankComponent.h"
+#include "UITextComponent.h"
+#include "UISpriteComponent.h"
+#include "UIButtonComponent.h"
+#include "PlayerControllerComponent.h"
+#include "TPSCameraComponent.h"
 
 using namespace IExeEngine;
 
@@ -61,6 +67,26 @@ namespace
         {
             newComponent = gameObject.AddComponent<SoundBankComponent>();
         }
+        else if (componentName == "UITextComponent")
+        {
+            newComponent = gameObject.AddComponent<UITextComponent>();
+        }
+        else if (componentName == "UISpriteComponent")
+        {
+            newComponent = gameObject.AddComponent<UISpriteComponent>();
+        }
+        else if (componentName == "UIButtonComponent")
+        {
+            newComponent = gameObject.AddComponent<UIButtonComponent>();
+        }
+        else if (componentName == "PlayerControllerComponent")
+        {
+            newComponent = gameObject.AddComponent<PlayerControllerComponent>();
+        }
+        else if (componentName == "TPSCameraComponent")
+        {
+            newComponent = gameObject.AddComponent<TPSCameraComponent>();
+        }
         else
         {
             newComponent = TryMakeComponent(componentName, gameObject);
@@ -101,6 +127,26 @@ namespace
         else if (componentName == "RigidBodyComponent")
         {
             component = gameObject.GetComponent<RigidBodyComponent>();
+        }
+        else if (componentName == "UITextComponent")
+        {
+            component = gameObject.GetComponent<UITextComponent>();
+        }
+        else if (componentName == "UISpriteComponent")
+        {
+            component = gameObject.GetComponent<UISpriteComponent>();
+        }
+        else if (componentName == "UIButtonComponent")
+        {
+            component = gameObject.GetComponent<UIButtonComponent>();
+        }
+        else if (componentName == "PlayerControllerComponent")
+        {
+            component = gameObject.GetComponent<PlayerControllerComponent>();
+        }
+        else if (componentName == "TPSCameraComponent")
+        {
+            component = gameObject.GetComponent<TPSCameraComponent>();
         }
         else
         {
@@ -144,6 +190,21 @@ void GameObjectFactory::Make(const std::filesystem::path& templatePath, GameObje
         {
             // Apply the jason value data
             newComponent->Deserialize(component.value);
+        }
+    }
+
+    if (doc.HasMember("Children"))
+    {
+        auto children = doc["Children"].GetObj();
+        for (auto& child : children)
+        {
+            std::string name = child.name.GetString();
+            std::filesystem::path childTemplate = child.value["Template"].GetString();
+            GameObject* childGO = gameWorld.CreateGameObject(name, childTemplate);
+
+            OverrideDeserialize(child.value, *childGO);
+            gameObject.AddChild(childGO);
+            childGO->SetParent(&gameObject);
         }
     }
 }

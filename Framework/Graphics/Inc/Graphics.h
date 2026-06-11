@@ -81,3 +81,9 @@
 #include "RenderTarget.h"
 
 #include "SimpleTextureEffect.h"
+
+#include "UIFont.h"
+
+#include "UISprite.h"
+
+#include "UISpriteRenderer.h"

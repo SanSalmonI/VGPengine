@@ -52,7 +52,7 @@ float4 PS(VS_OUTPUT input) : SV_Target
     else if(mode == 2)//invert
     {
         float color = textureMap0.Sample(textureSampler, input.texCoord);
-        finalColor = finalColor = 1.0f - color;
+        finalColor = 1.0f - color;
     }
     else if(mode == 3) //moirror
     {
