@@ -16,6 +16,8 @@
 
 #include "Skeleton.h"
 
+#include "UIFont.h"
+
 #include "AnimationUtil.h"
 
 #include "AnimationClip.h"

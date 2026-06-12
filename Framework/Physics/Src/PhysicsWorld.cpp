@@ -26,6 +26,8 @@ void PhysicsWorld::StaticTerminate()
     }
 }
 
+
+
 PhysicsWorld* PhysicsWorld::Get()
 {
     ASSERT(sPhysicsWorld != nullptr, "PhysicsWorld: Must be Initialized!");
@@ -87,6 +89,12 @@ void PhysicsWorld::Update(float deltaTime)
     {
         obj->SyncWithGraphics();
     }
+}
+
+void PhysicsWorld::UpdateSettings(const Settings& settings)
+{
+    mSettings = settings;
+	mDynamicsWorld->setGravity(ToBtVector3(settings.gravity));
 }
 
 void PhysicsWorld::DebugUI()
