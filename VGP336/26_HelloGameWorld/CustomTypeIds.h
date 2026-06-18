@@ -4,7 +4,8 @@
 
 enum class CustomComponentId
 {
-    CustomDebugDraw = static_cast<int>(IExeEngine::ComponentId::Count)
+    CustomDebugDraw = static_cast<int>(IExeEngine::ComponentId::Count),
+    DigMinigame
 };
 
 enum class CustomServiceId

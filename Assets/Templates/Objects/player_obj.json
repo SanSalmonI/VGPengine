@@ -61,8 +61,20 @@
         "SalsaBG": {
           "FileName": "SalsaBG.wav",
           "Looping": true
+        },
+        "ShovelFail": {
+          "FileName": "megamanx_shot.wav",
+          "Looping": false
+        },
+        "ShovelSuccess": {
+          "FileName": "explosion.wav",
+          "Looping": false
         }
       }
+    },
+    "DigMinigameComponent": {
+      "TargetPosition": [ 5.0, 0.0, 5.0 ],
+      "SuccessRadius": 2.5
     }
   }
 }

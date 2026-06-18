@@ -1,6 +1,7 @@
 #include "GameState.h"
 #include "CustomDebugDrawComponent.h"
 #include "CustomDebugDrawService.h"
+#include "DigMinigameComponent.h"
 
 using namespace IExeEngine;
 using namespace IExeEngine::Graphics;
@@ -25,6 +26,10 @@ Component* MakeCustomComponent(const std::string& componentName, GameObject& gam
 	{
 		return gameObject.AddComponent<CustomDebugDrawComponent>();
 	}
+	else if (componentName == "DigMinigameComponent")
+	{
+		return gameObject.AddComponent<DigMinigameComponent>();
+	}
 	return nullptr;
 }
 // Pass the input to the engine -> Engine tries to find it in the engine
@@ -36,6 +41,10 @@ Component* GetCustomComponent(const std::string& componentName, GameObject& game
 	if (componentName == "CustomDebugDrawComponent")
 	{
 		return gameObject.GetComponent<CustomDebugDrawComponent>();
+	}
+	else if (componentName == "DigMinigameComponent")
+	{
+		return gameObject.GetComponent<DigMinigameComponent>();
 	}
 	return nullptr;
 } 
