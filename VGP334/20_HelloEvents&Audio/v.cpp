@@ -230,8 +230,8 @@ void GameState::Render()
     mStandardEffect.End();
 
     Transform particleTransform = mFireworkAnimation.GetTransform(mFireworkAnimationTime);
-    mParticleSystem.SetPositon(particleTransform.position);
-    mFireworkParticles.SetPositon(particleTransform.position);
+    mParticleSystem.SetPosition(particleTransform.position);
+    mFireworkParticles.SetPosition(particleTransform.position);
 
     mParticleSystemEffect.Begin();
         mParticleSystem.Render(mParticleSystemEffect);
